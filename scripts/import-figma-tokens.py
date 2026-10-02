@@ -23,6 +23,33 @@ def strip_extensions(value):
     return value
 
 
+def preserve_aliases(value):
+    """Convert Figma alias metadata into standard token references."""
+    if isinstance(value, dict):
+        result = {
+            key: preserve_aliases(val)
+            for key, val in value.items()
+        }
+        alias_data = value.get("$extensions", {}).get(
+            "com.figma.aliasData", {}
+        )
+        target = alias_data.get("targetVariableName")
+        if target and "$value" in result:
+            result["$value"] = "{" + target.replace("/", ".") + "}"
+        return result
+    if isinstance(value, list):
+        return [preserve_aliases(item) for item in value]
+    return value
+
+
+def load_modes(collection):
+    modes = {}
+    for path in sorted((EXPORT / collection).glob("*.tokens.json")):
+        mode = path.name[:-len(".tokens.json")]
+        modes[mode] = strip_extensions(preserve_aliases(load(path)))
+    return modes
+
+
 def write_json(path, data):
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(
@@ -36,6 +63,20 @@ primitives = load(EXPORT / "Primitives" / "Mode 1.tokens.json")
 write_json(
     TOKENS / "primitives" / "colors.json",
     strip_extensions(primitives),
+)
+
+
+# Brands
+write_json(
+    TOKENS / "brands" / "colors.json",
+    load_modes("Brands"),
+)
+
+
+# Typography
+write_json(
+    TOKENS / "typography" / "typography.json",
+    load_modes("Typography"),
 )
 
 

@@ -1,0 +1,274 @@
+{
+  "Default": {
+    "color": {
+      "primary": {
+        "$type": "color",
+        "$value": "{color.blue.500}"
+      },
+      "primary-hover": {
+        "$type": "color",
+        "$value": "{color.blue.600}"
+      },
+      "primary-pressed": {
+        "$type": "color",
+        "$value": "{color.blue.400}"
+      },
+      "on-primary": {
+        "$type": "color",
+        "$value": "{color.blue.50}"
+      },
+      "secondary": {
+        "$type": "color",
+        "$value": "{color.slate.500}"
+      },
+      "secondary-hover": {
+        "$type": "color",
+        "$value": "{color.slate.600}"
+      },
+      "secondary-pressed": {
+        "$type": "color",
+        "$value": "{color.slate.400}"
+      },
+      "on-secondary": {
+        "$type": "color",
+        "$value": "{color.slate.50}"
+      },
+      "accent": {
+        "$type": "color",
+        "$value": "{color.lime.500}"
+      },
+      "on-accent": {
+        "$type": "color",
+        "$value": "{color.lime.50}"
+      },
+      "cta": {
+        "$type": "color",
+        "$value": "{color.blue.500}"
+      },
+      "on-cta": {
+        "$type": "color",
+        "$value": "{color.blue.50}"
+      },
+      "destructive": {
+        "$type": "color",
+        "$value": "{color.red.600}"
+      },
+      "destructive-hover": {
+        "$type": "color",
+        "$value": "{color.red.700}"
+      },
+      "destructive-pressed": {
+        "$type": "color",
+        "$value": "{color.red.800}"
+      },
+      "on-destructive": {
+        "$type": "color",
+        "$value": "{color.red.50}"
+      }
+    }
+  },
+  "FortressMinds": {
+    "color": {
+      "primary": {
+        "$type": "color",
+        "$value": "{color.amber.500}"
+      },
+      "primary-hover": {
+        "$type": "color",
+        "$value": "{color.amber.600}"
+      },
+      "primary-pressed": {
+        "$type": "color",
+        "$value": "{color.amber.400}"
+      },
+      "on-primary": {
+        "$type": "color",
+        "$value": "{color.amber.50}"
+      },
+      "secondary": {
+        "$type": "color",
+        "$value": "{color.slate.500}"
+      },
+      "secondary-hover": {
+        "$type": "color",
+        "$value": "{color.slate.600}"
+      },
+      "secondary-pressed": {
+        "$type": "color",
+        "$value": "{color.slate.400}"
+      },
+      "on-secondary": {
+        "$type": "color",
+        "$value": "{color.slate.50}"
+      },
+      "accent": {
+        "$type": "color",
+        "$value": "{color.lime.500}"
+      },
+      "on-accent": {
+        "$type": "color",
+        "$value": "{color.lime.50}"
+      },
+      "cta": {
+        "$type": "color",
+        "$value": "{color.amber.500}"
+      },
+      "on-cta": {
+        "$type": "color",
+        "$value": "{color.amber.50}"
+      },
+      "destructive": {
+        "$type": "color",
+        "$value": "{color.red.600}"
+      },
+      "destructive-hover": {
+        "$type": "color",
+        "$value": "{color.red.700}"
+      },
+      "destructive-pressed": {
+        "$type": "color",
+        "$value": "{color.red.800}"
+      },
+      "on-destructive": {
+        "$type": "color",
+        "$value": "{color.red.50}"
+      }
+    }
+  },
+  "Jeshnegi.com": {
+    "color": {
+      "primary": {
+        "$type": "color",
+        "$value": "{color.blue.500}"
+      },
+      "primary-hover": {
+        "$type": "color",
+        "$value": "{color.blue.600}"
+      },
+      "primary-pressed": {
+        "$type": "color",
+        "$value": "{color.blue.400}"
+      },
+      "on-primary": {
+        "$type": "color",
+        "$value": "{color.blue.50}"
+      },
+      "secondary": {
+        "$type": "color",
+        "$value": "{color.slate.500}"
+      },
+      "secondary-hover": {
+        "$type": "color",
+        "$value": "{color.slate.600}"
+      },
+      "secondary-pressed": {
+        "$type": "color",
+        "$value": "{color.slate.400}"
+      },
+      "on-secondary": {
+        "$type": "color",
+        "$value": "{color.slate.50}"
+      },
+      "accent": {
+        "$type": "color",
+        "$value": "{color.lime.500}"
+      },
+      "on-accent": {
+        "$type": "color",
+        "$value": "{color.lime.50}"
+      },
+      "cta": {
+        "$type": "color",
+        "$value": "{color.blue.500}"
+      },
+      "on-cta": {
+        "$type": "color",
+        "$value": "{color.blue.50}"
+      },
+      "destructive": {
+        "$type": "color",
+        "$value": "{color.red.600}"
+      },
+      "destructive-hover": {
+        "$type": "color",
+        "$value": "{color.red.700}"
+      },
+      "destructive-pressed": {
+        "$type": "color",
+        "$value": "{color.red.800}"
+      },
+      "on-destructive": {
+        "$type": "color",
+        "$value": "{color.red.50}"
+      }
+    }
+  },
+  "Negiflow.com": {
+    "color": {
+      "primary": {
+        "$type": "color",
+        "$value": "{color.teal.500}"
+      },
+      "primary-hover": {
+        "$type": "color",
+        "$value": "{color.teal.600}"
+      },
+      "primary-pressed": {
+        "$type": "color",
+        "$value": "{color.teal.400}"
+      },
+      "on-primary": {
+        "$type": "color",
+        "$value": "{color.teal.50}"
+      },
+      "secondary": {
+        "$type": "color",
+        "$value": "{color.slate.500}"
+      },
+      "secondary-hover": {
+        "$type": "color",
+        "$value": "{color.slate.600}"
+      },
+      "secondary-pressed": {
+        "$type": "color",
+        "$value": "{color.slate.400}"
+      },
+      "on-secondary": {
+        "$type": "color",
+        "$value": "{color.slate.50}"
+      },
+      "accent": {
+        "$type": "color",
+        "$value": "{color.lime.500}"
+      },
+      "on-accent": {
+        "$type": "color",
+        "$value": "{color.lime.50}"
+      },
+      "cta": {
+        "$type": "color",
+        "$value": "{color.teal.500}"
+      },
+      "on-cta": {
+        "$type": "color",
+        "$value": "{color.teal.50}"
+      },
+      "destructive": {
+        "$type": "color",
+        "$value": "{color.red.600}"
+      },
+      "destructive-hover": {
+        "$type": "color",
+        "$value": "{color.red.700}"
+      },
+      "destructive-pressed": {
+        "$type": "color",
+        "$value": "{color.red.800}"
+      },
+      "on-destructive": {
+        "$type": "color",
+        "$value": "{color.red.50}"
+      }
+    }
+  }
+}
