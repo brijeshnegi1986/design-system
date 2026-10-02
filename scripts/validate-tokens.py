@@ -99,21 +99,52 @@ def validate_distribution():
         "brands": ROOT / "dist/tokens/brands.json",
         "typography": ROOT / "dist/tokens/typography.json",
     }
+
     distribution = {}
+
     for name, path in distribution_files.items():
         if not path.exists():
-            errors.append(f"Missing generated distribution: {path.relative_to(ROOT)}")
+            errors.append(
+                f"Missing generated distribution: {path.relative_to(ROOT)}"
+            )
             continue
+
         try:
             distribution[name] = json.loads(path.read_text())
         except json.JSONDecodeError as exc:
-            errors.append(f"Invalid generated JSON: {path.relative_to(ROOT)} — {exc}")
+            errors.append(
+                f"Invalid generated JSON: {path.relative_to(ROOT)} — {exc}"
+            )
 
     legacy = distribution.get("legacy", {})
 
-    for token_path in ("color", "light", "dark", "button", "1", "none"):
+    for token_path in (
+        "color",
+        "light",
+        "dark",
+        "button",
+        "spacing",
+        "radius",
+    ):
         if token_path not in legacy:
-            errors.append(f"Existing token bundle is missing top-level key: {token_path}")
+            errors.append(
+                f"Generated token bundle is missing top-level key: {token_path}"
+            )
+
+    spacing = legacy.get("spacing", {})
+    radius = legacy.get("radius", {})
+
+    for key in ("1", "2", "3", "4", "5", "6", "7", "8", "9", "10"):
+        if key not in spacing:
+            errors.append(
+                f"Generated spacing bundle is missing token: spacing.{key}"
+            )
+
+    for key in ("none", "sm", "md", "lg", "xl", "full"):
+        if key not in radius:
+            errors.append(
+                f"Generated radius bundle is missing token: radius.{key}"
+            )
 
     for name, namespace in (
         ("brands", "brands"),
@@ -121,11 +152,13 @@ def validate_distribution():
     ):
         data = distribution.get(name, {})
         modes = data.get(namespace, {})
+
         if set(modes) != MODES:
             errors.append(
                 f"dist/tokens/{name}.json must contain {namespace} modes "
                 f"{sorted(MODES)}; found {sorted(modes)}"
             )
+
         if name == "brands":
             output_references = [
                 value
@@ -134,11 +167,17 @@ def validate_distribution():
                 and value.startswith("{")
                 and value.endswith("}")
             ]
+
             if Counter(output_references) != Counter(brand_references):
-                errors.append("Generated Brand aliases differ from source references")
+                errors.append(
+                    "Generated Brand aliases differ from source references"
+                )
+
             for reference in output_references:
                 if not resolve_token(primitives, reference[1:-1]):
-                    errors.append(f"Unresolved generated Brand alias: {reference}")
+                    errors.append(
+                        f"Unresolved generated Brand alias: {reference}"
+                    )
 
 
 if "--distribution" in sys.argv:

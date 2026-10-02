@@ -5,6 +5,9 @@
   "description": "Shared design system for JeshApps projects.",
   "license": "UNLICENSED",
   "type": "module",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "tokens:import": "python3 scripts/import-figma-tokens.py",
     "tokens:validate": "python3 scripts/validate-tokens.py",
