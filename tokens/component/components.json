@@ -1,0 +1,112 @@
+{
+  "button": {
+    "primary": {
+      "enabled": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.08235294371843338,
+            0.364705890417099,
+            0.9882352948188782
+          ],
+          "alpha": 1,
+          "hex": "#155DFC"
+        }
+      },
+      "hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.0784313753247261,
+            0.27843138575553894,
+            0.9019607901573181
+          ],
+          "alpha": 1,
+          "hex": "#1447E6"
+        }
+      },
+      "pressed": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.09803921729326248,
+            0.23529411852359772,
+            0.7215686440467834
+          ],
+          "alpha": 1,
+          "hex": "#193CB8"
+        }
+      },
+      "disabled": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.886274516582489,
+            0.9098039269447327,
+            0.9411764740943909
+          ],
+          "alpha": 1,
+          "hex": "#E2E8F0"
+        }
+      }
+    },
+    "secondary": {
+      "enabled": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9450980424880981,
+            0.9607843160629272,
+            0.9764705896377563
+          ],
+          "alpha": 1,
+          "hex": "#F1F5F9"
+        }
+      },
+      "hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.886274516582489,
+            0.9098039269447327,
+            0.9411764740943909
+          ],
+          "alpha": 1,
+          "hex": "#E2E8F0"
+        }
+      },
+      "pressed": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.7921568751335144,
+            0.8352941274642944,
+            0.886274516582489
+          ],
+          "alpha": 1,
+          "hex": "#CAD5E2"
+        }
+      },
+      "disabled": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.886274516582489,
+            0.9098039269447327,
+            0.9411764740943909
+          ],
+          "alpha": 1,
+          "hex": "#E2E8F0"
+        }
+      }
+    }
+  }
+}
