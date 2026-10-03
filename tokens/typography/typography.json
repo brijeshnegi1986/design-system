@@ -1,7 +1,7 @@
 {
-  "Default": {
-    "font": {
-      "size": {
+  "Base": {
+    "type": {
+      "font-size": {
         "display": {
           "$type": "number",
           "$value": 48
@@ -93,7 +93,7 @@
           "$value": 16
         }
       },
-      "weight": {
+      "font-weight": {
         "regular": {
           "$type": "number",
           "$value": 400
@@ -107,17 +107,17 @@
           "$value": 600
         }
       },
-      "family": {
+      "font-family": {
         "base": {
           "$type": "string",
-          "$value": "inter"
+          "$value": "Inter"
         }
       }
     }
   },
   "FortressMinds": {
-    "font": {
-      "size": {
+    "type": {
+      "font-size": {
         "display": {
           "$type": "number",
           "$value": 48
@@ -209,7 +209,7 @@
           "$value": 16
         }
       },
-      "weight": {
+      "font-weight": {
         "regular": {
           "$type": "number",
           "$value": 400
@@ -223,17 +223,17 @@
           "$value": 600
         }
       },
-      "family": {
+      "font-family": {
         "base": {
           "$type": "string",
-          "$value": "inter"
+          "$value": "Inter"
         }
       }
     }
   },
   "Jeshnegi.com": {
-    "font": {
-      "size": {
+    "type": {
+      "font-size": {
         "display": {
           "$type": "number",
           "$value": 48
@@ -325,7 +325,7 @@
           "$value": 16
         }
       },
-      "weight": {
+      "font-weight": {
         "regular": {
           "$type": "number",
           "$value": 400
@@ -339,17 +339,17 @@
           "$value": 600
         }
       },
-      "family": {
+      "font-family": {
         "base": {
           "$type": "string",
-          "$value": "inter"
+          "$value": "Inter"
         }
       }
     }
   },
   "Negiflow.com": {
-    "font": {
-      "size": {
+    "type": {
+      "font-size": {
         "display": {
           "$type": "number",
           "$value": 48
@@ -441,7 +441,7 @@
           "$value": 16
         }
       },
-      "weight": {
+      "font-weight": {
         "regular": {
           "$type": "number",
           "$value": 400
@@ -455,10 +455,10 @@
           "$value": 600
         }
       },
-      "family": {
+      "font-family": {
         "base": {
           "$type": "string",
-          "$value": "inter"
+          "$value": "Inter"
         }
       }
     }

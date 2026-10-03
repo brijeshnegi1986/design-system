@@ -1,0 +1,157 @@
+{
+  "control": {
+    "height": {
+      "sm": {
+        "$type": "number",
+        "$value": 40,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:430:3",
+          "com.figma.scopes": [
+            "WIDTH_HEIGHT"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--control-height-sm)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:50b08d2680db9c38af189b806a7fa88a0996845b/-1:-1",
+            "targetVariableName": "size/40",
+            "targetVariableSetId": "VariableCollectionId:b009f4cc685da7ecbbb3aa66ebea53d9f363aaab/-1:-1",
+            "targetVariableSetName": "NDS / Primitives / Size"
+          }
+        }
+      },
+      "md": {
+        "$type": "number",
+        "$value": 48,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:430:4",
+          "com.figma.scopes": [
+            "WIDTH_HEIGHT"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--control-height-md)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:be8fa48120ec25cce88f1a959e21984ef0c5f142/-1:-1",
+            "targetVariableName": "size/48",
+            "targetVariableSetId": "VariableCollectionId:b009f4cc685da7ecbbb3aa66ebea53d9f363aaab/-1:-1",
+            "targetVariableSetName": "NDS / Primitives / Size"
+          }
+        }
+      },
+      "lg": {
+        "$type": "number",
+        "$value": 56,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:430:5",
+          "com.figma.scopes": [
+            "WIDTH_HEIGHT"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--control-height-lg)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:5a1bed347ed599ca2cedaf5b2830fc7d9ab030e3/-1:-1",
+            "targetVariableName": "size/56",
+            "targetVariableSetId": "VariableCollectionId:b009f4cc685da7ecbbb3aa66ebea53d9f363aaab/-1:-1",
+            "targetVariableSetName": "NDS / Primitives / Size"
+          }
+        }
+      }
+    }
+  },
+  "focus-ring": {
+    "width": {
+      "$type": "number",
+      "$value": 2,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:430:6",
+        "com.figma.scopes": [
+          "STROKE_FLOAT"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--focus-ring-width)"
+        }
+      }
+    },
+    "offset": {
+      "$type": "number",
+      "$value": 2,
+      "$description": "Gap between a focused control and its focus ring. Code: outline-offset. No Figma property binds to it.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:430:7",
+        "com.figma.scopes": [
+          "GAP"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--focus-ring-offset)"
+        }
+      }
+    }
+  },
+  "border-width": {
+    "default": {
+      "$type": "number",
+      "$value": 1,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:430:8",
+        "com.figma.scopes": [
+          "STROKE_FLOAT"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--border-width-default)"
+        }
+      }
+    },
+    "control": {
+      "$type": "number",
+      "$value": 1.5,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:430:9",
+        "com.figma.scopes": [
+          "STROKE_FLOAT"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--border-width-control)"
+        }
+      }
+    },
+    "strong": {
+      "$type": "number",
+      "$value": 2,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:430:10",
+        "com.figma.scopes": [
+          "STROKE_FLOAT"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--border-width-strong)"
+        }
+      }
+    }
+  },
+  "icon-size": {
+    "md": {
+      "$type": "number",
+      "$value": 24,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:430:11",
+        "com.figma.scopes": [
+          "WIDTH_HEIGHT"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--icon-size-md)"
+        },
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:6825440d4ee7fc5e91ca4256d43ca3f10508a890/-1:-1",
+          "targetVariableName": "size/24",
+          "targetVariableSetId": "VariableCollectionId:b009f4cc685da7ecbbb3aa66ebea53d9f363aaab/-1:-1",
+          "targetVariableSetName": "NDS / Primitives / Size"
+        }
+      }
+    }
+  },
+  "$extensions": {
+    "com.figma.modeName": "Base"
+  }
+}

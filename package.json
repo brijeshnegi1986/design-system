@@ -11,7 +11,7 @@
   "scripts": {
     "tokens:import": "python3 scripts/import-figma-tokens.py",
     "tokens:validate": "python3 scripts/validate-tokens.py",
-    "tokens:build": "npm run tokens:validate && style-dictionary build --config sd.config.mjs && style-dictionary build --config sd.modes.config.mjs && python3 scripts/validate-tokens.py --distribution"
+    "tokens:build": "npm run tokens:validate && node scripts/build-tokens.mjs && python3 scripts/validate-tokens.py --distribution"
   },
   "devDependencies": {
     "style-dictionary": "^5.5.5"
