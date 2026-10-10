@@ -1,0 +1,16 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+
+:root {
+  --focus-ring-width: 2px; /** Thickness of the external focus indicator stroke. */
+  --focus-ring-offset: 2px; /** Visual gap between the component edge and the external focus ring. Figma has no bindable outline-offset property, so this value is applied to ring geometry and maps to CSS outline-offset. */
+  --focus-ring-radius: 14px; /** Radius of the external focus ring; component radius plus the 2px focus-ring offset. */
+  --border-width-default: 1px;
+  --border-width-control: 1.5px;
+  --border-width-strong: 2px;
+  --control-height-sm: var(--size-40);
+  --control-height-md: var(--size-48);
+  --control-height-lg: var(--size-56);
+  --icon-size-md: var(--size-24);
+}

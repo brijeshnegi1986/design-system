@@ -1,0 +1,188 @@
+/**
+ * Do not edit directly. Generated from the Figma NDS variables by scripts/build-tokens.mjs.
+ */
+
+:root {
+  --type-font-size-display: 48px;
+  --type-font-size-h1: 40px;
+  --type-font-size-h2: 32px;
+  --type-font-size-h3: 24px;
+  --type-font-size-h4: 20px;
+  --type-font-size-h5: 18px;
+  --type-font-size-h6: 16px;
+  --type-font-size-body-large: 18px;
+  --type-font-size-body: 16px;
+  --type-font-size-body-small: 14px;
+  --type-font-size-caption: 12px;
+  --type-line-height-display: 56px;
+  --type-line-height-h1: 48px;
+  --type-line-height-h2: 40px;
+  --type-line-height-h3: 32px;
+  --type-line-height-h4: 28px;
+  --type-line-height-h5: 24px;
+  --type-line-height-h6: 24px;
+  --type-line-height-body-large: 28px;
+  --type-line-height-body: 24px;
+  --type-line-height-body-small: 20px;
+  --type-line-height-caption: 16px;
+  --type-font-weight-regular: 400;
+  --type-font-weight-medium: 500;
+  --type-font-weight-semibold: 600;
+  --type-font-family-base: Inter;
+  --color-surface-semi-transparent: rgba(248, 250, 252, 0.25);
+  --color-overlay-scrim: rgba(0, 0, 0, 0.6499999761581421);
+  --brand-color-primary: var(--slate-800);
+  --brand-color-primary-hover: var(--slate-900);
+  --brand-color-primary-pressed: var(--slate-950);
+  --brand-color-primary-dark: var(--slate-400);
+  --brand-color-primary-hover-dark: var(--slate-300);
+  --brand-color-primary-pressed-dark: var(--slate-400);
+  --brand-color-on-primary: var(--slate-50);
+  --brand-color-accent: var(--lime-600);
+  --brand-color-accent-dark: var(--lime-400);
+  --brand-color-on-accent: var(--neutral-950);
+  --color-background-default: var(--slate-50);
+  --color-background-subtle: var(--slate-100);
+  --color-background-muted: var(--slate-200);
+  --color-background-inverse: var(--slate-900);
+  --color-surface-default: var(--white);
+  --color-surface-raised: var(--slate-100);
+  --color-surface-inverse: var(--slate-900);
+  --color-content-primary: var(--slate-900);
+  --color-content-secondary: var(--slate-700);
+  --color-content-muted: var(--slate-600);
+  --color-content-disabled: var(--slate-400);
+  --color-content-inverse: var(--white);
+  --color-content-on-accent: var(--neutral-950);
+  --color-content-on-secondary: var(--slate-900);
+  --color-content-on-destructive: var(--red-50);
+  --color-border-subtle: var(--slate-300);
+  --color-border-weak: var(--neutral-500);
+  --color-border-strong: var(--neutral-600);
+  --color-border-disabled: var(--neutral-200);
+  --color-action-secondary: var(--slate-100);
+  --color-action-secondary-hover: var(--slate-200);
+  --color-action-secondary-pressed: var(--slate-300);
+  --color-action-destructive: var(--red-700);
+  --color-action-destructive-hover: var(--red-700);
+  --color-action-destructive-pressed: var(--red-800);
+  --color-action-disabled: var(--neutral-200);
+  --color-status-success: var(--green-700); /** Status colour for icons, borders and short text. Meets 4.5:1 on background/default and on its status/*-subtle surface. */
+  --color-status-warning: var(--amber-700); /** Status colour for icons, borders and short text. Meets 4.5:1 on background/default and on its status/*-subtle surface. */
+  --color-status-error: var(--red-700); /** Status colour for icons, borders and short text. Meets 4.5:1 on background/default and on its status/*-subtle surface. */
+  --color-status-info: var(--blue-700); /** Status colour for icons, borders and short text. Meets 4.5:1 on background/default and on its status/*-subtle surface. */
+  --color-status-success-subtle: var(--green-100);
+  --color-status-warning-subtle: var(--orange-100);
+  --color-status-error-subtle: var(--red-100);
+  --color-status-info-subtle: var(--blue-100);
+  --color-content-on-primary: var(--brand-color-on-primary);
+  --color-border-error: var(--color-status-error);
+  --color-border-success: var(--color-status-success);
+  --color-border-warning: var(--color-status-warning);
+  --color-border-info: var(--color-status-info);
+  --color-border-focus: var(--brand-color-primary);
+  --color-border-primary: var(--brand-color-primary);
+  --color-action-primary: var(--brand-color-primary);
+  --color-action-primary-hover: var(--brand-color-primary-hover);
+  --color-action-primary-pressed: var(--brand-color-primary-pressed);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-surface-semi-transparent: rgba(15, 23, 43, 0.25);
+    --color-overlay-scrim: rgba(0, 0, 0, 0.6499999761581421);
+    --color-background-default: var(--neutral-950);
+    --color-background-subtle: var(--neutral-900);
+    --color-background-muted: var(--slate-800);
+    --color-background-inverse: var(--slate-50);
+    --color-surface-default: var(--neutral-900);
+    --color-surface-raised: var(--neutral-800);
+    --color-surface-inverse: var(--slate-100);
+    --color-content-primary: var(--slate-50);
+    --color-content-secondary: var(--slate-300);
+    --color-content-muted: var(--slate-400);
+    --color-content-disabled: var(--slate-500);
+    --color-content-inverse: var(--slate-950);
+    --color-content-on-primary: var(--neutral-950);
+    --color-content-on-accent: var(--neutral-950);
+    --color-content-on-secondary: var(--slate-50);
+    --color-content-on-destructive: var(--red-50);
+    --color-border-subtle: var(--neutral-800);
+    --color-border-weak: var(--neutral-600);
+    --color-border-strong: var(--neutral-500);
+    --color-border-disabled: var(--neutral-700);
+    --color-action-secondary: var(--neutral-500);
+    --color-action-secondary-hover: var(--neutral-600);
+    --color-action-secondary-pressed: var(--neutral-400);
+    --color-action-destructive: var(--red-800);
+    --color-action-destructive-hover: var(--red-900);
+    --color-action-destructive-pressed: var(--red-950);
+    --color-action-disabled: var(--neutral-700);
+    --color-status-success: var(--green-400); /** Status colour for icons, borders and short text. Meets 4.5:1 on background/default and on its status/*-subtle surface. */
+    --color-status-warning: var(--amber-400); /** Status colour for icons, borders and short text. Meets 4.5:1 on background/default and on its status/*-subtle surface. */
+    --color-status-error: var(--red-400); /** Status colour for icons, borders and short text. Meets 4.5:1 on background/default and on its status/*-subtle surface. */
+    --color-status-info: var(--blue-400); /** Status colour for icons, borders and short text. Meets 4.5:1 on background/default and on its status/*-subtle surface. */
+    --color-status-success-subtle: var(--green-950);
+    --color-status-warning-subtle: var(--orange-950);
+    --color-status-error-subtle: var(--red-950);
+    --color-status-info-subtle: var(--blue-950);
+    --color-border-error: var(--color-status-error);
+    --color-border-success: var(--color-status-success);
+    --color-border-warning: var(--color-status-warning);
+    --color-border-info: var(--color-status-info);
+    --color-border-focus: var(--brand-color-primary-dark);
+    --color-border-primary: var(--brand-color-primary-dark);
+    --color-action-primary: var(--brand-color-primary-dark);
+    --color-action-primary-hover: var(--brand-color-primary-hover-dark);
+    --color-action-primary-pressed: var(--brand-color-primary-pressed-dark);
+  }
+}
+
+:root[data-theme="dark"] {
+  --color-surface-semi-transparent: rgba(15, 23, 43, 0.25);
+  --color-overlay-scrim: rgba(0, 0, 0, 0.6499999761581421);
+  --color-background-default: var(--neutral-950);
+  --color-background-subtle: var(--neutral-900);
+  --color-background-muted: var(--slate-800);
+  --color-background-inverse: var(--slate-50);
+  --color-surface-default: var(--neutral-900);
+  --color-surface-raised: var(--neutral-800);
+  --color-surface-inverse: var(--slate-100);
+  --color-content-primary: var(--slate-50);
+  --color-content-secondary: var(--slate-300);
+  --color-content-muted: var(--slate-400);
+  --color-content-disabled: var(--slate-500);
+  --color-content-inverse: var(--slate-950);
+  --color-content-on-primary: var(--neutral-950);
+  --color-content-on-accent: var(--neutral-950);
+  --color-content-on-secondary: var(--slate-50);
+  --color-content-on-destructive: var(--red-50);
+  --color-border-subtle: var(--neutral-800);
+  --color-border-weak: var(--neutral-600);
+  --color-border-strong: var(--neutral-500);
+  --color-border-disabled: var(--neutral-700);
+  --color-action-secondary: var(--neutral-500);
+  --color-action-secondary-hover: var(--neutral-600);
+  --color-action-secondary-pressed: var(--neutral-400);
+  --color-action-destructive: var(--red-800);
+  --color-action-destructive-hover: var(--red-900);
+  --color-action-destructive-pressed: var(--red-950);
+  --color-action-disabled: var(--neutral-700);
+  --color-status-success: var(--green-400); /** Status colour for icons, borders and short text. Meets 4.5:1 on background/default and on its status/*-subtle surface. */
+  --color-status-warning: var(--amber-400); /** Status colour for icons, borders and short text. Meets 4.5:1 on background/default and on its status/*-subtle surface. */
+  --color-status-error: var(--red-400); /** Status colour for icons, borders and short text. Meets 4.5:1 on background/default and on its status/*-subtle surface. */
+  --color-status-info: var(--blue-400); /** Status colour for icons, borders and short text. Meets 4.5:1 on background/default and on its status/*-subtle surface. */
+  --color-status-success-subtle: var(--green-950);
+  --color-status-warning-subtle: var(--orange-950);
+  --color-status-error-subtle: var(--red-950);
+  --color-status-info-subtle: var(--blue-950);
+  --color-border-error: var(--color-status-error);
+  --color-border-success: var(--color-status-success);
+  --color-border-warning: var(--color-status-warning);
+  --color-border-info: var(--color-status-info);
+  --color-border-focus: var(--brand-color-primary-dark);
+  --color-border-primary: var(--brand-color-primary-dark);
+  --color-action-primary: var(--brand-color-primary-dark);
+  --color-action-primary-hover: var(--brand-color-primary-hover-dark);
+  --color-action-primary-pressed: var(--brand-color-primary-pressed-dark);
+}

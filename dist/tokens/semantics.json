@@ -1,0 +1,452 @@
+{
+  "semantics": {
+    "Dark": {
+      "color": {
+        "background": {
+          "default": {
+            "$type": "color",
+            "$value": "{neutral.950}"
+          },
+          "subtle": {
+            "$type": "color",
+            "$value": "{neutral.900}"
+          },
+          "muted": {
+            "$type": "color",
+            "$value": "{slate.800}"
+          },
+          "inverse": {
+            "$type": "color",
+            "$value": "{slate.50}"
+          }
+        },
+        "surface": {
+          "default": {
+            "$type": "color",
+            "$value": "{neutral.900}"
+          },
+          "raised": {
+            "$type": "color",
+            "$value": "{neutral.800}"
+          },
+          "inverse": {
+            "$type": "color",
+            "$value": "{slate.100}"
+          },
+          "Semi-transparent": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.05718432366847992,
+                0.09004246443510056,
+                0.16879600286483765
+              ],
+              "alpha": 0.25,
+              "hex": "#0F172B"
+            }
+          }
+        },
+        "content": {
+          "primary": {
+            "$type": "color",
+            "$value": "{slate.50}"
+          },
+          "secondary": {
+            "$type": "color",
+            "$value": "{slate.300}"
+          },
+          "muted": {
+            "$type": "color",
+            "$value": "{slate.400}"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{slate.500}"
+          },
+          "inverse": {
+            "$type": "color",
+            "$value": "{slate.950}"
+          },
+          "on-primary": {
+            "$type": "color",
+            "$value": "{neutral.950}"
+          },
+          "on-accent": {
+            "$type": "color",
+            "$value": "{neutral.950}"
+          },
+          "on-secondary": {
+            "$type": "color",
+            "$value": "{slate.50}"
+          },
+          "on-destructive": {
+            "$type": "color",
+            "$value": "{red.50}"
+          }
+        },
+        "border": {
+          "subtle": {
+            "$type": "color",
+            "$value": "{neutral.800}"
+          },
+          "weak": {
+            "$type": "color",
+            "$value": "{neutral.600}"
+          },
+          "strong": {
+            "$type": "color",
+            "$value": "{neutral.500}"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{neutral.700}"
+          },
+          "error": {
+            "$type": "color",
+            "$value": "{color.status.error}"
+          },
+          "success": {
+            "$type": "color",
+            "$value": "{color.status.success}"
+          },
+          "warning": {
+            "$type": "color",
+            "$value": "{color.status.warning}"
+          },
+          "info": {
+            "$type": "color",
+            "$value": "{color.status.info}"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{brand.color.primary-dark}"
+          },
+          "primary": {
+            "$type": "color",
+            "$value": "{brand.color.primary-dark}"
+          }
+        },
+        "action": {
+          "primary": {
+            "$type": "color",
+            "$value": "{brand.color.primary-dark}"
+          },
+          "primary-hover": {
+            "$type": "color",
+            "$value": "{brand.color.primary-hover-dark}"
+          },
+          "primary-pressed": {
+            "$type": "color",
+            "$value": "{brand.color.primary-pressed-dark}"
+          },
+          "secondary": {
+            "$type": "color",
+            "$value": "{neutral.500}"
+          },
+          "secondary-hover": {
+            "$type": "color",
+            "$value": "{neutral.600}"
+          },
+          "secondary-pressed": {
+            "$type": "color",
+            "$value": "{neutral.400}"
+          },
+          "destructive": {
+            "$type": "color",
+            "$value": "{red.800}"
+          },
+          "destructive-hover": {
+            "$type": "color",
+            "$value": "{red.900}"
+          },
+          "destructive-pressed": {
+            "$type": "color",
+            "$value": "{red.950}"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{neutral.700}"
+          }
+        },
+        "status": {
+          "success": {
+            "$type": "color",
+            "$value": "{green.400}",
+            "$description": "Status colour for icons, borders and short text. Meets 4.5:1 on background/default and on its status/*-subtle surface."
+          },
+          "warning": {
+            "$type": "color",
+            "$value": "{amber.400}",
+            "$description": "Status colour for icons, borders and short text. Meets 4.5:1 on background/default and on its status/*-subtle surface."
+          },
+          "error": {
+            "$type": "color",
+            "$value": "{red.400}",
+            "$description": "Status colour for icons, borders and short text. Meets 4.5:1 on background/default and on its status/*-subtle surface."
+          },
+          "info": {
+            "$type": "color",
+            "$value": "{blue.400}",
+            "$description": "Status colour for icons, borders and short text. Meets 4.5:1 on background/default and on its status/*-subtle surface."
+          },
+          "success-subtle": {
+            "$type": "color",
+            "$value": "{green.950}"
+          },
+          "warning-subtle": {
+            "$type": "color",
+            "$value": "{orange.950}"
+          },
+          "error-subtle": {
+            "$type": "color",
+            "$value": "{red.950}"
+          },
+          "info-subtle": {
+            "$type": "color",
+            "$value": "{blue.950}"
+          }
+        },
+        "overlay": {
+          "scrim": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0,
+                0,
+                0
+              ],
+              "alpha": 0.6499999761581421,
+              "hex": "#000000"
+            }
+          }
+        }
+      }
+    },
+    "Light": {
+      "color": {
+        "background": {
+          "default": {
+            "$type": "color",
+            "$value": "{slate.50}"
+          },
+          "subtle": {
+            "$type": "color",
+            "$value": "{slate.100}"
+          },
+          "muted": {
+            "$type": "color",
+            "$value": "{slate.200}"
+          },
+          "inverse": {
+            "$type": "color",
+            "$value": "{slate.900}"
+          }
+        },
+        "surface": {
+          "default": {
+            "$type": "color",
+            "$value": "{white}"
+          },
+          "raised": {
+            "$type": "color",
+            "$value": "{slate.100}"
+          },
+          "inverse": {
+            "$type": "color",
+            "$value": "{slate.900}"
+          },
+          "Semi-transparent": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.9731488227844238,
+                0.980042576789856,
+                0.9869375228881836
+              ],
+              "alpha": 0.25,
+              "hex": "#F8FAFC"
+            }
+          }
+        },
+        "content": {
+          "primary": {
+            "$type": "color",
+            "$value": "{slate.900}"
+          },
+          "secondary": {
+            "$type": "color",
+            "$value": "{slate.700}"
+          },
+          "muted": {
+            "$type": "color",
+            "$value": "{slate.600}"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{slate.400}"
+          },
+          "inverse": {
+            "$type": "color",
+            "$value": "{white}"
+          },
+          "on-primary": {
+            "$type": "color",
+            "$value": "{brand.color.on-primary}"
+          },
+          "on-accent": {
+            "$type": "color",
+            "$value": "{neutral.950}"
+          },
+          "on-secondary": {
+            "$type": "color",
+            "$value": "{slate.900}"
+          },
+          "on-destructive": {
+            "$type": "color",
+            "$value": "{red.50}"
+          }
+        },
+        "border": {
+          "subtle": {
+            "$type": "color",
+            "$value": "{slate.300}"
+          },
+          "weak": {
+            "$type": "color",
+            "$value": "{neutral.500}"
+          },
+          "strong": {
+            "$type": "color",
+            "$value": "{neutral.600}"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{neutral.200}"
+          },
+          "error": {
+            "$type": "color",
+            "$value": "{color.status.error}"
+          },
+          "success": {
+            "$type": "color",
+            "$value": "{color.status.success}"
+          },
+          "warning": {
+            "$type": "color",
+            "$value": "{color.status.warning}"
+          },
+          "info": {
+            "$type": "color",
+            "$value": "{color.status.info}"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{brand.color.primary}"
+          },
+          "primary": {
+            "$type": "color",
+            "$value": "{brand.color.primary}"
+          }
+        },
+        "action": {
+          "primary": {
+            "$type": "color",
+            "$value": "{brand.color.primary}"
+          },
+          "primary-hover": {
+            "$type": "color",
+            "$value": "{brand.color.primary-hover}"
+          },
+          "primary-pressed": {
+            "$type": "color",
+            "$value": "{brand.color.primary-pressed}"
+          },
+          "secondary": {
+            "$type": "color",
+            "$value": "{slate.100}"
+          },
+          "secondary-hover": {
+            "$type": "color",
+            "$value": "{slate.200}"
+          },
+          "secondary-pressed": {
+            "$type": "color",
+            "$value": "{slate.300}"
+          },
+          "destructive": {
+            "$type": "color",
+            "$value": "{red.700}"
+          },
+          "destructive-hover": {
+            "$type": "color",
+            "$value": "{red.700}"
+          },
+          "destructive-pressed": {
+            "$type": "color",
+            "$value": "{red.800}"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{neutral.200}"
+          }
+        },
+        "status": {
+          "success": {
+            "$type": "color",
+            "$value": "{green.700}",
+            "$description": "Status colour for icons, borders and short text. Meets 4.5:1 on background/default and on its status/*-subtle surface."
+          },
+          "warning": {
+            "$type": "color",
+            "$value": "{amber.700}",
+            "$description": "Status colour for icons, borders and short text. Meets 4.5:1 on background/default and on its status/*-subtle surface."
+          },
+          "error": {
+            "$type": "color",
+            "$value": "{red.700}",
+            "$description": "Status colour for icons, borders and short text. Meets 4.5:1 on background/default and on its status/*-subtle surface."
+          },
+          "info": {
+            "$type": "color",
+            "$value": "{blue.700}",
+            "$description": "Status colour for icons, borders and short text. Meets 4.5:1 on background/default and on its status/*-subtle surface."
+          },
+          "success-subtle": {
+            "$type": "color",
+            "$value": "{green.100}"
+          },
+          "warning-subtle": {
+            "$type": "color",
+            "$value": "{orange.100}"
+          },
+          "error-subtle": {
+            "$type": "color",
+            "$value": "{red.100}"
+          },
+          "info-subtle": {
+            "$type": "color",
+            "$value": "{blue.100}"
+          }
+        },
+        "overlay": {
+          "scrim": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0,
+                0,
+                0
+              ],
+              "alpha": 0.6499999761581421,
+              "hex": "#000000"
+            }
+          }
+        }
+      }
+    }
+  }
+}
