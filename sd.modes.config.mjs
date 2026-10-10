@@ -1,10 +1,11 @@
 /**
  * Style Dictionary configs for the mode-aware collections.
  *
- * Brand and Typography modes are keyed by brand ("Base", "Jeshnegi.com", ...).
- * Semantic themes are keyed "<brand> Light" / "<brand> Dark", where <brand> is
- * the Brand mode without ".com". Each brand/theme pairing is formatted against
- * the full token set so references resolve, but only emits its own tokens:
+ * Brand and Typography modes are keyed by brand ("Base", "NegiFlow", ...).
+ * Semantic has exactly two modes, "Light" and "Dark", shared by every brand.
+ * Each brand/theme pairing is formatted against the full token set for that
+ * brand, so Semantic references such as {brand.color.primary} resolve against
+ * the selected Brand mode, but only emits its own tokens:
  *
  *   Light: Brand + Typography + Semantic Light
  *   Dark:  Semantic Dark (Brand and Typography do not change with the theme)
@@ -14,13 +15,9 @@ import { cssTransforms, numberPx } from './sd.config.mjs';
 
 export const THEMES = ['Light', 'Dark'];
 
-export const brandKey = (mode) => mode.replace(/\.com$/, '');
-
-// "Negiflow.com" -> "negiflow", "FortressMinds" -> "fortressminds"
+// "NegiFlow" -> "negiflow", "FortressMinds" -> "fortressminds"; a ".com" suffix is dropped
 export const brandSlug = (mode) =>
-  brandKey(mode).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-
-export const themeName = (brand, theme) => `${brandKey(brand)} ${theme}`;
+  mode.replace(/\.com$/, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
 const isToken = (node) => node && typeof node === 'object' && '$value' in node;
 
@@ -55,7 +52,7 @@ export const tokenPaths = (tree, prefix = []) =>
  */
 export function themeConfig({ brand, theme, collections }) {
   const { primitives, brands, typography, semantics, components } = collections;
-  const semantic = semantics[themeName(brand, theme)];
+  const semantic = semantics[theme];
   if (!brands[brand] || !typography[brand] || !semantic) {
     throw new Error(`Incomplete modes for ${brand} / ${theme}`);
   }

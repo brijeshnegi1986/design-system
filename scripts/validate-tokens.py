@@ -2,11 +2,13 @@
 
 Source checks:
   * every collection file exists, is valid JSON and has no Figma $extensions
-  * Brand and Typography share the same modes; Semantic has a Light and Dark
-    theme for every brand; all modes of a collection have identical paths
+  * Brand and Typography share the same modes; Semantic has exactly a Light
+    and a Dark theme, shared by every brand; all modes of a collection have
+    identical paths
   * token paths are unique across collections (Figma aliases are by name)
   * references respect the collection layering and resolve without cycles in
-    every brand/theme combination
+    every brand/theme combination (Semantic {brand.*} references resolve
+    against the selected Brand mode)
 
 Distribution checks (--distribution):
   * every expected dist file exists and contains no $extensions
@@ -62,17 +64,9 @@ def layer(name):
     return name.split("/")[0]
 
 
-def brand_key(mode):
-    """'Negiflow.com' -> 'Negiflow' (the prefix used by Semantic theme names)."""
-    return mode.removesuffix(".com")
-
-
 def brand_slug(mode):
-    return re.sub(r"[^a-z0-9]+", "-", brand_key(mode).lower()).strip("-")
-
-
-def theme_name(brand, theme):
-    return f"{brand_key(brand)} {theme}"
+    """'NegiFlow' -> 'negiflow'; a '.com' suffix is dropped."""
+    return re.sub(r"[^a-z0-9]+", "-", mode.removesuffix(".com").lower()).strip("-")
 
 
 def walk_tokens(data, path=()):
@@ -144,11 +138,11 @@ def check_modes():
         errors.append(
             f"Typography modes {sorted(tokens['typography'])} do not match Brand modes {sorted(brands)}"
         )
-    expected = {theme_name(brand, theme) for brand in brands for theme in THEMES}
+    expected = set(THEMES)
     found = set(tokens["semantics"])
     if found != expected:
         errors.append(
-            f"Semantic themes must be one Light and Dark per brand; "
+            f"Semantic modes must be exactly {sorted(expected)}; "
             f"missing {sorted(expected - found)}, unexpected {sorted(found - expected)}"
         )
 
@@ -192,12 +186,13 @@ def check_layering(owner):
 
 
 def combination(brand, theme):
-    """Every token visible to one brand/theme pairing."""
+    """Every token visible to one brand/theme pairing: the theme's semantics
+    resolve against the selected brand and typography modes."""
     return flatten(
         *(tokens[name] for name in PRIMITIVES),
         tokens["brands"][brand],
         tokens["typography"][brand],
-        tokens["semantics"][theme_name(brand, theme)],
+        tokens["semantics"][theme],
         tokens["components"],
     )
 
@@ -272,7 +267,7 @@ def report_counts():
             print(f"  {name}: {len(flat)} tokens, {refs} references")
     print("Brand/theme combinations:")
     for brand in sorted(tokens["brands"]):
-        print(f"  {brand}: " + ", ".join(theme_name(brand, theme) for theme in THEMES))
+        print(f"  {brand}: " + ", ".join(f"{brand} + {theme}" for theme in THEMES))
 
 
 # ---------------------------------------------------------------------------
@@ -352,7 +347,7 @@ def validate_distribution():
         if dict(declarations(media_css)) != dict(declarations(dark_css)):
             errors.append(f"{label}: media-query and data-theme dark blocks differ")
 
-        semantic_paths = flatten(tokens["semantics"][theme_name(brand, "Light")])
+        semantic_paths = flatten(tokens["semantics"]["Light"])
         semantic_names = {css_name(path) for path in semantic_paths}
         if set(dict(declarations(dark_css))) != semantic_names:
             errors.append(f"{label}: dark block does not cover exactly the semantic variables")

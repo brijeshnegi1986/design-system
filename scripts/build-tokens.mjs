@@ -14,9 +14,18 @@
  *   dist/tokens/tokens.json        primitives + components
  *   dist/tokens/brands.json        { brands: { <mode>: ... } }
  *   dist/tokens/typography.json    { typography: { <mode>: ... } }
- *   dist/tokens/semantics.json     { semantics: { "<brand> Light|Dark": ... } }
+ *   dist/tokens/semantics.json     { semantics: { Light: ..., Dark: ... } }
+ *
+ * dist/ is updated in place, never deleted first: consuming apps (e.g. a
+ * Next.js dev server reading dist/css through a file: dependency) would
+ * otherwise see the files vanish mid-build and cache "file not found".
+ * Each file is written to a temporary name and renamed over the old one,
+ * and files a previous build left behind (a removed brand) are deleted at
+ * the end.
  */
-import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
+import { mkdir, readdir, readFile, rename, rm, rmdir, writeFile } from 'node:fs/promises';
+import { relative, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import StyleDictionary from 'style-dictionary';
 import baseConfig, { COMPONENT_SOURCE, PRIMITIVE_SOURCES } from '../sd.config.mjs';
 import { THEMES, brandSlug, deepMerge, themeConfig } from '../sd.modes.config.mjs';
@@ -24,13 +33,38 @@ import { THEMES, brandSlug, deepMerge, themeConfig } from '../sd.modes.config.mj
 const ROOT = new URL('../', import.meta.url);
 const DIST = new URL('dist/', ROOT);
 
+/** Every dist/ path this build produced, so leftovers can be removed afterwards. */
+const generated = new Set();
+
 const read = async (path) => JSON.parse(await readFile(new URL(path, ROOT), 'utf8'));
 const write = async (path, content) => {
   const url = new URL(path, DIST);
+  const tmp = new URL(`${path}.${process.pid}.tmp`, DIST);
   await mkdir(new URL('./', url), { recursive: true });
-  await writeFile(url, content);
+  await writeFile(tmp, content);
+  await rename(tmp, url);
+  generated.add(path);
   console.log(`Generated: dist/${path}`);
 };
+
+/** Deletes files under dist/ this build didn't produce, then any directories left empty. */
+async function removeLeftovers(dir = fileURLToPath(DIST), prefix = '') {
+  let empty = true;
+  for (const entry of await readdir(dir, { withFileTypes: true })) {
+    const path = prefix + entry.name;
+    const full = `${dir}/${entry.name}`;
+    if (entry.isDirectory()) {
+      if (await removeLeftovers(full, `${path}/`)) await rmdir(full);
+      else empty = false;
+    } else if (generated.has(path)) {
+      empty = false;
+    } else {
+      await rm(full);
+      console.log(`Removed: dist/${path}`);
+    }
+  }
+  return empty;
+}
 
 const HEADER = '/**\n * Do not edit directly. Generated from the Figma NDS variables by scripts/build-tokens.mjs.\n */\n\n';
 
@@ -51,12 +85,12 @@ async function declarations(brand, theme) {
   return file.output;
 }
 
-await rm(DIST, { recursive: true, force: true });
-
-// tokens.css + components.css (mode-independent)
+// tokens.css + components.css (mode-independent), written through write() like everything else
 const base = new StyleDictionary({ ...baseConfig, log: { ...baseConfig.log, verbosity: 'silent' } });
-await base.buildAllPlatforms();
-for (const { destination } of baseConfig.platforms.css.files) console.log(`Generated: dist/css/${destination}`);
+// (formatPlatform's destination is relative to the repo root, e.g. "dist/css/tokens.css")
+for (const { destination, output } of await base.formatPlatform('css')) {
+  await write(relative(fileURLToPath(DIST), resolve(fileURLToPath(ROOT), destination)), output);
+}
 
 // brands/<brand>.css and <brand>.css bundles
 for (const brand of Object.keys(collections.brands)) {
@@ -87,3 +121,5 @@ for (const name of ['brands', 'typography', 'semantics']) {
 // Package entry points: the package currently ships tokens only.
 await write('index.js', 'export {};\n');
 await write('index.d.ts', 'export {};\n');
+
+await removeLeftovers();

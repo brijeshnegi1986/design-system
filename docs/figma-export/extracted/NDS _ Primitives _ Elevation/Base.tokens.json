@@ -6,7 +6,7 @@
       "$extensions": {
         "com.figma.variableId": "VariableID:468:3",
         "com.figma.scopes": [
-          "WIDTH_HEIGHT"
+          "EFFECT_FLOAT"
         ]
       }
     },
@@ -16,7 +16,7 @@
       "$extensions": {
         "com.figma.variableId": "VariableID:468:4",
         "com.figma.scopes": [
-          "WIDTH_HEIGHT"
+          "EFFECT_FLOAT"
         ]
       }
     },
@@ -26,7 +26,7 @@
       "$extensions": {
         "com.figma.variableId": "VariableID:468:5",
         "com.figma.scopes": [
-          "WIDTH_HEIGHT"
+          "EFFECT_FLOAT"
         ]
       }
     },
@@ -36,7 +36,7 @@
       "$extensions": {
         "com.figma.variableId": "VariableID:468:6",
         "com.figma.scopes": [
-          "WIDTH_HEIGHT"
+          "EFFECT_FLOAT"
         ]
       }
     },
@@ -46,7 +46,7 @@
       "$extensions": {
         "com.figma.variableId": "VariableID:468:7",
         "com.figma.scopes": [
-          "WIDTH_HEIGHT"
+          "EFFECT_FLOAT"
         ]
       }
     },
@@ -56,12 +56,12 @@
       "$extensions": {
         "com.figma.variableId": "VariableID:468:8",
         "com.figma.scopes": [
-          "WIDTH_HEIGHT"
+          "EFFECT_FLOAT"
         ]
       }
     }
   },
   "$extensions": {
-    "com.figma.modeName": "Mode 1"
+    "com.figma.modeName": "Base"
   }
 }

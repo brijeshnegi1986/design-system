@@ -18,12 +18,18 @@
   "focus-ring": {
     "width": {
       "$type": "number",
-      "$value": 2
+      "$value": 2,
+      "$description": "Thickness of the external focus indicator stroke."
     },
     "offset": {
       "$type": "number",
       "$value": 2,
-      "$description": "Gap between a focused control and its focus ring. Code: outline-offset. No Figma property binds to it."
+      "$description": "Visual gap between the component edge and the external focus ring. Figma has no bindable outline-offset property, so this value is applied to ring geometry and maps to CSS outline-offset."
+    },
+    "radius": {
+      "$type": "number",
+      "$value": 14,
+      "$description": "Radius of the external focus ring; component radius plus the 2px focus-ring offset."
     }
   },
   "border-width": {

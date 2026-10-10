@@ -15,15 +15,151 @@
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:394:564",
+          "com.figma.hiddenFromPublishing": true,
           "com.figma.scopes": [
-            "ALL_FILLS"
+            "ALL_FILLS",
+            "STROKE"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--color-primary)"
+            "WEB": "var(--brand-color-primary)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:6da6133588586557137edc964d1e598a7a702dac/-1:-1",
             "targetVariableName": "amber/700",
+            "targetVariableSetId": "VariableCollectionId:14f7af31e2f3e27b0329eb3c3afb54b94b5af0f5/-1:-1",
+            "targetVariableSetName": "NDS / Primitives / Color"
+          }
+        }
+      },
+      "primary-hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.5903065204620361,
+            0.23375673592090607,
+            0
+          ],
+          "alpha": 1,
+          "hex": "#973C00"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:522:2",
+          "com.figma.hiddenFromPublishing": true,
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:94fddef5b9db16c5aed5ae791a844421bdbf7d5d/-1:-1",
+            "targetVariableName": "amber/800",
+            "targetVariableSetId": "VariableCollectionId:14f7af31e2f3e27b0329eb3c3afb54b94b5af0f5/-1:-1",
+            "targetVariableSetName": "NDS / Primitives / Color"
+          }
+        }
+      },
+      "primary-pressed": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.48044630885124207,
+            0.19976529479026794,
+            0.024833081290125847
+          ],
+          "alpha": 1,
+          "hex": "#7B3306"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:522:3",
+          "com.figma.hiddenFromPublishing": true,
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:d353ad7d5d333f52c5715a2245c6cfc375942a3a/-1:-1",
+            "targetVariableName": "amber/900",
+            "targetVariableSetId": "VariableCollectionId:14f7af31e2f3e27b0329eb3c3afb54b94b5af0f5/-1:-1",
+            "targetVariableSetName": "NDS / Primitives / Color"
+          }
+        }
+      },
+      "primary-dark": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.7272557020187378,
+            0
+          ],
+          "alpha": 1,
+          "hex": "#FFB900"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:542:1703",
+          "com.figma.hiddenFromPublishing": true,
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--brand-color-primary-dark)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:ad58ef13298c879dfddb637d61ed850ef6d76750/-1:-1",
+            "targetVariableName": "amber/400",
+            "targetVariableSetId": "VariableCollectionId:14f7af31e2f3e27b0329eb3c3afb54b94b5af0f5/-1:-1",
+            "targetVariableSetName": "NDS / Primitives / Color"
+          }
+        }
+      },
+      "primary-hover-dark": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.8238498568534851,
+            0.18760539591312408
+          ],
+          "alpha": 1,
+          "hex": "#FFD230"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:542:1704",
+          "com.figma.hiddenFromPublishing": true,
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:c6601829b34830bbdb6e155d2faf6ccf1b8451cf/-1:-1",
+            "targetVariableName": "amber/300",
+            "targetVariableSetId": "VariableCollectionId:14f7af31e2f3e27b0329eb3c3afb54b94b5af0f5/-1:-1",
+            "targetVariableSetName": "NDS / Primitives / Color"
+          }
+        }
+      },
+      "primary-pressed-dark": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.994271457195282,
+            0.6020927429199219,
+            0
+          ],
+          "alpha": 1,
+          "hex": "#FE9A00"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:542:1705",
+          "com.figma.hiddenFromPublishing": true,
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:e508684358b2639c1460d9c3727a3eeb544de177/-1:-1",
+            "targetVariableName": "amber/500",
             "targetVariableSetId": "VariableCollectionId:14f7af31e2f3e27b0329eb3c3afb54b94b5af0f5/-1:-1",
             "targetVariableSetName": "NDS / Primitives / Color"
           }
@@ -43,11 +179,13 @@
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:394:567",
+          "com.figma.hiddenFromPublishing": true,
           "com.figma.scopes": [
-            "TEXT_FILL"
+            "TEXT_FILL",
+            "STROKE"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--color-on-primary)"
+            "WEB": "var(--brand-color-on-primary)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:5787235e8773c2d79a9591e569f5c3cfeb4535b9/-1:-1",
@@ -62,24 +200,56 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.4872933030128479,
-            0.8099173903465271,
-            0
+            0.32118186354637146,
+            0.3210901916027069,
+            0.3621075451374054
           ],
           "alpha": 1,
-          "hex": "#7CCF00"
+          "hex": "#52525C"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:394:566",
+          "com.figma.hiddenFromPublishing": true,
           "com.figma.scopes": [
-            "ALL_FILLS"
+            "ALL_FILLS",
+            "STROKE"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--color-accent)"
+            "WEB": "var(--brand-color-accent)"
           },
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:45bedf47b45b2a871e2b2fc1246ca47ef5e85d73/-1:-1",
-            "targetVariableName": "lime/500",
+            "targetVariableId": "VariableID:6682b9f70d999579b18487c36529554eb480fb4a/-1:-1",
+            "targetVariableName": "zinc/600",
+            "targetVariableSetId": "VariableCollectionId:14f7af31e2f3e27b0329eb3c3afb54b94b5af0f5/-1:-1",
+            "targetVariableSetName": "NDS / Primitives / Color"
+          }
+        }
+      },
+      "accent-dark": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.6226133108139038,
+            0.6225615739822388,
+            0.6633595824241638
+          ],
+          "alpha": 1,
+          "hex": "#9F9FA9"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:542:1706",
+          "com.figma.hiddenFromPublishing": true,
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--brand-color-accent-dark)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:e889d5dbf12aabea7527cd8daaf2005ce5d220f1/-1:-1",
+            "targetVariableName": "zinc/400",
             "targetVariableSetId": "VariableCollectionId:14f7af31e2f3e27b0329eb3c3afb54b94b5af0f5/-1:-1",
             "targetVariableSetName": "NDS / Primitives / Color"
           }
@@ -90,24 +260,26 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.9690420627593994,
-            0.9965202212333679,
-            0.9062309861183167
+            0.03938823565840721,
+            0.03938823565840721,
+            0.03938823565840721
           ],
           "alpha": 1,
-          "hex": "#F7FEE7"
+          "hex": "#0A0A0A"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:409:385",
+          "com.figma.hiddenFromPublishing": true,
           "com.figma.scopes": [
-            "TEXT_FILL"
+            "TEXT_FILL",
+            "STROKE"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--color-on-accent)"
+            "WEB": "var(--brand-color-on-accent)"
           },
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:bd81836092321d3f846e205c71506f6b05c287d9/-1:-1",
-            "targetVariableName": "lime/50",
+            "targetVariableId": "VariableID:280e01635dc13723320f93f47c29298a97959d61/-1:-1",
+            "targetVariableName": "neutral/950",
             "targetVariableSetId": "VariableCollectionId:14f7af31e2f3e27b0329eb3c3afb54b94b5af0f5/-1:-1",
             "targetVariableSetName": "NDS / Primitives / Color"
           }

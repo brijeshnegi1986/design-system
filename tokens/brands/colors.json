@@ -6,17 +6,41 @@
           "$type": "color",
           "$value": "{blue.600}"
         },
+        "primary-hover": {
+          "$type": "color",
+          "$value": "{blue.700}"
+        },
+        "primary-pressed": {
+          "$type": "color",
+          "$value": "{blue.800}"
+        },
+        "primary-dark": {
+          "$type": "color",
+          "$value": "{blue.400}"
+        },
+        "primary-hover-dark": {
+          "$type": "color",
+          "$value": "{blue.500}"
+        },
+        "primary-pressed-dark": {
+          "$type": "color",
+          "$value": "{blue.300}"
+        },
         "on-primary": {
           "$type": "color",
           "$value": "{blue.50}"
         },
         "accent": {
           "$type": "color",
-          "$value": "{lime.500}"
+          "$value": "{green.600}"
+        },
+        "accent-dark": {
+          "$type": "color",
+          "$value": "{lime.400}"
         },
         "on-accent": {
           "$type": "color",
-          "$value": "{lime.50}"
+          "$value": "{neutral.950}"
         }
       }
     }
@@ -28,61 +52,87 @@
           "$type": "color",
           "$value": "{amber.700}"
         },
+        "primary-hover": {
+          "$type": "color",
+          "$value": "{amber.800}"
+        },
+        "primary-pressed": {
+          "$type": "color",
+          "$value": "{amber.900}"
+        },
+        "primary-dark": {
+          "$type": "color",
+          "$value": "{amber.400}"
+        },
+        "primary-hover-dark": {
+          "$type": "color",
+          "$value": "{amber.300}"
+        },
+        "primary-pressed-dark": {
+          "$type": "color",
+          "$value": "{amber.500}"
+        },
         "on-primary": {
           "$type": "color",
           "$value": "{amber.50}"
         },
         "accent": {
           "$type": "color",
-          "$value": "{lime.500}"
+          "$value": "{zinc.600}"
+        },
+        "accent-dark": {
+          "$type": "color",
+          "$value": "{zinc.400}"
         },
         "on-accent": {
           "$type": "color",
-          "$value": "{lime.50}"
+          "$value": "{neutral.950}"
         }
       }
     }
   },
-  "Jeshnegi.com": {
+  "Jeshnegi": {
     "brand": {
       "color": {
         "primary": {
           "$type": "color",
-          "$value": "{blue.600}"
+          "$value": "{slate.800}"
+        },
+        "primary-hover": {
+          "$type": "color",
+          "$value": "{slate.900}"
+        },
+        "primary-pressed": {
+          "$type": "color",
+          "$value": "{slate.950}"
+        },
+        "primary-dark": {
+          "$type": "color",
+          "$value": "{slate.400}"
+        },
+        "primary-hover-dark": {
+          "$type": "color",
+          "$value": "{slate.300}"
+        },
+        "primary-pressed-dark": {
+          "$type": "color",
+          "$value": "{slate.400}"
         },
         "on-primary": {
           "$type": "color",
-          "$value": "{blue.50}"
+          "$value": "{slate.50}"
         },
         "accent": {
           "$type": "color",
-          "$value": "{lime.500}"
+          "$value": "{lime.600}"
+        },
+        "accent-dark": {
+          "$type": "color",
+          "$value": "{lime.400}"
         },
         "on-accent": {
           "$type": "color",
-          "$value": "{lime.50}"
-        }
-      }
-    }
-  },
-  "Negiflow.com": {
-    "brand": {
-      "color": {
-        "primary": {
-          "$type": "color",
-          "$value": "{teal.700}"
-        },
-        "on-primary": {
-          "$type": "color",
-          "$value": "{teal.50}"
-        },
-        "accent": {
-          "$type": "color",
-          "$value": "{lime.500}"
-        },
-        "on-accent": {
-          "$type": "color",
-          "$value": "{lime.50}"
+          "$value": "{neutral.950}"
         }
       }
     }

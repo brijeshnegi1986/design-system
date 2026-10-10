@@ -10,7 +10,7 @@
             "FONT_SIZE"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--font-size-display)"
+            "WEB": "var(--type-font-size-display)"
           }
         }
       },
@@ -23,7 +23,7 @@
             "FONT_SIZE"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--font-size-h1)"
+            "WEB": "var(--type-font-size-h1)"
           }
         }
       },
@@ -36,7 +36,7 @@
             "FONT_SIZE"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--font-size-h2)"
+            "WEB": "var(--type-font-size-h2)"
           }
         }
       },
@@ -49,7 +49,7 @@
             "FONT_SIZE"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--font-size-h3)"
+            "WEB": "var(--type-font-size-h3)"
           }
         }
       },
@@ -62,7 +62,7 @@
             "FONT_SIZE"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--font-size-h4)"
+            "WEB": "var(--type-font-size-h4)"
           }
         }
       },
@@ -75,7 +75,7 @@
             "FONT_SIZE"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--font-size-h5)"
+            "WEB": "var(--type-font-size-h5)"
           }
         }
       },
@@ -88,7 +88,7 @@
             "FONT_SIZE"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--font-size-h6)"
+            "WEB": "var(--type-font-size-h6)"
           }
         }
       },
@@ -101,7 +101,7 @@
             "FONT_SIZE"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--font-size-body-large)"
+            "WEB": "var(--type-font-size-body-large)"
           }
         }
       },
@@ -114,7 +114,7 @@
             "FONT_SIZE"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--font-size-body)"
+            "WEB": "var(--type-font-size-body)"
           }
         }
       },
@@ -127,7 +127,7 @@
             "FONT_SIZE"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--font-size-body-small)"
+            "WEB": "var(--type-font-size-body-small)"
           }
         }
       },
@@ -140,7 +140,7 @@
             "FONT_SIZE"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--font-size-caption)"
+            "WEB": "var(--type-font-size-caption)"
           }
         }
       }
@@ -155,7 +155,7 @@
             "LINE_HEIGHT"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--font-line-height-display)"
+            "WEB": "var(--type-line-height-display)"
           }
         }
       },
@@ -168,7 +168,7 @@
             "LINE_HEIGHT"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--font-line-height-h1)"
+            "WEB": "var(--type-line-height-h1)"
           }
         }
       },
@@ -181,7 +181,7 @@
             "LINE_HEIGHT"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--font-line-height-h2)"
+            "WEB": "var(--type-line-height-h2)"
           }
         }
       },
@@ -194,7 +194,7 @@
             "LINE_HEIGHT"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--font-line-height-h3)"
+            "WEB": "var(--type-line-height-h3)"
           }
         }
       },
@@ -207,7 +207,7 @@
             "LINE_HEIGHT"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--font-line-height-h4)"
+            "WEB": "var(--type-line-height-h4)"
           }
         }
       },
@@ -220,7 +220,7 @@
             "LINE_HEIGHT"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--font-line-height-h5)"
+            "WEB": "var(--type-line-height-h5)"
           }
         }
       },
@@ -233,7 +233,7 @@
             "LINE_HEIGHT"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--font-line-height-h6)"
+            "WEB": "var(--type-line-height-h6)"
           }
         }
       },
@@ -246,7 +246,7 @@
             "LINE_HEIGHT"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--font-line-height-body-large)"
+            "WEB": "var(--type-line-height-body-large)"
           }
         }
       },
@@ -259,7 +259,7 @@
             "LINE_HEIGHT"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--font-line-height-body)"
+            "WEB": "var(--type-line-height-body)"
           }
         }
       },
@@ -272,7 +272,7 @@
             "LINE_HEIGHT"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--font-line-height-body-small)"
+            "WEB": "var(--type-line-height-body-small)"
           }
         }
       },
@@ -285,7 +285,7 @@
             "LINE_HEIGHT"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--font-line-height-caption)"
+            "WEB": "var(--type-line-height-caption)"
           }
         }
       }
@@ -300,7 +300,7 @@
             "FONT_STYLE"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--font-weight-regular)"
+            "WEB": "var(--type-font-weight-regular)"
           }
         }
       },
@@ -313,7 +313,7 @@
             "FONT_STYLE"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--font-weight-medium)"
+            "WEB": "var(--type-font-weight-medium)"
           }
         }
       },
@@ -326,7 +326,7 @@
             "FONT_STYLE"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--font-weight-semibold)"
+            "WEB": "var(--type-font-weight-semibold)"
           }
         }
       }
@@ -341,7 +341,7 @@
             "FONT_FAMILY"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--font-family-base)"
+            "WEB": "var(--type-font-family-base)"
           },
           "com.figma.type": "string"
         }
@@ -349,6 +349,6 @@
     }
   },
   "$extensions": {
-    "com.figma.modeName": "Jeshnegi.com"
+    "com.figma.modeName": "Jeshnegi"
   }
 }
