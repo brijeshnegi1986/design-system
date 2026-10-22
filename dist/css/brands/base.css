@@ -31,12 +31,12 @@
   --type-font-family-base: Inter;
   --color-surface-semi-transparent: rgba(248, 250, 252, 0.25);
   --color-overlay-scrim: rgba(0, 0, 0, 0.6499999761581421);
-  --brand-color-primary: var(--blue-600);
-  --brand-color-primary-hover: var(--blue-700);
-  --brand-color-primary-pressed: var(--blue-800);
-  --brand-color-primary-dark: var(--blue-400);
-  --brand-color-primary-hover-dark: var(--blue-500);
-  --brand-color-primary-pressed-dark: var(--blue-300);
+  --brand-color-primary: var(--orange-500);
+  --brand-color-primary-hover: var(--orange-600);
+  --brand-color-primary-pressed: var(--orange-400);
+  --brand-color-primary-dark: var(--orange-500);
+  --brand-color-primary-hover-dark: var(--orange-400);
+  --brand-color-primary-pressed-dark: var(--orange-300);
   --brand-color-on-primary: var(--blue-50);
   --brand-color-accent: var(--green-600);
   --brand-color-accent-dark: var(--lime-400);

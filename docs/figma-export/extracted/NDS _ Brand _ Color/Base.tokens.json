@@ -6,12 +6,12 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.0836191475391388,
-            0.3644171357154846,
-            0.9863430261611938
+            1,
+            0.41073429584503174,
+            0
           ],
           "alpha": 1,
-          "hex": "#155DFC"
+          "hex": "#FF6900"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:394:564",
@@ -24,8 +24,8 @@
             "WEB": "var(--brand-color-primary)"
           },
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:9b3b72d40ae64daa9e72e1cd360885d36329afbe/-1:-1",
-            "targetVariableName": "blue/600",
+            "targetVariableId": "VariableID:cca2bf9e2c7e461e7646bb9ee50d10976a289711/-1:-1",
+            "targetVariableName": "orange/500",
             "targetVariableSetId": "VariableCollectionId:14f7af31e2f3e27b0329eb3c3afb54b94b5af0f5/-1:-1",
             "targetVariableSetName": "NDS / Primitives / Color"
           }
@@ -36,12 +36,12 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.07790778577327728,
-            0.27913516759872437,
-            0.9017744064331055
+            0.9607054591178894,
+            0.2881907522678375,
+            0
           ],
           "alpha": 1,
-          "hex": "#1447E6"
+          "hex": "#F54900"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:522:2",
@@ -50,8 +50,8 @@
             "ALL_SCOPES"
           ],
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:87a33807969c33319fdd05ce366193ca9a34fe6e/-1:-1",
-            "targetVariableName": "blue/700",
+            "targetVariableId": "VariableID:b9d31d746d7a536a9a8a3036ae8c0313867ef393/-1:-1",
+            "targetVariableName": "orange/600",
             "targetVariableSetId": "VariableCollectionId:14f7af31e2f3e27b0329eb3c3afb54b94b5af0f5/-1:-1",
             "targetVariableSetName": "NDS / Primitives / Color"
           }
@@ -62,12 +62,12 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.09978124499320984,
-            0.23377007246017456,
-            0.7229223847389221
+            1,
+            0.5370230674743652,
+            0.013840824365615845
           ],
           "alpha": 1,
-          "hex": "#193CB8"
+          "hex": "#FF8904"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:522:3",
@@ -76,8 +76,8 @@
             "ALL_SCOPES"
           ],
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:bca7a7967a727f60091f5554dd0ca146dea801cc/-1:-1",
-            "targetVariableName": "blue/800",
+            "targetVariableId": "VariableID:ea270d2229c41d5e038a10bb1a8a53283a116946/-1:-1",
+            "targetVariableName": "orange/400",
             "targetVariableSetId": "VariableCollectionId:14f7af31e2f3e27b0329eb3c3afb54b94b5af0f5/-1:-1",
             "targetVariableSetName": "NDS / Primitives / Color"
           }
@@ -88,12 +88,12 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.315799355506897,
-            0.6355904340744019,
-            1
+            1,
+            0.41073429584503174,
+            0
           ],
           "alpha": 1,
-          "hex": "#51A2FF"
+          "hex": "#FF6900"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:542:1703",
@@ -106,8 +106,8 @@
             "WEB": "var(--brand-color-primary-dark)"
           },
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:9ebb870ea7a2bd9906a43e3995154e71696ab107/-1:-1",
-            "targetVariableName": "blue/400",
+            "targetVariableId": "VariableID:cca2bf9e2c7e461e7646bb9ee50d10976a289711/-1:-1",
+            "targetVariableName": "orange/500",
             "targetVariableSetId": "VariableCollectionId:14f7af31e2f3e27b0329eb3c3afb54b94b5af0f5/-1:-1",
             "targetVariableSetName": "NDS / Primitives / Color"
           }
@@ -118,12 +118,12 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.16933254897594452,
-            0.49804946780204773,
-            1
+            1,
+            0.5370230674743652,
+            0.013840824365615845
           ],
           "alpha": 1,
-          "hex": "#2B7FFF"
+          "hex": "#FF8904"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:542:1704",
@@ -132,8 +132,8 @@
             "ALL_SCOPES"
           ],
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:0e0a26ebde9da55d6b1af09406bf0974bdda95bb/-1:-1",
-            "targetVariableName": "blue/500",
+            "targetVariableId": "VariableID:ea270d2229c41d5e038a10bb1a8a53283a116946/-1:-1",
+            "targetVariableName": "orange/400",
             "targetVariableSetId": "VariableCollectionId:14f7af31e2f3e27b0329eb3c3afb54b94b5af0f5/-1:-1",
             "targetVariableSetName": "NDS / Primitives / Color"
           }
@@ -144,12 +144,12 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.5565924048423767,
-            0.7731643319129944,
-            1
+            1,
+            0.7222756147384644,
+            0.41392701864242554
           ],
           "alpha": 1,
-          "hex": "#8EC5FF"
+          "hex": "#FFB86A"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:542:1705",
@@ -158,8 +158,8 @@
             "ALL_SCOPES"
           ],
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:ca6fd6b72a162e52170c89453a560ca9d67332bb/-1:-1",
-            "targetVariableName": "blue/300",
+            "targetVariableId": "VariableID:54038c981e0ffe16a37db3cdca67544a89f20f81/-1:-1",
+            "targetVariableName": "orange/300",
             "targetVariableSetId": "VariableCollectionId:14f7af31e2f3e27b0329eb3c3afb54b94b5af0f5/-1:-1",
             "targetVariableSetName": "NDS / Primitives / Color"
           }

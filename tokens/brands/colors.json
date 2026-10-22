@@ -4,27 +4,27 @@
       "color": {
         "primary": {
           "$type": "color",
-          "$value": "{blue.600}"
+          "$value": "{orange.500}"
         },
         "primary-hover": {
           "$type": "color",
-          "$value": "{blue.700}"
+          "$value": "{orange.600}"
         },
         "primary-pressed": {
           "$type": "color",
-          "$value": "{blue.800}"
+          "$value": "{orange.400}"
         },
         "primary-dark": {
           "$type": "color",
-          "$value": "{blue.400}"
+          "$value": "{orange.500}"
         },
         "primary-hover-dark": {
           "$type": "color",
-          "$value": "{blue.500}"
+          "$value": "{orange.400}"
         },
         "primary-pressed-dark": {
           "$type": "color",
-          "$value": "{blue.300}"
+          "$value": "{orange.300}"
         },
         "on-primary": {
           "$type": "color",
