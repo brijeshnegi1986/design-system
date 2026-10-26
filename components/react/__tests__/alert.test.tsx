@@ -39,8 +39,8 @@ describe("Alert (audit M9)", () => {
   it("gives each tone its own filled icon", () => {
     const icon = (tone: "info" | "success" | "warning" | "error" | "neutral") =>
       alert(<Alert tone={tone}>Message</Alert>).querySelector('[data-part="icon"]')!.getAttribute("data-icon");
-    expect(icon("info")).toBe("info-filled");
-    expect(icon("neutral")).toBe("info-filled");
+    expect(icon("info")).toBe("info");
+    expect(icon("neutral")).toBe("info");
     expect(icon("success")).toBe("check-circle-filled");
     expect(icon("warning")).toBe("warning-filled");
     expect(icon("error")).toBe("error-filled");

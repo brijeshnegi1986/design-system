@@ -16,6 +16,15 @@ describe("IconButton (audit M11)", () => {
     expect(el.getAttribute("type")).toBe("button");
   });
 
+  it("has Figma's MD, SM and XSM sizes, SM by default", () => {
+    const cls = (size?: "md" | "sm" | "xsm") =>
+      button(<IconButton label="Add" size={size}><span /></IconButton>).className.split(" ");
+    expect(cls("md")).toContain("size-12");
+    expect(cls("sm")).toContain("size-10");
+    expect(cls("xsm")).toContain("size-9");
+    expect(cls()).toContain("size-10");
+  });
+
   it("takes the Button colours for its variant", () => {
     expect(button(<IconButton label="Delete" variant="destructive"><span /></IconButton>).className).toContain(
       "bg-(--color-action-destructive)",

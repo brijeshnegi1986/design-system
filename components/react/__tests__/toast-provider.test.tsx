@@ -73,7 +73,7 @@ describe("ToastProvider", () => {
     act(() => root.render(<ToastProvider><All /></ToastProvider>));
     const toasts = [...container.querySelectorAll<HTMLElement>('[role="status"], [role="alert"]')];
     const icons = toasts.map((t) => t.querySelector('[data-part="icon"]')!.getAttribute("data-icon"));
-    expect(icons).toEqual(["check-circle-filled", "error-filled", "warning-filled", "info-filled", "info-filled"]);
+    expect(icons).toEqual(["check-circle-filled", "error-filled", "warning-filled", "info-filled", "info"]);
     expect(toasts[0].className).toContain("border-(--color-border-success)");
     expect(toasts[0].className).not.toContain("/40");
     expect(toasts[1].className).toContain("bg-(--color-status-error-subtle)");

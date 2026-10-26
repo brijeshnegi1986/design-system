@@ -35,7 +35,7 @@ function Icon({ file, className }: { file: IconName; className: string }) {
  * Home/End and typing a letter move the highlight; Enter or Space chooses;
  * Escape or Tab closes. It opens upwards when there isn't room below.
  *
- * `size="sm"` is the compact pill used inline (e.g. Create post's tone),
+ * `size="inline"` is the 24px pill (Figma Size=Inline) used inside a sentence (e.g. Create post's tone),
  * opening the Dropdown SM menu (835:1406) with its pointer.
  */
 export function Select({
@@ -63,7 +63,7 @@ export function Select({
   "aria-labelledby"?: string;
   "aria-describedby"?: string;
   invalid?: boolean;
-  size?: "md" | "sm";
+  size?: "md" | "inline";
   surface?: "default" | "raised";
   /** Width and spacing for the whole control. */
   className?: string;
@@ -173,7 +173,7 @@ export function Select({
     }
   }
 
-  const small = size === "sm";
+  const small = size === "inline";
   const field = small
     ? "h-6 gap-1.5 px-2 text-xs"
     : "h-12 gap-2 px-3 text-base";

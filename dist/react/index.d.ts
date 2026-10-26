@@ -12,7 +12,7 @@ export { Card, CARD_BASE_CLASS, CARD_INTERACTIVE_CLASS } from "./card.js";
 export { Checkbox, Radio, RadioTiles, type RadioTileOption } from "./choice.js";
 export { Dialog } from "./dialog.js";
 export { ActionButton, Chip, Field, FIELD_CONTROL_CLASS, TERTIARY_BUTTON_CLASS, TextArea, TextInput } from "./form-controls.js";
-export { IconButton, type IconButtonVariant } from "./icon-button.js";
+export { IconButton, type IconButtonSize, type IconButtonVariant } from "./icon-button.js";
 export { iconMask, iconUrl, type IconName } from "./icons.js";
 export { Select, type SelectOption } from "./select.js";
 export { Separator } from "./separator.js";
