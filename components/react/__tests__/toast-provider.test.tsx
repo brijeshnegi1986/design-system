@@ -75,9 +75,12 @@ describe("ToastProvider", () => {
     const icons = toasts.map((t) => t.querySelector('[data-part="icon"]')!.getAttribute("data-icon"));
     expect(icons).toEqual(["check-circle-filled", "error-filled", "warning-filled", "info-filled", "info"]);
     expect(toasts[0].className).toContain("border-(--color-border-success)");
-    expect(toasts[0].className).not.toContain("/40");
-    expect(toasts[1].className).toContain("bg-(--color-status-error-subtle)");
-    expect(toasts[2].className).toContain("bg-(--color-status-warning-subtle)");
+    expect(toasts[0].className).toContain("bg-(--color-status-success)");
+    expect(toasts[0].className).toContain("text-(--color-status-success-subtle)");
+    expect(toasts[1].className).toContain("bg-(--color-status-error)");
+    expect(toasts[2].className).toContain("text-(--color-content-inverse)");
+    expect(toasts[4].className).toContain("bg-(--color-action-tertiary)");
+    for (const t of toasts) expect(t.querySelector('[aria-label="Dismiss"]')).not.toBeNull();
     for (const t of toasts) expect(t.className).toContain("rounded-(--radius-md)");
   });
 });

@@ -18,6 +18,7 @@ export { iconMask, iconUrl, type IconName } from "./icons.js";
 export { Select, type SelectOption } from "./select.js";
 export { Separator } from "./separator.js";
 export { Skeleton } from "./skeleton.js";
+export { Snackbar, type SnackbarLayout } from "./snackbar.js";
 export { Switch } from "./switch.js";
 export { Tabs, type TabItem } from "./tabs.js";
 export { Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow } from "./table.js";

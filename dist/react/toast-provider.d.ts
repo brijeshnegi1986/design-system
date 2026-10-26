@@ -17,9 +17,9 @@ type ToastContextValue = {
 /**
  * Toasts: mount ToastProvider once near the root and call
  * useToast().showToast(...) from any client component.
- * Auto-dismisses after 4s (6s with a link, to leave time to use it). A
- * toast shown with { persist: true } instead stays until its close button
- * is used, and a persistent failure is announced as an alert.
+ * Auto-dismisses after 4s (6s with a link, to leave time to use it); the
+ * close button dismisses it sooner. A toast shown with { persist: true }
+ * stays until closed, and a persistent failure is announced as an alert.
  */
 export declare function ToastProvider({ children, linkAs: LinkAs, }: {
     children: React.ReactNode;
