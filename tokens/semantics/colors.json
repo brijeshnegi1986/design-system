@@ -37,12 +37,12 @@
           "$value": {
             "colorSpace": "srgb",
             "components": [
-              0.05718432366847992,
-              0.09004246443510056,
-              0.16879600286483765
+              0.9731488227844238,
+              0.980042576789856,
+              0.9869375228881836
             ],
             "alpha": 0.25,
-            "hex": "#0F172B"
+            "hex": "#F8FAFC"
           }
         }
       },
@@ -69,19 +69,28 @@
         },
         "on-primary": {
           "$type": "color",
-          "$value": "{neutral.950}"
+          "$value": "{color.content.inverse}"
         },
         "on-accent": {
           "$type": "color",
           "$value": "{neutral.950}"
         },
-        "on-secondary": {
+        "on-tertiary": {
           "$type": "color",
           "$value": "{slate.50}"
+        },
+        "on-secondary": {
+          "$type": "color",
+          "$value": "{zinc.900}"
         },
         "on-destructive": {
           "$type": "color",
           "$value": "{red.50}"
+        },
+        "link": {
+          "$type": "color",
+          "$value": "{brand.color.primary-dark}",
+          "$description": "Link text and other orange text: 4.5:1 or better in both modes."
         }
       },
       "border": {
@@ -124,6 +133,11 @@
         "primary": {
           "$type": "color",
           "$value": "{brand.color.primary-dark}"
+        },
+        "input": {
+          "$type": "color",
+          "$value": "{slate.500}",
+          "$description": "The edge of a text field, select, textarea or search field: 3:1 or better in both modes (WCAG 1.4.11)."
         }
       },
       "action": {
@@ -141,13 +155,25 @@
         },
         "secondary": {
           "$type": "color",
-          "$value": "{neutral.500}"
+          "$value": "{zinc.50}"
         },
         "secondary-hover": {
           "$type": "color",
-          "$value": "{neutral.600}"
+          "$value": "{zinc.100}"
         },
         "secondary-pressed": {
+          "$type": "color",
+          "$value": "{neutral.200}"
+        },
+        "tertiary": {
+          "$type": "color",
+          "$value": "{neutral.500}"
+        },
+        "tertiary-hover": {
+          "$type": "color",
+          "$value": "{neutral.600}"
+        },
+        "tertiary-pressed": {
           "$type": "color",
           "$value": "{neutral.400}"
         },
@@ -293,19 +319,28 @@
         },
         "on-primary": {
           "$type": "color",
-          "$value": "{brand.color.on-primary}"
+          "$value": "{color.content.primary}"
         },
         "on-accent": {
           "$type": "color",
           "$value": "{neutral.950}"
         },
-        "on-secondary": {
+        "on-tertiary": {
           "$type": "color",
           "$value": "{slate.900}"
+        },
+        "on-secondary": {
+          "$type": "color",
+          "$value": "{zinc.50}"
         },
         "on-destructive": {
           "$type": "color",
           "$value": "{red.50}"
+        },
+        "link": {
+          "$type": "color",
+          "$value": "{brand.color.primary-strong}",
+          "$description": "Link text and other orange text: 4.5:1 or better in both modes."
         }
       },
       "border": {
@@ -343,11 +378,16 @@
         },
         "focus": {
           "$type": "color",
-          "$value": "{brand.color.primary}"
+          "$value": "{brand.color.primary-strong}"
         },
         "primary": {
           "$type": "color",
           "$value": "{brand.color.primary}"
+        },
+        "input": {
+          "$type": "color",
+          "$value": "{slate.500}",
+          "$description": "The edge of a text field, select, textarea or search field: 3:1 or better in both modes (WCAG 1.4.11)."
         }
       },
       "action": {
@@ -365,15 +405,27 @@
         },
         "secondary": {
           "$type": "color",
-          "$value": "{slate.100}"
+          "$value": "{zinc.900}"
         },
         "secondary-hover": {
           "$type": "color",
-          "$value": "{slate.200}"
+          "$value": "{zinc.600}"
         },
         "secondary-pressed": {
           "$type": "color",
-          "$value": "{slate.300}"
+          "$value": "{zinc.700}"
+        },
+        "tertiary": {
+          "$type": "color",
+          "$value": "{slate.50}"
+        },
+        "tertiary-hover": {
+          "$type": "color",
+          "$value": "{slate.100}"
+        },
+        "tertiary-pressed": {
+          "$type": "color",
+          "$value": "{slate.200}"
         },
         "destructive": {
           "$type": "color",
@@ -381,11 +433,11 @@
         },
         "destructive-hover": {
           "$type": "color",
-          "$value": "{red.700}"
+          "$value": "{red.800}"
         },
         "destructive-pressed": {
           "$type": "color",
-          "$value": "{red.800}"
+          "$value": "{red.900}"
         },
         "disabled": {
           "$type": "color",

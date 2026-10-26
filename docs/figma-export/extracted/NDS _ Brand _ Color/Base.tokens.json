@@ -284,6 +284,36 @@
             "targetVariableSetName": "NDS / Primitives / Color"
           }
         }
+      },
+      "primary-strong": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.7918817400932312,
+            0.20726990699768066,
+            0
+          ],
+          "alpha": 1,
+          "hex": "#CA3500"
+        },
+        "$description": "The brand primary dark enough for text and focus rings on light surfaces (at least 4.5:1 on white).",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:870:2",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--brand-color-primary-strong)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:edc21354d4342a39027201a8bc2778256b608ae0/-1:-1",
+            "targetVariableName": "orange/700",
+            "targetVariableSetId": "VariableCollectionId:14f7af31e2f3e27b0329eb3c3afb54b94b5af0f5/-1:-1",
+            "targetVariableSetName": "NDS / Primitives / Color"
+          }
+        }
       }
     }
   },

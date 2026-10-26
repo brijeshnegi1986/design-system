@@ -41,6 +41,7 @@
   --brand-color-accent: var(--green-600);
   --brand-color-accent-dark: var(--lime-400);
   --brand-color-on-accent: var(--neutral-950);
+  --brand-color-primary-strong: var(--orange-700); /** The brand primary dark enough for text and focus rings on light surfaces (at least 4.5:1 on white). */
   --color-background-default: var(--slate-50);
   --color-background-subtle: var(--slate-100);
   --color-background-muted: var(--slate-200);
@@ -54,18 +55,23 @@
   --color-content-disabled: var(--slate-400);
   --color-content-inverse: var(--white);
   --color-content-on-accent: var(--neutral-950);
-  --color-content-on-secondary: var(--slate-900);
+  --color-content-on-tertiary: var(--slate-900);
+  --color-content-on-secondary: var(--zinc-50);
   --color-content-on-destructive: var(--red-50);
   --color-border-subtle: var(--slate-300);
   --color-border-weak: var(--neutral-500);
   --color-border-strong: var(--neutral-600);
   --color-border-disabled: var(--neutral-200);
-  --color-action-secondary: var(--slate-100);
-  --color-action-secondary-hover: var(--slate-200);
-  --color-action-secondary-pressed: var(--slate-300);
+  --color-border-input: var(--slate-500); /** The edge of a text field, select, textarea or search field: 3:1 or better in both modes (WCAG 1.4.11). */
+  --color-action-secondary: var(--zinc-900);
+  --color-action-secondary-hover: var(--zinc-600);
+  --color-action-secondary-pressed: var(--zinc-700);
+  --color-action-tertiary: var(--slate-50);
+  --color-action-tertiary-hover: var(--slate-100);
+  --color-action-tertiary-pressed: var(--slate-200);
   --color-action-destructive: var(--red-700);
-  --color-action-destructive-hover: var(--red-700);
-  --color-action-destructive-pressed: var(--red-800);
+  --color-action-destructive-hover: var(--red-800);
+  --color-action-destructive-pressed: var(--red-900);
   --color-action-disabled: var(--neutral-200);
   --color-status-success: var(--green-700); /** Status colour for icons, borders and short text. Meets 4.5:1 on background/default and on its status/*-subtle surface. */
   --color-status-warning: var(--amber-700); /** Status colour for icons, borders and short text. Meets 4.5:1 on background/default and on its status/*-subtle surface. */
@@ -75,12 +81,13 @@
   --color-status-warning-subtle: var(--orange-100);
   --color-status-error-subtle: var(--red-100);
   --color-status-info-subtle: var(--blue-100);
-  --color-content-on-primary: var(--brand-color-on-primary);
+  --color-content-on-primary: var(--color-content-primary);
+  --color-content-link: var(--brand-color-primary-strong); /** Link text and other orange text: 4.5:1 or better in both modes. */
   --color-border-error: var(--color-status-error);
   --color-border-success: var(--color-status-success);
   --color-border-warning: var(--color-status-warning);
   --color-border-info: var(--color-status-info);
-  --color-border-focus: var(--brand-color-primary);
+  --color-border-focus: var(--brand-color-primary-strong);
   --color-border-primary: var(--brand-color-primary);
   --color-action-primary: var(--brand-color-primary);
   --color-action-primary-hover: var(--brand-color-primary-hover);
@@ -89,7 +96,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --color-surface-semi-transparent: rgba(15, 23, 43, 0.25);
+    --color-surface-semi-transparent: rgba(248, 250, 252, 0.25);
     --color-overlay-scrim: rgba(0, 0, 0, 0.6499999761581421);
     --color-background-default: var(--neutral-950);
     --color-background-subtle: var(--neutral-900);
@@ -103,17 +110,21 @@
     --color-content-muted: var(--slate-400);
     --color-content-disabled: var(--slate-500);
     --color-content-inverse: var(--slate-950);
-    --color-content-on-primary: var(--neutral-950);
     --color-content-on-accent: var(--neutral-950);
-    --color-content-on-secondary: var(--slate-50);
+    --color-content-on-tertiary: var(--slate-50);
+    --color-content-on-secondary: var(--zinc-900);
     --color-content-on-destructive: var(--red-50);
     --color-border-subtle: var(--neutral-800);
     --color-border-weak: var(--neutral-600);
     --color-border-strong: var(--neutral-500);
     --color-border-disabled: var(--neutral-700);
-    --color-action-secondary: var(--neutral-500);
-    --color-action-secondary-hover: var(--neutral-600);
-    --color-action-secondary-pressed: var(--neutral-400);
+    --color-border-input: var(--slate-500); /** The edge of a text field, select, textarea or search field: 3:1 or better in both modes (WCAG 1.4.11). */
+    --color-action-secondary: var(--zinc-50);
+    --color-action-secondary-hover: var(--zinc-100);
+    --color-action-secondary-pressed: var(--neutral-200);
+    --color-action-tertiary: var(--neutral-500);
+    --color-action-tertiary-hover: var(--neutral-600);
+    --color-action-tertiary-pressed: var(--neutral-400);
     --color-action-destructive: var(--red-800);
     --color-action-destructive-hover: var(--red-900);
     --color-action-destructive-pressed: var(--red-950);
@@ -126,6 +137,8 @@
     --color-status-warning-subtle: var(--orange-950);
     --color-status-error-subtle: var(--red-950);
     --color-status-info-subtle: var(--blue-950);
+    --color-content-on-primary: var(--color-content-inverse);
+    --color-content-link: var(--brand-color-primary-dark); /** Link text and other orange text: 4.5:1 or better in both modes. */
     --color-border-error: var(--color-status-error);
     --color-border-success: var(--color-status-success);
     --color-border-warning: var(--color-status-warning);
@@ -139,7 +152,7 @@
 }
 
 :root[data-theme="dark"] {
-  --color-surface-semi-transparent: rgba(15, 23, 43, 0.25);
+  --color-surface-semi-transparent: rgba(248, 250, 252, 0.25);
   --color-overlay-scrim: rgba(0, 0, 0, 0.6499999761581421);
   --color-background-default: var(--neutral-950);
   --color-background-subtle: var(--neutral-900);
@@ -153,17 +166,21 @@
   --color-content-muted: var(--slate-400);
   --color-content-disabled: var(--slate-500);
   --color-content-inverse: var(--slate-950);
-  --color-content-on-primary: var(--neutral-950);
   --color-content-on-accent: var(--neutral-950);
-  --color-content-on-secondary: var(--slate-50);
+  --color-content-on-tertiary: var(--slate-50);
+  --color-content-on-secondary: var(--zinc-900);
   --color-content-on-destructive: var(--red-50);
   --color-border-subtle: var(--neutral-800);
   --color-border-weak: var(--neutral-600);
   --color-border-strong: var(--neutral-500);
   --color-border-disabled: var(--neutral-700);
-  --color-action-secondary: var(--neutral-500);
-  --color-action-secondary-hover: var(--neutral-600);
-  --color-action-secondary-pressed: var(--neutral-400);
+  --color-border-input: var(--slate-500); /** The edge of a text field, select, textarea or search field: 3:1 or better in both modes (WCAG 1.4.11). */
+  --color-action-secondary: var(--zinc-50);
+  --color-action-secondary-hover: var(--zinc-100);
+  --color-action-secondary-pressed: var(--neutral-200);
+  --color-action-tertiary: var(--neutral-500);
+  --color-action-tertiary-hover: var(--neutral-600);
+  --color-action-tertiary-pressed: var(--neutral-400);
   --color-action-destructive: var(--red-800);
   --color-action-destructive-hover: var(--red-900);
   --color-action-destructive-pressed: var(--red-950);
@@ -176,6 +193,8 @@
   --color-status-warning-subtle: var(--orange-950);
   --color-status-error-subtle: var(--red-950);
   --color-status-info-subtle: var(--blue-950);
+  --color-content-on-primary: var(--color-content-inverse);
+  --color-content-link: var(--brand-color-primary-dark); /** Link text and other orange text: 4.5:1 or better in both modes. */
   --color-border-error: var(--color-status-error);
   --color-border-success: var(--color-status-success);
   --color-border-warning: var(--color-status-warning);

@@ -11,7 +11,7 @@ const TONES = {
     danger: { classes: "border-(--color-border-error) bg-(--color-status-error-subtle) text-(--color-status-error)", icon: "error-filled" },
     warning: { classes: "border-(--color-border-warning) bg-(--color-status-warning-subtle) text-(--color-status-warning)", icon: "warning-filled" },
     info: { classes: "border-(--color-border-info) bg-(--color-status-info-subtle) text-(--color-status-info)", icon: "info-filled" },
-    muted: { classes: "border-(--color-border-subtle) bg-(--color-surface-default) text-(--color-content-primary)", icon: "info-filled" },
+    muted: { classes: "border-(--color-border-subtle) bg-(--color-surface-default) text-(--color-content-primary)", icon: "info" },
 };
 /**
  * Toasts: mount ToastProvider once near the root and call

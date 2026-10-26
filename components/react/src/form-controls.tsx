@@ -124,8 +124,8 @@ export function Chip({
       aria-checked={role ? selected : undefined}
       className={`inline-flex items-center justify-center gap-1 rounded-full border border-(--color-border-subtle) text-(--color-content-primary) transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-border-focus) ${sized} ${
         selected
-          ? "bg-(--color-action-secondary-pressed)"
-          : "bg-(--color-action-secondary) hover:bg-(--color-action-secondary-hover)"
+          ? "bg-(--color-action-tertiary-pressed)"
+          : "bg-(--color-action-tertiary) hover:bg-(--color-action-tertiary-hover)"
       }`}
     >
       {selected && (

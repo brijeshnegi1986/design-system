@@ -9,8 +9,11 @@
   --border-width-default: 1px;
   --border-width-control: 1.5px;
   --border-width-strong: 2px;
+  --control-height-xsm: var(--size-36);
   --control-height-sm: var(--size-40);
   --control-height-md: var(--size-48);
   --control-height-lg: var(--size-56);
   --icon-size-md: var(--size-24);
+  --icon-size-sm: var(--size-20);
+  --icon-size-xsm: var(--size-16);
 }

@@ -29,7 +29,7 @@ const OPTIONS: SelectOption[] = [
   { value: "thread", label: "Thread" },
 ];
 
-function Harness({ initial = "", size }: { initial?: string; size?: "sm" | "md" }) {
+function Harness({ initial = "", size }: { initial?: string; size?: "inline" | "md" }) {
   const [value, setValue] = useState(initial);
   return (
     <Select
@@ -46,7 +46,7 @@ function Harness({ initial = "", size }: { initial?: string; size?: "sm" | "md" 
   );
 }
 
-function render(initial?: string, size?: "sm" | "md") {
+function render(initial?: string, size?: "inline" | "md") {
   container = document.createElement("div");
   document.body.appendChild(container);
   root = createRoot(container);
@@ -125,11 +125,11 @@ describe("Select", () => {
 });
 
 describe("Select: item states (NDS Dropdown Item, 637:1480)", () => {
-  const HOVER = "bg-(--color-action-secondary-hover)";
+  const HOVER = "bg-(--color-action-tertiary-hover)";
   const classesOf = (el: HTMLElement) => el.className.split(" ");
 
   it("greys the row under the pointer, not orange", () => {
-    render("short", "sm");
+    render("short", "inline");
     act(() => trigger().click());
     act(() => options()[1].dispatchEvent(new MouseEvent("mouseover", { bubbles: true })));
     expect(classesOf(options()[1])).toContain(HOVER);
@@ -137,7 +137,7 @@ describe("Select: item states (NDS Dropdown Item, 637:1480)", () => {
   });
 
   it("leaves the chosen row white with its tick when the menu opens", () => {
-    render("short", "sm");
+    render("short", "inline");
     act(() => trigger().click());
     expect(classesOf(options()[0])).toContain("bg-(--color-surface-default)");
     expect(classesOf(options()[0])).not.toContain(HOVER);
@@ -145,7 +145,7 @@ describe("Select: item states (NDS Dropdown Item, 637:1480)", () => {
   });
 
   it("still shows the keyboard position once someone moves", () => {
-    render("medium", "sm");
+    render("medium", "inline");
     key("ArrowDown");
     key("ArrowDown");
     expect(classesOf(options()[3])).toContain(HOVER);
@@ -161,9 +161,9 @@ describe("Select: item states (NDS Dropdown Item, 637:1480)", () => {
   });
 });
 
-describe("Select: small", () => {
+describe("Select: inline", () => {
   it("opens the NDS Dropdown SM menu: 34px rows of 12px regular text, with the pointer", () => {
-    render("short", "sm");
+    render("short", "inline");
     act(() => trigger().click());
     const classes = options()[1].className.split(" ");
     expect(classes).toEqual(expect.arrayContaining(["h-[34px]", "px-3", "py-1", "text-xs", "font-normal"]));

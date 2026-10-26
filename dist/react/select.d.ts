@@ -22,7 +22,7 @@ export type SelectOption = {
  * Home/End and typing a letter move the highlight; Enter or Space chooses;
  * Escape or Tab closes. It opens upwards when there isn't room below.
  *
- * `size="sm"` is the compact pill used inline (e.g. Create post's tone),
+ * `size="inline"` is the 24px pill (Figma Size=Inline) used inside a sentence (e.g. Create post's tone),
  * opening the Dropdown SM menu (835:1406) with its pointer.
  */
 export declare function Select({ value, onChange, options, placeholder, disabled, id, "aria-label": ariaLabel, "aria-labelledby": ariaLabelledBy, "aria-describedby": ariaDescribedBy, invalid, size, surface, className, }: {
@@ -36,7 +36,7 @@ export declare function Select({ value, onChange, options, placeholder, disabled
     "aria-labelledby"?: string;
     "aria-describedby"?: string;
     invalid?: boolean;
-    size?: "md" | "sm";
+    size?: "md" | "inline";
     surface?: "default" | "raised";
     /** Width and spacing for the whole control. */
     className?: string;
