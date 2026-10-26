@@ -1,6 +1,6 @@
 import { ButtonHTMLAttributes } from "react";
 export type ButtonVariant = "primary" | "secondary" | "tertiary" | "plain" | "ghost" | "danger" | "destructive";
-export type ButtonSize = "sm" | "md" | "lg";
+export type ButtonSize = "xsm" | "sm" | "md" | "lg";
 /** A Button's classes, for a link that should look exactly like one (e.g.
  * "Add profile", which goes to a page rather than doing something). */
 export declare function buttonClassName(variant?: ButtonVariant, size?: ButtonSize): string;

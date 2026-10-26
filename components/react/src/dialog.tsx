@@ -21,7 +21,8 @@ const FOCUSABLE =
  *
  * Escape, a click on the backdrop or the close button calls onClose. Focus
  * moves into the dialog when it opens, Tab stays inside it, and focus goes
- * back to whatever opened it when it closes.
+ * back to whatever opened it when it closes - only on opening and closing,
+ * never on a re-render, so typing in a field inside it keeps its focus.
  */
 export function Dialog({
   open,
@@ -44,6 +45,13 @@ export function Dialog({
   children?: ReactNode;
 }) {
   const panelRef = useRef<HTMLDivElement>(null);
+  // The latest onClose, read by the key handler. Callers usually pass a new
+  // function each render, and re-running the focus effect for that would
+  // pull focus out of whatever field someone is typing in.
+  const onCloseRef = useRef(onClose);
+  useEffect(() => {
+    onCloseRef.current = onClose;
+  }, [onClose]);
   const titleId = useId();
   const descriptionId = useId();
 
@@ -53,7 +61,7 @@ export function Dialog({
     panelRef.current?.focus();
     function onKeyDown(e: KeyboardEvent) {
       if (e.key === "Escape") {
-        onClose();
+        onCloseRef.current();
         return;
       }
       if (e.key !== "Tab" || !panelRef.current) return;
@@ -77,7 +85,7 @@ export function Dialog({
       document.removeEventListener("keydown", onKeyDown);
       opener?.focus?.();
     };
-  }, [open, onClose]);
+  }, [open]);
 
   if (!open) return null;
 

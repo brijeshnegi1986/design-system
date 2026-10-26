@@ -43,6 +43,19 @@ describe("StatCard", () => {
   });
 });
 
+describe("StatCard meter", () => {
+  it("draws usage against a limit, in the warning colour once it's reached", () => {
+    const half = el(<StatCard label="AI posts" value="15 of 30" meter={{ value: 15, max: 30 }} />);
+    const bar = half.querySelector('[role="progressbar"]')!;
+    expect(bar.getAttribute("aria-valuenow")).toBe("15");
+    expect(bar.getAttribute("aria-valuemax")).toBe("30");
+    expect((half.querySelector('[data-part="meter"]') as HTMLElement).style.width).toBe("50%");
+    const full = el(<StatCard label="AI posts" value="30 of 30" meter={{ value: 31, max: 30 }} />);
+    expect(full.querySelector('[data-part="meter"]')!.className).toContain("status-warning");
+    expect((full.querySelector('[data-part="meter"]') as HTMLElement).style.width).toBe("100%");
+  });
+});
+
 describe("EmptyState", () => {
   it("shows the icon tile, title, text and one action inside a dashed strong edge", () => {
     const empty = el(

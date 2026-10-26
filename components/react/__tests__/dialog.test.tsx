@@ -107,3 +107,31 @@ describe("Dialog (audit M11, Figma Modal)", () => {
     expect(document.activeElement).toBe(opener);
   });
 });
+
+describe("Dialog keeps focus where it is when its parent re-renders", () => {
+  it("lets someone keep typing in a field inside it, even with a new onClose each render", () => {
+    function Host() {
+      const [text, setText] = useState("");
+      return (
+        <Dialog open onClose={() => setText("")} title="Delete account?">
+          <input id="confirm" value={text} onChange={(e) => setText(e.target.value)} />
+        </Dialog>
+      );
+    }
+    container = document.createElement("div");
+    document.body.appendChild(container);
+    root = createRoot(container);
+    act(() => root.render(<Host />));
+    const input = container.querySelector<HTMLInputElement>("#confirm")!;
+    input.focus();
+    const setter = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, "value")!.set!;
+    for (const value of ["D", "DE", "DEL"]) {
+      act(() => {
+        setter.call(input, value);
+        input.dispatchEvent(new Event("input", { bubbles: true }));
+      });
+      expect(document.activeElement).toBe(input);
+    }
+    expect(input.value).toBe("DEL");
+  });
+});

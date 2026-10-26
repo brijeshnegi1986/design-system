@@ -6,9 +6,11 @@ import type { ReactNode } from "react";
  * the right, the value below it (32/40 semibold, tabular figures), then a
  * caption (12/16, muted). `trend` adds a Positive (up) or Negative (down)
  * badge with the change before the caption - pass `good: false` when going
- * up is bad news (say, failed posts).
+ * up is bad news (say, failed posts). `meter` adds a bar under the value for
+ * usage against a limit; it turns to the warning colour once the limit is
+ * reached.
  */
-export declare function StatCard({ label, value, caption, trend, icon, className, }: {
+export declare function StatCard({ label, value, caption, trend, meter, icon, className, }: {
     label: ReactNode;
     value: ReactNode;
     caption?: ReactNode;
@@ -16,6 +18,11 @@ export declare function StatCard({ label, value, caption, trend, icon, className
         direction: "up" | "down";
         label: string;
         good?: boolean;
+    };
+    /** Usage against a limit, drawn as a bar under the value. */
+    meter?: {
+        value: number;
+        max: number;
     };
     /** A 20px icon, shown in the tile at the top right. */
     icon?: ReactNode;

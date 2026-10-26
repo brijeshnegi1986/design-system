@@ -9,13 +9,16 @@ import { CARD_BASE_CLASS } from "./card.js";
  * the right, the value below it (32/40 semibold, tabular figures), then a
  * caption (12/16, muted). `trend` adds a Positive (up) or Negative (down)
  * badge with the change before the caption - pass `good: false` when going
- * up is bad news (say, failed posts).
+ * up is bad news (say, failed posts). `meter` adds a bar under the value for
+ * usage against a limit; it turns to the warning colour once the limit is
+ * reached.
  */
 export function StatCard({
   label,
   value,
   caption,
   trend,
+  meter,
   icon,
   className = "",
 }: {
@@ -23,6 +26,8 @@ export function StatCard({
   value: ReactNode;
   caption?: ReactNode;
   trend?: { direction: "up" | "down"; label: string; good?: boolean };
+  /** Usage against a limit, drawn as a bar under the value. */
+  meter?: { value: number; max: number };
   /** A 20px icon, shown in the tile at the top right. */
   icon?: ReactNode;
   className?: string;
@@ -43,6 +48,22 @@ export function StatCard({
       <p data-part="value" className="text-(length:--type-font-size-h2) leading-(--type-line-height-h2) font-semibold text-(--color-content-primary) tabular-nums">
         {value}
       </p>
+      {meter && meter.max > 0 && (
+        <div
+          role="progressbar"
+          aria-label={typeof label === "string" ? label : undefined}
+          aria-valuemin={0}
+          aria-valuemax={meter.max}
+          aria-valuenow={meter.value}
+          className="h-1.5 w-full overflow-hidden rounded-full bg-(--color-surface-raised)"
+        >
+          <div
+            data-part="meter"
+            className={`h-full rounded-full ${meter.value >= meter.max ? "bg-(--color-status-warning)" : "bg-(--color-action-primary)"}`}
+            style={{ width: `${Math.min(100, Math.round((meter.value / meter.max) * 100))}%` }}
+          />
+        </div>
+      )}
       {(trend || caption) && (
         <div className="flex flex-wrap items-center gap-2">
           {trend && (

@@ -14,6 +14,7 @@ function classesOf(element: React.ReactElement): string[] {
 
 describe("Button", () => {
   it.each([
+    ["xsm", "h-9", "px-3"],
     ["sm", "h-10", "px-3"],
     ["md", "h-12", "px-4"],
     ["lg", "h-14", "px-6"],
@@ -52,6 +53,15 @@ describe("Button", () => {
     expect(html).toContain("disabled");
     expect(html).toContain("progress_activity");
     expect(html).toContain("Saving...");
+  });
+
+  it("draws the Loading spinner at icon-size/xsm on an XSM button", () => {
+    const html = renderToStaticMarkup(
+      <Button size="xsm" loading>
+        Saving...
+      </Button>,
+    );
+    expect(html).toContain("size-4");
   });
 });
 

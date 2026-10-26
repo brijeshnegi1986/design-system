@@ -33,21 +33,26 @@ const VARIANT_CLASSES = {
  * grey out, so only its text goes to the disabled colour. */
 const BOXED_DISABLED = "disabled:border-(--color-border-disabled) disabled:bg-(--color-action-disabled) disabled:text-(--color-content-disabled)";
 const PLAIN_DISABLED = "disabled:text-(--color-content-disabled) disabled:hover:bg-transparent disabled:active:bg-transparent";
-/** The design's sizes: SM 40px, MD 48px, LG 56px, each with its own padding. */
+/** The design's sizes: XSM 36px (control/height/xsm, for compact rows such
+ * as a post card's actions), SM 40px, MD 48px, LG 56px, each with its own
+ * padding. */
 const SIZE_CLASSES = {
+    xsm: "h-9 px-3",
     sm: "h-10 px-3",
     md: "h-12 px-4",
     lg: "h-14 px-6",
 };
 /** The red text link keeps the padding it always had. */
 const TEXT_ONLY_SIZE_CLASSES = {
+    xsm: "px-3 py-1.5 text-sm",
     sm: "px-3.5 py-2 text-sm",
     md: "px-5 py-2.5 text-base",
     lg: "px-5 text-base",
 };
-/** The design's progress_activity icon, drawn in the label's colour. */
-function Spinner() {
-    return (_jsx("span", { "aria-hidden": true, className: "inline-block size-5 shrink-0 animate-spin bg-current", style: {
+/** The design's progress_activity icon, drawn in the label's colour; 16px
+ * (icon-size/xsm) on an XSM button, 20px otherwise. */
+function Spinner({ small = false }) {
+    return (_jsx("span", { "aria-hidden": true, className: `inline-block shrink-0 animate-spin bg-current ${small ? "size-4" : "size-5"}`, style: {
             ...iconMask("progress-activity"),
         } }));
 }
@@ -74,5 +79,5 @@ export function buttonLookClassName(variant = "primary") {
  * the button busy and disabled until it's done.
  */
 export function Button({ variant = "primary", size = "md", loading = false, className = "", disabled, children, ...props }) {
-    return (_jsxs("button", { type: "button", className: `${buttonClassName(variant, size)} ${className}`.trim(), disabled: disabled || loading, "aria-busy": loading || undefined, ...props, children: [loading && _jsx(Spinner, {}), children] }));
+    return (_jsxs("button", { type: "button", className: `${buttonClassName(variant, size)} ${className}`.trim(), disabled: disabled || loading, "aria-busy": loading || undefined, ...props, children: [loading && _jsx(Spinner, { small: size === "xsm" }), children] }));
 }
