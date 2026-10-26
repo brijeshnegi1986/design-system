@@ -1,7 +1,7 @@
 import { jsx as _jsx } from "react/jsx-runtime";
 import { buttonLookClassName } from "./button.js";
-/** Figma's sizes: MD 48px, SM 40px, XSM 36px. The caller's icon is 20px
- * at MD and SM, 16px at XSM. */
+/** Figma's sizes: MD 48px, SM 40px, XSM 36px. The caller's icon is 24px at
+ * MD, 20px at SM and 16px at XSM (Figma icon-size/md, sm, xsm). */
 const SIZE_CLASSES = {
     md: "size-12",
     sm: "size-10",

@@ -4,8 +4,8 @@ import { buttonLookClassName, type ButtonVariant } from "./button.js";
 export type IconButtonVariant = Extract<ButtonVariant, "primary" | "secondary" | "tertiary" | "destructive">;
 export type IconButtonSize = "md" | "sm" | "xsm";
 
-/** Figma's sizes: MD 48px, SM 40px, XSM 36px. The caller's icon is 20px
- * at MD and SM, 16px at XSM. */
+/** Figma's sizes: MD 48px, SM 40px, XSM 36px. The caller's icon is 24px at
+ * MD, 20px at SM and 16px at XSM (Figma icon-size/md, sm, xsm). */
 const SIZE_CLASSES: Record<IconButtonSize, string> = {
   md: "size-12",
   sm: "size-10",
