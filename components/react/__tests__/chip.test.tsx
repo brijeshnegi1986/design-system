@@ -23,7 +23,7 @@ describe("Chip (audit M3)", () => {
   it("shows the pressed grey and the orange tick when selected, at every size", () => {
     for (const size of ["sm", "md", "lg"] as const) {
       const el = chip(size, true);
-      expect(el.className).toContain("bg-(--color-action-secondary-pressed)");
+      expect(el.className).toContain("bg-(--color-action-tertiary-pressed)");
       expect(el.querySelector('[data-icon="check"]')).not.toBeNull();
       expect(el.getAttribute("aria-pressed")).toBe("true");
     }

@@ -1,6 +1,25 @@
 {
   "control": {
     "height": {
+      "xsm": {
+        "$type": "number",
+        "$value": 36,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:859:3484",
+          "com.figma.scopes": [
+            "WIDTH_HEIGHT"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--control-height-sm)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:18d637e4f7659184b5afda36202634e52318f235/-1:-1",
+            "targetVariableName": "size/36",
+            "targetVariableSetId": "VariableCollectionId:b009f4cc685da7ecbbb3aa66ebea53d9f363aaab/-1:-1",
+            "targetVariableSetName": "NDS / Primitives / Size"
+          }
+        }
+      },
       "sm": {
         "$type": "number",
         "$value": 40,
@@ -157,6 +176,44 @@
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:6825440d4ee7fc5e91ca4256d43ca3f10508a890/-1:-1",
           "targetVariableName": "size/24",
+          "targetVariableSetId": "VariableCollectionId:b009f4cc685da7ecbbb3aa66ebea53d9f363aaab/-1:-1",
+          "targetVariableSetName": "NDS / Primitives / Size"
+        }
+      }
+    },
+    "sm": {
+      "$type": "number",
+      "$value": 20,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:868:1839",
+        "com.figma.scopes": [
+          "WIDTH_HEIGHT"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--icon-size-sm)"
+        },
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:b432ff4edf6aa0e253891f186b407d83e8e269c3/-1:-1",
+          "targetVariableName": "size/20",
+          "targetVariableSetId": "VariableCollectionId:b009f4cc685da7ecbbb3aa66ebea53d9f363aaab/-1:-1",
+          "targetVariableSetName": "NDS / Primitives / Size"
+        }
+      }
+    },
+    "xsm": {
+      "$type": "number",
+      "$value": 16,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:868:1840",
+        "com.figma.scopes": [
+          "WIDTH_HEIGHT"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--icon-size-xsm)"
+        },
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:c71879245b286ad13bf096dfca35a47866b0e822/-1:-1",
+          "targetVariableName": "size/16",
           "targetVariableSetId": "VariableCollectionId:b009f4cc685da7ecbbb3aa66ebea53d9f363aaab/-1:-1",
           "targetVariableSetName": "NDS / Primitives / Size"
         }

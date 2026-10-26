@@ -125,7 +125,7 @@ describe("Select", () => {
 });
 
 describe("Select: item states (NDS Dropdown Item, 637:1480)", () => {
-  const HOVER = "bg-(--color-action-secondary-hover)";
+  const HOVER = "bg-(--color-action-tertiary-hover)";
   const classesOf = (el: HTMLElement) => el.className.split(" ");
 
   it("greys the row under the pointer, not orange", () => {

@@ -32,9 +32,9 @@ describe("Button", () => {
     expect(classes).toEqual(expect.arrayContaining(["font-semibold", "tracking-[0.056px]", "gap-2"]));
   });
 
-  it("draws Plain as orange text with no fill or border", () => {
+  it("draws Plain as link-coloured text with no fill or border", () => {
     const classes = classesOf(<Button variant="plain">Go</Button>);
-    expect(classes).toContain("text-(--color-action-primary)");
+    expect(classes).toContain("text-(--color-content-link)");
     expect(classes.some((c) => c.startsWith("bg-("))).toBe(false);
     expect(classes).not.toContain("border");
   });
@@ -42,7 +42,7 @@ describe("Button", () => {
   it("draws Ghost as an orange outline on white", () => {
     const classes = classesOf(<Button variant="ghost">Go</Button>);
     expect(classes).toEqual(
-      expect.arrayContaining(["border", "border-(--color-border-primary)", "bg-(--color-surface-default)", "text-(--color-action-primary)"]),
+      expect.arrayContaining(["border", "border-(--color-border-primary)", "bg-(--color-surface-default)", "text-(--color-content-link)"]),
     );
   });
 
@@ -71,8 +71,8 @@ describe("buttonClassName", () => {
   it("gives the Plain button a light fill on hover and press, and no fill when disabled (audit L11)", async () => {
     const { buttonClassName } = await import("../src/index.js");
     const plain = buttonClassName("plain", "md");
-    expect(plain).toContain("hover:bg-(--color-action-secondary-hover)");
-    expect(plain).toContain("active:bg-(--color-action-secondary-pressed)");
+    expect(plain).toContain("hover:bg-(--color-action-tertiary-hover)");
+    expect(plain).toContain("active:bg-(--color-action-tertiary-pressed)");
     expect(plain).not.toContain("disabled:bg-");
     expect(plain).toContain("disabled:text-(--color-content-disabled)");
   });

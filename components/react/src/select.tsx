@@ -205,12 +205,12 @@ export function Select({
           option.disabled
             ? "cursor-not-allowed bg-(--color-action-disabled) text-(--color-content-disabled)"
             : `cursor-pointer text-(--color-content-primary) ${
-                isActive && (moved || !isSelected) ? "bg-(--color-action-secondary-hover)" : "bg-(--color-surface-default)"
+                isActive && (moved || !isSelected) ? "bg-(--color-action-tertiary-hover)" : "bg-(--color-surface-default)"
               }`
         }`}
       >
         <span className="min-w-0 flex-1">{option.label}</span>
-        {isSelected && <Icon file="check" className={`text-(--color-action-primary) ${small ? "size-4" : "size-5"}`} />}
+        {isSelected && <Icon file="check" className={`text-(--color-content-link) ${small ? "size-4" : "size-5"}`} />}
       </li>
     );
   });

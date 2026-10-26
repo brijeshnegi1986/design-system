@@ -3,37 +3,12 @@
  * besides the token CSS (@jeshapps/design-system/css/base or a brand file).
  * Import it once, unlayered, after the tokens.
  *
- * 1. Interim tokens: values Figma already has but the token export doesn't
- *    carry yet. Remove each once it ships in the token CSS.
- * 2. Native fields: every single-line <input> and <select> becomes the NDS
- *    field (48px pill, input border, focus ring, error and disabled states,
- *    the select chevron). Opt an input out with a data-shape attribute.
+ * Native fields: every single-line <input> and <select> becomes the NDS
+ * field (48px pill, input border, focus ring, error and disabled states,
+ * the select chevron). Opt an input out with a data-shape attribute.
  */
 
-/* 1. Interim tokens ------------------------------------------------------ */
-
-/* Field outlines: slate-500, 4.8:1 on white and 3.8:1 on the Dark surface
- * (WCAG 1.4.11 needs 3:1). Becomes color/border/input in Figma. */
-:root {
-  --color-border-input: var(--slate-500);
-}
-
-/* The Secondary (near-black) button, from the Figma variables: zinc-900,
- * hover zinc-600, pressed zinc-700, text zinc-50; the light values in Dark. */
-:root {
-  --color-button-secondary: light-dark(var(--zinc-900), var(--slate-50));
-  --color-button-secondary-hover: light-dark(var(--zinc-600), var(--slate-100));
-  --color-button-secondary-pressed: light-dark(var(--zinc-700), var(--slate-200));
-  --color-on-button-secondary: light-dark(var(--zinc-50), var(--slate-900));
-}
-
-/* Text on orange: Base's on-primary is blue-50 in Light (2.7:1 on
- * orange-500); on-accent (neutral-950) is 6.8:1. */
-:root {
-  --color-content-on-primary: var(--color-content-on-accent);
-}
-
-/* 2. Native fields --------------------------------------------------------- */
+/* Native fields ----------------------------------------------------------- */
 
 input:not([type="checkbox"]):not([type="radio"]):not([type="file"]):not([type="hidden"]),
 select {

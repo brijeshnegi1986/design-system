@@ -17,11 +17,13 @@ DIST = ROOT / "dist"
 THEMES = ("Light", "Dark")
 # Primitive colour family each brand's primary resolves to.
 BRAND_PRIMARY = {
-    "Base": "blue",
+    "Base": "orange",
     "FortressMinds": "amber",
-    "Jeshnegi": "purple",
-    "NegiFlow": "sky",
+    "Jeshnegi": "slate",
 }
+# The brand token action/primary goes through in each theme: Dark uses the
+# brand's lighter primary-dark so it stays readable on the dark surface.
+THEME_BRAND_PRIMARY = {"Light": "primary", "Dark": "primary-dark"}
 REFERENCE = re.compile(r"^\{([^{}]+)\}$")
 DECLARATION = re.compile(r"(--[a-z0-9-]+)\s*:\s*([^;]+);")
 VAR = re.compile(r"^var\((--[a-z0-9-]+)\)$")
@@ -85,7 +87,7 @@ class SourceCombinations(unittest.TestCase):
             for theme in THEMES:
                 with self.subTest(brand=brand, theme=theme):
                     chain = resolve_chain("color.action.primary", self.combination(brand, theme), REFERENCE)
-                    self.assertIn("brand.color.primary", chain)
+                    self.assertIn(f"brand.color.{THEME_BRAND_PRIMARY[theme]}", chain)
                     self.assertEqual(chain[-1].split(".")[0], family)
 
 
@@ -111,7 +113,7 @@ class DistributionCss(unittest.TestCase):
             for theme, values in (("Light", light), ("Dark", {**light, **dark_overrides})):
                 with self.subTest(brand=brand, theme=theme):
                     chain = resolve_chain("--color-action-primary", values, VAR)
-                    self.assertIn("--brand-color-primary", chain)
+                    self.assertIn(f"--brand-color-{THEME_BRAND_PRIMARY[theme]}", chain)
                     self.assertTrue(chain[-1].startswith(f"--{family}-"), chain)
 
     def test_dark_theme_does_not_switch_brand(self):

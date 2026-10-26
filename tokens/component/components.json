@@ -1,6 +1,10 @@
 {
   "control": {
     "height": {
+      "xsm": {
+        "$type": "number",
+        "$value": "{size.36}"
+      },
       "sm": {
         "$type": "number",
         "$value": "{size.40}"
@@ -50,6 +54,14 @@
     "md": {
       "$type": "number",
       "$value": "{size.24}"
+    },
+    "sm": {
+      "$type": "number",
+      "$value": "{size.20}"
+    },
+    "xsm": {
+      "$type": "number",
+      "$value": "{size.16}"
     }
   }
 }

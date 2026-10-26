@@ -41,6 +41,11 @@
         "on-accent": {
           "$type": "color",
           "$value": "{neutral.950}"
+        },
+        "primary-strong": {
+          "$type": "color",
+          "$value": "{orange.700}",
+          "$description": "The brand primary dark enough for text and focus rings on light surfaces (at least 4.5:1 on white)."
         }
       }
     }
@@ -87,6 +92,11 @@
         "on-accent": {
           "$type": "color",
           "$value": "{neutral.950}"
+        },
+        "primary-strong": {
+          "$type": "color",
+          "$value": "{amber.700}",
+          "$description": "The brand primary dark enough for text and focus rings on light surfaces (at least 4.5:1 on white)."
         }
       }
     }
@@ -133,6 +143,11 @@
         "on-accent": {
           "$type": "color",
           "$value": "{neutral.950}"
+        },
+        "primary-strong": {
+          "$type": "color",
+          "$value": "{slate.800}",
+          "$description": "The brand primary dark enough for text and focus rings on light surfaces (at least 4.5:1 on white)."
         }
       }
     }
