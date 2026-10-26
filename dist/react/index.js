@@ -18,6 +18,7 @@ export { iconMask, iconUrl } from "./icons.js";
 export { Select } from "./select.js";
 export { Separator } from "./separator.js";
 export { Skeleton } from "./skeleton.js";
+export { Snackbar } from "./snackbar.js";
 export { Switch } from "./switch.js";
 export { Tabs } from "./tabs.js";
 export { Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow } from "./table.js";
