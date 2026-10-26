@@ -13,7 +13,8 @@ import { type ReactNode } from "react";
  *
  * Escape, a click on the backdrop or the close button calls onClose. Focus
  * moves into the dialog when it opens, Tab stays inside it, and focus goes
- * back to whatever opened it when it closes.
+ * back to whatever opened it when it closes - only on opening and closing,
+ * never on a re-render, so typing in a field inside it keeps its focus.
  */
 export declare function Dialog({ open, onClose, title, description, size, tone, actions, children, }: {
     open: boolean;
