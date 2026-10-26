@@ -1,0 +1,52 @@
+"use client";
+import { jsx as _jsx, Fragment as _Fragment, jsxs as _jsxs } from "react/jsx-runtime";
+import { useId } from "react";
+import { buttonClassName } from "./button.js";
+import { iconMask } from "./icons.js";
+/** Shared NDS form controls for the settings and onboarding frames: a
+ * labelled field with an optional hint and inline error, a text input, a
+ * textarea with a character count, toggle chips, and the full-width
+ * buttons: the form's black action button (Save, Continue) and the light one
+ * beside it (Do this later). Orange is kept for calls to action like Create
+ * post and Sign in (ui/button.tsx). Errors are linked with aria-describedby. */
+//: The NDS body-small size (14/20) for a field's label, hint and error,
+//: as in Figma's Input (105:1671).
+const FIELD_TEXT = "text-(length:--type-font-size-body-small) leading-(--type-line-height-body-small)";
+export function Field({ label, required = false, hint, error, counter, children, }) {
+    const inputId = useId();
+    const hintId = `${inputId}-hint`;
+    const errorId = `${inputId}-error`;
+    const describedBy = [hint ? hintId : null, error ? errorId : null].filter(Boolean).join(" ") || undefined;
+    return (_jsxs("div", { className: "flex w-full flex-col gap-2", children: [_jsxs("label", { htmlFor: inputId, className: `${FIELD_TEXT} font-medium text-(--color-content-primary)`, children: [label, required && (_jsxs(_Fragment, { children: [_jsx("span", { "aria-hidden": true, className: "text-(--color-status-error)", children: " *" }), _jsx("span", { className: "sr-only", children: " (required)" })] }))] }), hint && (_jsx("p", { id: hintId, className: `-mt-1 ${FIELD_TEXT} text-(--color-content-muted)`, children: hint })), children({ inputId, describedBy, invalid: Boolean(error) }), (error || counter) && (_jsxs("div", { className: "flex items-start justify-between gap-3", children: [error ? (_jsx("p", { id: errorId, role: "alert", className: `${FIELD_TEXT} text-(--color-status-error)`, children: error })) : (_jsx("span", {})), counter && _jsx("span", { className: "shrink-0 text-xs text-(--color-content-muted)", children: counter })] }))] }));
+}
+//: NDS fields (Figma 127:3439): `surface-default` on `border-(--color-border-input)`, 12px
+//: in. Single-line inputs get their pill, hover, focus ring and error colour
+//: from globals.css; the textarea's are below (an 8px corner, not a pill).
+const CONTROL_BASE = "w-full border border-(--color-border-input) bg-(--color-surface-default) px-3 text-base text-(--color-content-primary) placeholder:text-(--color-content-muted)";
+export function TextInput(props) {
+    return _jsx("input", { ...props, className: `${CONTROL_BASE} h-12 ${props.className ?? ""}` });
+}
+/** The NDS field look for a raw input, textarea or select that can't use
+ * TextInput/TextArea: white fill, the input border, 16px text, an 8px corner
+ * (single-line inputs and selects become pills in globals.css), border-focus
+ * on hover and as the focus ring, and the error and disabled states. */
+export const FIELD_CONTROL_CLASS = `${CONTROL_BASE} rounded-md py-3 transition-colors hover:border-(--color-border-focus) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-border-focus) aria-[invalid=true]:border-(--color-border-error) disabled:border-(--color-border-disabled) disabled:bg-(--color-action-disabled) disabled:text-(--color-content-disabled)`;
+export function TextArea(props) {
+    return _jsx("textarea", { ...props, className: `${FIELD_CONTROL_CLASS} min-h-21.5 resize-y ${props.className ?? ""}` });
+}
+/** A pill that toggles (aria-pressed), or one option of a single-choice
+ * group (role="radio" inside a radiogroup). */
+export function Chip({ selected, onClick, children, role, size = "md", }) {
+    const look = size === "sm"
+        ? `h-7.5 gap-1 border-(--color-border-subtle) text-(--color-content-primary) ${selected
+            ? "bg-(--color-action-secondary-pressed)"
+            : "bg-(--color-action-secondary) hover:bg-(--color-action-secondary-hover)"}`
+        : selected
+            ? "border-(--color-border-primary) bg-(--color-status-info-subtle) text-(--color-content-primary)"
+            : "border-(--color-border-subtle) bg-(--color-surface-raised) text-(--color-content-primary) hover:bg-(--color-action-secondary-hover)";
+    return (_jsxs("button", { type: "button", onClick: onClick, role: role, "aria-pressed": role ? undefined : selected, "aria-checked": role ? selected : undefined, className: `inline-flex items-center justify-center rounded-full border p-2 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-border-focus) ${size === "sm" ? "text-(length:--type-font-size-caption) leading-(--type-line-height-caption)" : "min-h-9.5 min-w-9.5 text-sm"} ${look}`, children: [size === "sm" && selected && (_jsx("span", { "aria-hidden": true, "data-icon": "check", className: "inline-block size-5 shrink-0 bg-(--color-action-primary)", style: iconMask("check") })), children] }));
+}
+export function ActionButton({ children, disabled, type = "submit", onClick, }) {
+    return (_jsx("button", { type: type, disabled: disabled, onClick: onClick, className: `${buttonClassName("secondary", "md")} w-full`, children: children }));
+}
+export const TERTIARY_BUTTON_CLASS = `${buttonClassName("tertiary", "md")} w-full`;

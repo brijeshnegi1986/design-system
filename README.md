@@ -191,3 +191,28 @@ color.background.default    rather than    #0F172B
 Save primitive tokens for defining the design system itself, or for cases where no semantic token fits.
 
 Projects that may consume this design system include Stakemate, NegiFlow, NegiFlow Platform, JeshNegi, FortressMinds and Customer Feedback Intelligence.
+
+## Using the React components
+
+The NDS components for React web apps live in `components/react/src` and build to `dist/react` (`npm run react:build`). They're styled with Tailwind v4 utility classes on the NDS CSS variables, so a project needs Tailwind v4 and the token CSS.
+
+In the project's Tailwind entry CSS:
+
+```css
+@import "tailwindcss";
+@import "@jeshapps/design-system/css/base" layer(nds);   /* or a brand file */
+@import "@jeshapps/design-system/react/styles.css";       /* unlayered */
+@source "../../node_modules/@jeshapps/design-system/dist/react";
+```
+
+`styles.css` holds interim tokens Figma has but the token export doesn't carry yet (the input border, the near-black Secondary button, text on orange) and the native field rules (48px pill, focus ring, error and disabled states, select chevron). Remove an interim token once it ships in the token CSS.
+
+Then import from the package:
+
+```tsx
+import { Alert, Badge, Button, Field, TextInput, ToastProvider } from "@jeshapps/design-system/react";
+```
+
+Breadcrumbs and ToastProvider render plain `<a>` links; pass your router's link as `linkAs` (for Next.js, `linkAs={Link}`) so navigation stays client-side.
+
+Components: Alert, Badge, Breadcrumbs, Button (`buttonClassName` for links styled as buttons), Card, Checkbox, Radio, RadioTiles, Dialog, Field, TextInput, TextArea, Chip, ActionButton, Select, Skeleton, Switch, Table (and its parts), ToastProvider/useToast. Icons are embedded as data URIs (`iconMask`), so there are no files to host.

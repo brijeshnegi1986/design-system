@@ -1,0 +1,88 @@
+/*
+ * @jeshapps/design-system/react/styles.css - what the React components need
+ * besides the token CSS (@jeshapps/design-system/css/base or a brand file).
+ * Import it once, unlayered, after the tokens.
+ *
+ * 1. Interim tokens: values Figma already has but the token export doesn't
+ *    carry yet. Remove each once it ships in the token CSS.
+ * 2. Native fields: every single-line <input> and <select> becomes the NDS
+ *    field (48px pill, input border, focus ring, error and disabled states,
+ *    the select chevron). Opt an input out with a data-shape attribute.
+ */
+
+/* 1. Interim tokens ------------------------------------------------------ */
+
+/* Field outlines: slate-500, 4.8:1 on white and 3.8:1 on the Dark surface
+ * (WCAG 1.4.11 needs 3:1). Becomes color/border/input in Figma. */
+:root {
+  --color-border-input: var(--slate-500);
+}
+
+/* The Secondary (near-black) button, from the Figma variables: zinc-900,
+ * hover zinc-600, pressed zinc-700, text zinc-50; the light values in Dark. */
+:root {
+  --color-button-secondary: light-dark(var(--zinc-900), var(--slate-50));
+  --color-button-secondary-hover: light-dark(var(--zinc-600), var(--slate-100));
+  --color-button-secondary-pressed: light-dark(var(--zinc-700), var(--slate-200));
+  --color-on-button-secondary: light-dark(var(--zinc-50), var(--slate-900));
+}
+
+/* Text on orange: Base's on-primary is blue-50 in Light (2.7:1 on
+ * orange-500); on-accent (neutral-950) is 6.8:1. */
+:root {
+  --color-content-on-primary: var(--color-content-on-accent);
+}
+
+/* 2. Native fields --------------------------------------------------------- */
+
+input:not([type="checkbox"]):not([type="radio"]):not([type="file"]):not([type="hidden"]),
+select {
+  height: 48px;
+}
+
+input:not([type="checkbox"]):not([type="radio"]):not([type="file"]):not([type="hidden"]):not([type="range"]):not([data-shape]),
+select {
+  border-radius: 9999px;
+  border-color: var(--color-border-input);
+  transition: border-color 150ms ease;
+}
+:is(input:not([type="checkbox"]):not([type="radio"]):not([type="file"]):not([type="hidden"]):not([type="range"]):not([data-shape]), select):hover:not(:disabled):not([readonly]):not([aria-invalid="true"]) {
+  border-color: var(--color-border-focus);
+}
+:is(input:not([type="checkbox"]):not([type="radio"]):not([type="file"]):not([type="hidden"]):not([type="range"]):not([data-shape]), select):focus-visible {
+  outline: var(--focus-ring-width, 2px) solid var(--color-border-focus);
+  outline-offset: 2px;
+  box-shadow: none;
+}
+:is(input:not([type="checkbox"]):not([type="radio"]):not([type="file"]):not([type="hidden"]):not([type="range"]):not([data-shape]), select)[aria-invalid="true"] {
+  border-color: var(--color-border-error);
+}
+:is(input:not([type="checkbox"]):not([type="radio"]):not([type="file"]):not([type="hidden"]):not([type="range"]):not([data-shape]), select):disabled {
+  background-color: var(--color-action-disabled);
+  border-color: var(--color-border-disabled);
+  color: var(--color-content-disabled);
+}
+:is(input:not([type="checkbox"]):not([type="radio"]):not([type="file"]):not([type="hidden"]):not([type="range"]):not([data-shape]))[readonly] {
+  background-color: var(--color-action-disabled);
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding-right: 2.5rem !important;
+  background-repeat: no-repeat;
+  background-position: right 0.875rem center;
+  background-size: 1rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2362748e' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2390a1b9' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  }
+}
+
+:root[data-theme="dark"] select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2390a1b9' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+}
