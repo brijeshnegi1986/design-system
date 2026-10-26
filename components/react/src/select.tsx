@@ -35,7 +35,8 @@ function Icon({ file, className }: { file: IconName; className: string }) {
  * Home/End and typing a letter move the highlight; Enter or Space chooses;
  * Escape or Tab closes. It opens upwards when there isn't room below.
  *
- * `size="inline"` is the 24px pill (Figma Size=Inline) used inside a sentence (e.g. Create post's tone),
+ * Sizes follow Figma: "md" 48px (LG, forms), "sm" 40px and "compact" 36px
+ * (toolbars and filters), and `size="inline"`, the 24px pill (Figma Size=Inline) used inside a sentence (e.g. Create post's tone),
  * opening the Dropdown SM menu (835:1406) with its pointer.
  */
 export function Select({
@@ -50,6 +51,7 @@ export function Select({
   "aria-describedby": ariaDescribedBy,
   invalid = false,
   size = "md",
+  prefix,
   surface = "default",
   className = "",
 }: {
@@ -63,7 +65,10 @@ export function Select({
   "aria-labelledby"?: string;
   "aria-describedby"?: string;
   invalid?: boolean;
-  size?: "md" | "inline";
+  size?: "md" | "sm" | "compact" | "inline";
+  /** A short muted label inside the field, before the value ("Type: All"),
+   * for a filter whose label would otherwise sit outside it. */
+  prefix?: string;
   surface?: "default" | "raised";
   /** Width and spacing for the whole control. */
   className?: string;
@@ -174,9 +179,12 @@ export function Select({
   }
 
   const small = size === "inline";
-  const field = small
-    ? "h-6 gap-1.5 px-2 text-xs"
-    : "h-12 gap-2 px-3 text-base";
+  const field = {
+    inline: "h-6 gap-1.5 px-2 text-xs",
+    compact: "h-9 gap-2 px-3 text-sm",
+    sm: "h-10 gap-2 px-3 text-sm",
+    md: "h-12 gap-2 px-3 text-base",
+  }[size];
   const background = surface === "raised" ? "bg-(--color-surface-raised)" : "bg-(--color-surface-default)";
   const border = invalid ? "border-(--color-border-error)" : "border-(--color-border-input) hover:border-(--color-border-focus)";
 
@@ -236,9 +244,10 @@ export function Select({
         className={`flex w-full items-center rounded-full border text-left transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-border-focus) disabled:cursor-not-allowed disabled:border-(--color-border-disabled) disabled:bg-(--color-action-disabled) disabled:text-(--color-content-disabled) ${field} ${background} ${border}`}
       >
         <span className={`min-w-0 flex-1 truncate ${selected ? "text-(--color-content-primary)" : "text-(--color-content-muted)"}`}>
+          {prefix && <span data-part="prefix" className="text-(--color-content-secondary)">{prefix}: </span>}
           {selected ? selected.label : placeholder}
         </span>
-        <span aria-hidden className={`w-px shrink-0 bg-(--color-border-subtle) ${small ? "h-3.5" : "h-[22.5px]"}`} />
+        <span aria-hidden className={`w-px shrink-0 bg-(--color-border-subtle) ${small ? "h-3.5" : size === "md" ? "h-[22.5px]" : "h-5"}`} />
         <Icon
           file="keyboard-arrow-down"
           className={`text-(--color-content-secondary) transition-transform ${small ? "size-4" : "size-5"} ${open ? "rotate-180" : ""}`}

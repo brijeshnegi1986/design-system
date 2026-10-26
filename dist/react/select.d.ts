@@ -22,10 +22,11 @@ export type SelectOption = {
  * Home/End and typing a letter move the highlight; Enter or Space chooses;
  * Escape or Tab closes. It opens upwards when there isn't room below.
  *
- * `size="inline"` is the 24px pill (Figma Size=Inline) used inside a sentence (e.g. Create post's tone),
+ * Sizes follow Figma: "md" 48px (LG, forms), "sm" 40px and "compact" 36px
+ * (toolbars and filters), and `size="inline"`, the 24px pill (Figma Size=Inline) used inside a sentence (e.g. Create post's tone),
  * opening the Dropdown SM menu (835:1406) with its pointer.
  */
-export declare function Select({ value, onChange, options, placeholder, disabled, id, "aria-label": ariaLabel, "aria-labelledby": ariaLabelledBy, "aria-describedby": ariaDescribedBy, invalid, size, surface, className, }: {
+export declare function Select({ value, onChange, options, placeholder, disabled, id, "aria-label": ariaLabel, "aria-labelledby": ariaLabelledBy, "aria-describedby": ariaDescribedBy, invalid, size, prefix, surface, className, }: {
     value: string;
     onChange: (value: string) => void;
     options: readonly SelectOption[];
@@ -36,7 +37,10 @@ export declare function Select({ value, onChange, options, placeholder, disabled
     "aria-labelledby"?: string;
     "aria-describedby"?: string;
     invalid?: boolean;
-    size?: "md" | "inline";
+    size?: "md" | "sm" | "compact" | "inline";
+    /** A short muted label inside the field, before the value ("Type: All"),
+     * for a filter whose label would otherwise sit outside it. */
+    prefix?: string;
     surface?: "default" | "raised";
     /** Width and spacing for the whole control. */
     className?: string;
