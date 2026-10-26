@@ -5,6 +5,7 @@
  * (see README "Using the React components").
  */
 export { Alert, type AlertTone } from "./alert.js";
+export { Banner, type BannerVariant } from "./banner.js";
 export { Badge, type BadgeTone } from "./badge.js";
 export { Breadcrumbs, PlainLink, type LinkComponent } from "./breadcrumbs.js";
 export { Button, buttonClassName, buttonLookClassName, type ButtonSize, type ButtonVariant } from "./button.js";

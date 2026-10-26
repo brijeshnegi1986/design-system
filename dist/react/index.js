@@ -5,6 +5,7 @@
  * (see README "Using the React components").
  */
 export { Alert } from "./alert.js";
+export { Banner } from "./banner.js";
 export { Badge } from "./badge.js";
 export { Breadcrumbs, PlainLink } from "./breadcrumbs.js";
 export { Button, buttonClassName, buttonLookClassName } from "./button.js";
