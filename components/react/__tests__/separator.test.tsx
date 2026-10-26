@@ -24,6 +24,11 @@ describe("Separator", () => {
   it("can carry a word between two lines", () => {
     const s = el(<Separator label="OR" />);
     expect(s.textContent).toBe("OR");
-    expect(s.querySelectorAll('[data-part="line"]')).toHaveLength(2);
+    const lines = s.querySelectorAll('[data-part="line"]');
+    expect(lines).toHaveLength(2);
+    // Figma "withOR" (567:921): 124px rules 8px either side of a 14/20 semibold word.
+    expect(lines[0].className).toContain("w-31");
+    expect(s.className).toContain("gap-2");
+    expect(s.querySelector("span:not([data-part])")!.className).toContain("font-semibold");
   });
 });
