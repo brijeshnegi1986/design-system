@@ -7,14 +7,17 @@
 export { Alert } from "./alert.js";
 export { Badge } from "./badge.js";
 export { Breadcrumbs, PlainLink } from "./breadcrumbs.js";
-export { Button, buttonClassName } from "./button.js";
+export { Button, buttonClassName, buttonLookClassName } from "./button.js";
 export { Card, CARD_BASE_CLASS, CARD_INTERACTIVE_CLASS } from "./card.js";
 export { Checkbox, Radio, RadioTiles } from "./choice.js";
 export { Dialog } from "./dialog.js";
 export { ActionButton, Chip, Field, FIELD_CONTROL_CLASS, TERTIARY_BUTTON_CLASS, TextArea, TextInput } from "./form-controls.js";
+export { IconButton } from "./icon-button.js";
 export { iconMask, iconUrl } from "./icons.js";
 export { Select } from "./select.js";
+export { Separator } from "./separator.js";
 export { Skeleton } from "./skeleton.js";
 export { Switch } from "./switch.js";
+export { Tabs } from "./tabs.js";
 export { Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow } from "./table.js";
 export { ToastProvider, useToast } from "./toast-provider.js";

@@ -1,5 +1,6 @@
 import { type LinkComponent } from "./breadcrumbs.js";
-type ToastTone = "success" | "danger" | "muted";
+/** "danger" and "muted" are the older names for error and neutral. */
+type ToastTone = "success" | "danger" | "warning" | "info" | "muted";
 /** A link after the message, to where the outcome can be seen. */
 type ToastAction = {
     label: string;

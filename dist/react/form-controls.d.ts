@@ -22,16 +22,19 @@ export declare const FIELD_CONTROL_CLASS = "w-full border border-(--color-border
 export declare function TextArea(props: React.ComponentProps<"textarea">): import("react").JSX.Element;
 /** A pill that toggles (aria-pressed), or one option of a single-choice
  * group (role="radio" inside a radiogroup). */
+/** The NDS chip (Figma "Chip", 641:1505): a pill on action-secondary with a
+ * border-subtle edge; hover action-secondary-hover; selected is
+ * action-secondary-pressed with the orange tick before the label. SM 30px
+ * (8px in, caption 12/16), MD 36px and LG 44px (12px in, 14/20); a
+ * one-letter option is never narrower than it is tall. A toggle
+ * (aria-pressed), or one option of a single-choice group (role="radio"
+ * inside a radiogroup). */
 export declare function Chip({ selected, onClick, children, role, size, }: {
     selected: boolean;
     onClick: () => void;
     children: ReactNode;
     role?: "radio";
-    /** "sm": the NDS chip, SM (Figma 641:1505) - 30px, 8px in, 12/16 regular
-     * on `action-secondary` and `border-subtle`; hover `action-secondary-hover`;
-     * selected `action-secondary-pressed` with the orange tick before the
-     * label. */
-    size?: "md" | "sm";
+    size?: "sm" | "md" | "lg";
 }): import("react").JSX.Element;
 export declare function ActionButton({ children, disabled, type, onClick, }: {
     children: ReactNode;

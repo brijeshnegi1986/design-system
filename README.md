@@ -215,4 +215,6 @@ import { Alert, Badge, Button, Field, TextInput, ToastProvider } from "@jeshapps
 
 Breadcrumbs and ToastProvider render plain `<a>` links; pass your router's link as `linkAs` (for Next.js, `linkAs={Link}`) so navigation stays client-side.
 
-Components: Alert, Badge, Breadcrumbs, Button (`buttonClassName` for links styled as buttons), Card, Checkbox, Radio, RadioTiles, Dialog, Field, TextInput, TextArea, Chip, ActionButton, Select, Skeleton, Switch, Table (and its parts), ToastProvider/useToast. Icons are embedded as data URIs (`iconMask`), so there are no files to host.
+Components: Alert, Badge, Breadcrumbs, Button (`buttonClassName` for links styled as buttons), Card, Checkbox, Radio, RadioTiles, Dialog, Field, TextInput, TextArea, Chip (SM/MD/LG), ActionButton, IconButton, Select, Separator, Skeleton, Switch, Table (and its parts), Tabs, ToastProvider/useToast.
+
+Tests: `npm run react:test` (Vitest, jsdom). Icons are embedded as data URIs (`iconMask`), so there are no files to host.

@@ -1,15 +1,13 @@
 "use client";
 
 import { useEffect } from "react";
+import { IconButton } from "./icon-button.js";
+import { iconMask } from "./icons.js";
 
 /**
- * The app's first real modal primitive - every confirmation today
- * (delete a draft, publish, schedule) is done via an inline expanding
- * panel within the page instead (see the Phase 1 audit). Built for Phase
- * 4 to adopt where an inline panel genuinely isn't enough (a destructive
- * action, or a flow that needs to interrupt the whole page) - not a mass
- * retrofit of every existing inline confirmation, which mostly work fine
- * as-is.
+ * A modal dialog for a step that has to interrupt the page (a destructive
+ * action, say); an inline panel is usually enough. Escape or a click on the
+ * backdrop closes it, and so does the close Icon Button.
  */
 export function Dialog({
   open,
@@ -48,14 +46,9 @@ export function Dialog({
       >
         <div className="flex items-start justify-between gap-4">
           <h2 className="text-sm font-medium text-(--color-content-primary)">{title}</h2>
-          <button
-            type="button"
-            onClick={onClose}
-            aria-label="Close"
-            className="text-lg leading-none text-(--color-content-muted) hover:text-(--color-content-primary)"
-          >
-            &times;
-          </button>
+          <IconButton label="Close" variant="tertiary" onClick={onClose}>
+            <span aria-hidden data-icon="close" className="inline-block size-5 bg-current" style={iconMask("close")} />
+          </IconButton>
         </div>
         <div className="mt-4">{children}</div>
       </div>

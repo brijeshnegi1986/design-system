@@ -2,8 +2,10 @@
 
 import { createContext, useCallback, useContext, useRef, useState } from "react";
 import { PlainLink, type LinkComponent } from "./breadcrumbs.js";
+import { iconMask, type IconName } from "./icons.js";
 
-type ToastTone = "success" | "danger" | "muted";
+/** "danger" and "muted" are the older names for error and neutral. */
+type ToastTone = "success" | "danger" | "warning" | "info" | "muted";
 /** A link after the message, to where the outcome can be seen. */
 type ToastAction = { label: string; href: string };
 /** persist: stays until closed, for something the person needs to read
@@ -17,10 +19,14 @@ type ToastContextValue = {
 
 const ToastContext = createContext<ToastContextValue | null>(null);
 
-const TONE_CLASSES: Record<ToastTone, string> = {
-  success: "border-(--color-border-success)/40 bg-(--color-status-success-subtle) text-(--color-status-success)",
-  danger: "border-(--color-border-error)/40 bg-(--color-status-error-subtle) text-(--color-status-error)",
-  muted: "border-(--color-border-subtle) bg-(--color-surface-default) text-(--color-content-primary)",
+/** The NDS Toast (Figma 857:3101): the status's subtle fill, a full 1px
+ * border and the text in the status colour, with its filled icon. */
+const TONES: Record<ToastTone, { classes: string; icon: IconName }> = {
+  success: { classes: "border-(--color-border-success) bg-(--color-status-success-subtle) text-(--color-status-success)", icon: "check-circle-filled" },
+  danger: { classes: "border-(--color-border-error) bg-(--color-status-error-subtle) text-(--color-status-error)", icon: "error-filled" },
+  warning: { classes: "border-(--color-border-warning) bg-(--color-status-warning-subtle) text-(--color-status-warning)", icon: "warning-filled" },
+  info: { classes: "border-(--color-border-info) bg-(--color-status-info-subtle) text-(--color-status-info)", icon: "info-filled" },
+  muted: { classes: "border-(--color-border-subtle) bg-(--color-surface-default) text-(--color-content-primary)", icon: "info-filled" },
 };
 
 /**
@@ -66,8 +72,9 @@ export function ToastProvider({
           <div
             key={t.id}
             role={t.persist && t.tone === "danger" ? "alert" : "status"}
-            className={`pointer-events-auto flex max-w-xl flex-wrap items-center gap-x-4 gap-y-1 rounded-md border px-4 py-2.5 text-sm font-medium shadow-sm ${TONE_CLASSES[t.tone]}`}
+            className={`pointer-events-auto flex w-full max-w-[390px] flex-wrap items-start gap-x-2 gap-y-1 rounded-(--radius-md) border p-4 text-(length:--type-font-size-body-small) leading-(--type-line-height-body-small) font-medium shadow-[0_var(--elevation-sm)_2px_rgb(0_0_0/0.1)] ${TONES[t.tone].classes}`}
           >
+            <span data-part="icon" data-icon={TONES[t.tone].icon} aria-hidden className="mt-px inline-block size-5 shrink-0 bg-current" style={iconMask(TONES[t.tone].icon)} />
             <span className="min-w-0 flex-1">{t.message}</span>
             {t.action && (
               <LinkAs href={t.action.href} className="underline underline-offset-2 hover:no-underline">
@@ -81,7 +88,7 @@ export function ToastProvider({
                 onClick={() => dismiss(t.id)}
                 className="-mr-1 flex size-6 shrink-0 items-center justify-center rounded-full text-base leading-none opacity-80 hover:opacity-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current"
               >
-                <span aria-hidden>×</span>
+                <span aria-hidden data-icon="close" className="inline-block size-4 bg-current" style={iconMask("close")} />
               </button>
             )}
           </div>

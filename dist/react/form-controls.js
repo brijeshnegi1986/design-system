@@ -36,15 +36,20 @@ export function TextArea(props) {
 }
 /** A pill that toggles (aria-pressed), or one option of a single-choice
  * group (role="radio" inside a radiogroup). */
+/** The NDS chip (Figma "Chip", 641:1505): a pill on action-secondary with a
+ * border-subtle edge; hover action-secondary-hover; selected is
+ * action-secondary-pressed with the orange tick before the label. SM 30px
+ * (8px in, caption 12/16), MD 36px and LG 44px (12px in, 14/20); a
+ * one-letter option is never narrower than it is tall. A toggle
+ * (aria-pressed), or one option of a single-choice group (role="radio"
+ * inside a radiogroup). */
 export function Chip({ selected, onClick, children, role, size = "md", }) {
-    const look = size === "sm"
-        ? `h-7.5 gap-1 border-(--color-border-subtle) text-(--color-content-primary) ${selected
+    const sized = size === "sm"
+        ? "h-7.5 min-w-7.5 px-2 text-(length:--type-font-size-caption) leading-(--type-line-height-caption)"
+        : `${size === "lg" ? "h-11 min-w-11" : "h-9 min-w-9"} px-3 text-(length:--type-font-size-body-small) leading-(--type-line-height-body-small)`;
+    return (_jsxs("button", { type: "button", onClick: onClick, role: role, "aria-pressed": role ? undefined : selected, "aria-checked": role ? selected : undefined, className: `inline-flex items-center justify-center gap-1 rounded-full border border-(--color-border-subtle) text-(--color-content-primary) transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-border-focus) ${sized} ${selected
             ? "bg-(--color-action-secondary-pressed)"
-            : "bg-(--color-action-secondary) hover:bg-(--color-action-secondary-hover)"}`
-        : selected
-            ? "border-(--color-border-primary) bg-(--color-status-info-subtle) text-(--color-content-primary)"
-            : "border-(--color-border-subtle) bg-(--color-surface-raised) text-(--color-content-primary) hover:bg-(--color-action-secondary-hover)";
-    return (_jsxs("button", { type: "button", onClick: onClick, role: role, "aria-pressed": role ? undefined : selected, "aria-checked": role ? selected : undefined, className: `inline-flex items-center justify-center rounded-full border p-2 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-border-focus) ${size === "sm" ? "text-(length:--type-font-size-caption) leading-(--type-line-height-caption)" : "min-h-9.5 min-w-9.5 text-sm"} ${look}`, children: [size === "sm" && selected && (_jsx("span", { "aria-hidden": true, "data-icon": "check", className: "inline-block size-5 shrink-0 bg-(--color-action-primary)", style: iconMask("check") })), children] }));
+            : "bg-(--color-action-secondary) hover:bg-(--color-action-secondary-hover)"}`, children: [selected && (_jsx("span", { "aria-hidden": true, "data-icon": "check", className: "inline-block size-5 shrink-0 bg-(--color-action-primary)", style: iconMask("check") })), children] }));
 }
 export function ActionButton({ children, disabled, type = "submit", onClick, }) {
     return (_jsx("button", { type: type, disabled: disabled, onClick: onClick, className: `${buttonClassName("secondary", "md")} w-full`, children: children }));

@@ -1,0 +1,29 @@
+/** Separator (Figma 580:2224): a 1px line, horizontal or vertical, or a
+ * line with a word in the middle ("OR"). */
+import { describe, expect, it } from "vitest";
+import { renderToStaticMarkup } from "react-dom/server";
+import { Separator } from "../src/index.js";
+
+function el(node: React.ReactElement): HTMLElement {
+  return new DOMParser().parseFromString(renderToStaticMarkup(node), "text/html").body.firstElementChild as HTMLElement;
+}
+
+describe("Separator", () => {
+  it("is a horizontal separator by default", () => {
+    const s = el(<Separator />);
+    expect(s.getAttribute("role")).toBe("separator");
+    expect(s.className).toContain("h-px");
+  });
+
+  it("can stand upright", () => {
+    const s = el(<Separator orientation="vertical" />);
+    expect(s.getAttribute("aria-orientation")).toBe("vertical");
+    expect(s.className).toContain("w-px");
+  });
+
+  it("can carry a word between two lines", () => {
+    const s = el(<Separator label="OR" />);
+    expect(s.textContent).toBe("OR");
+    expect(s.querySelectorAll('[data-part="line"]')).toHaveLength(2);
+  });
+});

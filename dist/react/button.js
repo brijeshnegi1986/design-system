@@ -24,13 +24,15 @@ const VARIANT_CLASSES = {
     primary: "bg-(--color-action-primary) text-(--color-content-on-primary) hover:bg-(--color-action-primary-hover) active:bg-(--color-action-primary-pressed)",
     secondary: "border border-(--color-border-subtle) bg-(--color-button-secondary) text-(--color-on-button-secondary) hover:bg-(--color-button-secondary-hover) active:bg-(--color-button-secondary-pressed)",
     tertiary: "border border-(--color-border-subtle) bg-(--color-action-secondary) text-(--color-content-on-secondary) hover:bg-(--color-action-secondary-hover) active:bg-(--color-action-secondary-pressed)",
-    plain: "text-(--color-action-primary) hover:text-(--color-action-primary-hover) active:text-(--color-action-primary-pressed)",
+    plain: "text-(--color-action-primary) hover:bg-(--color-action-secondary-hover) hover:text-(--color-action-primary-hover) active:bg-(--color-action-secondary-pressed) active:text-(--color-action-primary-pressed)",
     ghost: "border border-(--color-border-primary) bg-(--color-surface-default) text-(--color-action-primary) hover:bg-(--color-action-secondary-hover) active:bg-(--color-action-secondary-pressed)",
     destructive: "border border-(--color-border-error) bg-(--color-action-destructive) text-(--color-content-on-destructive) hover:bg-(--color-action-destructive-hover) active:bg-(--color-action-destructive-pressed)",
     danger: "text-(--color-status-error) hover:underline disabled:opacity-60",
 };
-/** The NDS disabled state, for the boxed variants only. */
+/** The NDS disabled state, for the boxed variants; Plain has no fill to
+ * grey out, so only its text goes to the disabled colour. */
 const BOXED_DISABLED = "disabled:border-(--color-border-disabled) disabled:bg-(--color-action-disabled) disabled:text-(--color-content-disabled)";
+const PLAIN_DISABLED = "disabled:text-(--color-content-disabled) disabled:hover:bg-transparent disabled:active:bg-transparent";
 /** The design's sizes: SM 40px, MD 48px, LG 56px, each with its own padding. */
 const SIZE_CLASSES = {
     sm: "h-10 px-3",
@@ -52,9 +54,15 @@ function Spinner() {
 /** A Button's classes, for a link that should look exactly like one (e.g.
  * "Add profile", which goes to a page rather than doing something). */
 export function buttonClassName(variant = "primary", size = "md") {
+    const sized = variant === "danger" ? TEXT_ONLY_SIZE_CLASSES[size] : SIZE_CLASSES[size];
+    return `${buttonLookClassName(variant)} ${sized}`;
+}
+/** A Button's look without its size: the shape, label, focus ring, colours
+ * and disabled state (IconButton adds its own 40px square). */
+export function buttonLookClassName(variant = "primary") {
     const boxed = variant === "danger"
-        ? TEXT_ONLY_SIZE_CLASSES[size]
-        : `rounded-full transition-colors font-semibold tracking-[0.056px] text-(length:--type-font-size-body-small) leading-(--type-line-height-body-small) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-border-focus) ${SIZE_CLASSES[size]} ${BOXED_DISABLED}`;
+        ? ""
+        : `rounded-full transition-colors font-semibold tracking-[0.056px] text-(length:--type-font-size-body-small) leading-(--type-line-height-body-small) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-border-focus) ${variant === "plain" ? PLAIN_DISABLED : BOXED_DISABLED}`;
     return `inline-flex items-center justify-center gap-2 disabled:cursor-not-allowed ${variant === "danger" ? "font-medium" : ""} ${boxed} ${VARIANT_CLASSES[variant]}`
         .replace(/\s+/g, " ")
         .trim();
