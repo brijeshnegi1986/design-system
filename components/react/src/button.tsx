@@ -2,7 +2,7 @@ import { ButtonHTMLAttributes } from "react";
 import { iconMask } from "./icons.js";
 
 export type ButtonVariant = "primary" | "secondary" | "tertiary" | "plain" | "ghost" | "danger" | "destructive";
-export type ButtonSize = "sm" | "md" | "lg";
+export type ButtonSize = "xsm" | "sm" | "md" | "lg";
 
 /**
  * The NDS Button (Figma "Button", node 105:885). Every boxed variant shares
@@ -46,8 +46,11 @@ const BOXED_DISABLED =
   "disabled:border-(--color-border-disabled) disabled:bg-(--color-action-disabled) disabled:text-(--color-content-disabled)";
 const PLAIN_DISABLED = "disabled:text-(--color-content-disabled) disabled:hover:bg-transparent disabled:active:bg-transparent";
 
-/** The design's sizes: SM 40px, MD 48px, LG 56px, each with its own padding. */
+/** The design's sizes: XSM 36px (control/height/xsm, for compact rows such
+ * as a post card's actions), SM 40px, MD 48px, LG 56px, each with its own
+ * padding. */
 const SIZE_CLASSES: Record<ButtonSize, string> = {
+  xsm: "h-9 px-3",
   sm: "h-10 px-3",
   md: "h-12 px-4",
   lg: "h-14 px-6",
@@ -55,17 +58,19 @@ const SIZE_CLASSES: Record<ButtonSize, string> = {
 
 /** The red text link keeps the padding it always had. */
 const TEXT_ONLY_SIZE_CLASSES: Record<ButtonSize, string> = {
+  xsm: "px-3 py-1.5 text-sm",
   sm: "px-3.5 py-2 text-sm",
   md: "px-5 py-2.5 text-base",
   lg: "px-5 text-base",
 };
 
-/** The design's progress_activity icon, drawn in the label's colour. */
-function Spinner() {
+/** The design's progress_activity icon, drawn in the label's colour; 16px
+ * (icon-size/xsm) on an XSM button, 20px otherwise. */
+function Spinner({ small = false }: { small?: boolean }) {
   return (
     <span
       aria-hidden
-      className="inline-block size-5 shrink-0 animate-spin bg-current"
+      className={`inline-block shrink-0 animate-spin bg-current ${small ? "size-4" : "size-5"}`}
       style={{
         ...iconMask("progress-activity"),
       }}
@@ -115,7 +120,7 @@ export function Button({
       aria-busy={loading || undefined}
       {...props}
     >
-      {loading && <Spinner />}
+      {loading && <Spinner small={size === "xsm"} />}
       {children}
     </button>
   );
