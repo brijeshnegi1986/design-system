@@ -25,10 +25,11 @@ function Icon({ file, className }) {
  * Home/End and typing a letter move the highlight; Enter or Space chooses;
  * Escape or Tab closes. It opens upwards when there isn't room below.
  *
- * `size="inline"` is the 24px pill (Figma Size=Inline) used inside a sentence (e.g. Create post's tone),
+ * Sizes follow Figma: "md" 48px (LG, forms), "sm" 40px and "compact" 36px
+ * (toolbars and filters), and `size="inline"`, the 24px pill (Figma Size=Inline) used inside a sentence (e.g. Create post's tone),
  * opening the Dropdown SM menu (835:1406) with its pointer.
  */
-export function Select({ value, onChange, options, placeholder = "Select", disabled = false, id, "aria-label": ariaLabel, "aria-labelledby": ariaLabelledBy, "aria-describedby": ariaDescribedBy, invalid = false, size = "md", surface = "default", className = "", }) {
+export function Select({ value, onChange, options, placeholder = "Select", disabled = false, id, "aria-label": ariaLabel, "aria-labelledby": ariaLabelledBy, "aria-describedby": ariaDescribedBy, invalid = false, size = "md", prefix, surface = "default", className = "", }) {
     const fallbackId = useId();
     const buttonId = id ?? `select-${fallbackId}`;
     const listId = `${buttonId}-list`;
@@ -147,9 +148,12 @@ export function Select({ value, onChange, options, placeholder = "Select", disab
         }
     }
     const small = size === "inline";
-    const field = small
-        ? "h-6 gap-1.5 px-2 text-xs"
-        : "h-12 gap-2 px-3 text-base";
+    const field = {
+        inline: "h-6 gap-1.5 px-2 text-xs",
+        compact: "h-9 gap-2 px-3 text-sm",
+        sm: "h-10 gap-2 px-3 text-sm",
+        md: "h-12 gap-2 px-3 text-base",
+    }[size];
     const background = surface === "raised" ? "bg-(--color-surface-raised)" : "bg-(--color-surface-default)";
     const border = invalid ? "border-(--color-border-error)" : "border-(--color-border-input) hover:border-(--color-border-focus)";
     const optionItems = options.map((option, index) => {
@@ -166,7 +170,7 @@ export function Select({ value, onChange, options, placeholder = "Select", disab
                 ? "cursor-not-allowed bg-(--color-action-disabled) text-(--color-content-disabled)"
                 : `cursor-pointer text-(--color-content-primary) ${isActive && (moved || !isSelected) ? "bg-(--color-action-tertiary-hover)" : "bg-(--color-surface-default)"}`}`, children: [_jsx("span", { className: "min-w-0 flex-1", children: option.label }), isSelected && _jsx(Icon, { file: "check", className: `text-(--color-content-link) ${small ? "size-4" : "size-5"}` })] }, option.value));
     });
-    return (_jsxs("div", { ref: rootRef, className: `relative ${small ? "inline-block" : "w-full"} ${className}`, children: [_jsxs("button", { ref: buttonRef, id: buttonId, type: "button", role: "combobox", "aria-haspopup": "listbox", "aria-expanded": open, "aria-controls": listId, "aria-activedescendant": open && active >= 0 ? `${listId}-${active}` : undefined, "aria-label": ariaLabel, "aria-labelledby": ariaLabelledBy, "aria-describedby": ariaDescribedBy, "aria-invalid": invalid || undefined, disabled: disabled, onClick: () => (open ? setOpen(false) : openMenu()), onKeyDown: onKeyDown, className: `flex w-full items-center rounded-full border text-left transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-border-focus) disabled:cursor-not-allowed disabled:border-(--color-border-disabled) disabled:bg-(--color-action-disabled) disabled:text-(--color-content-disabled) ${field} ${background} ${border}`, children: [_jsx("span", { className: `min-w-0 flex-1 truncate ${selected ? "text-(--color-content-primary)" : "text-(--color-content-muted)"}`, children: selected ? selected.label : placeholder }), _jsx("span", { "aria-hidden": true, className: `w-px shrink-0 bg-(--color-border-subtle) ${small ? "h-3.5" : "h-[22.5px]"}` }), _jsx(Icon, { file: "keyboard-arrow-down", className: `text-(--color-content-secondary) transition-transform ${small ? "size-4" : "size-5"} ${open ? "rotate-180" : ""}` })] }), open && small && (
+    return (_jsxs("div", { ref: rootRef, className: `relative ${small ? "inline-block" : "w-full"} ${className}`, children: [_jsxs("button", { ref: buttonRef, id: buttonId, type: "button", role: "combobox", "aria-haspopup": "listbox", "aria-expanded": open, "aria-controls": listId, "aria-activedescendant": open && active >= 0 ? `${listId}-${active}` : undefined, "aria-label": ariaLabel, "aria-labelledby": ariaLabelledBy, "aria-describedby": ariaDescribedBy, "aria-invalid": invalid || undefined, disabled: disabled, onClick: () => (open ? setOpen(false) : openMenu()), onKeyDown: onKeyDown, className: `flex w-full items-center rounded-full border text-left transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-border-focus) disabled:cursor-not-allowed disabled:border-(--color-border-disabled) disabled:bg-(--color-action-disabled) disabled:text-(--color-content-disabled) ${field} ${background} ${border}`, children: [_jsxs("span", { className: `min-w-0 flex-1 truncate ${selected ? "text-(--color-content-primary)" : "text-(--color-content-muted)"}`, children: [prefix && _jsxs("span", { "data-part": "prefix", className: "text-(--color-content-secondary)", children: [prefix, ": "] }), selected ? selected.label : placeholder] }), _jsx("span", { "aria-hidden": true, className: `w-px shrink-0 bg-(--color-border-subtle) ${small ? "h-3.5" : size === "md" ? "h-[22.5px]" : "h-5"}` }), _jsx(Icon, { file: "keyboard-arrow-down", className: `text-(--color-content-secondary) transition-transform ${small ? "size-4" : "size-5"} ${open ? "rotate-180" : ""}` })] }), open && small && (
             // Dropdown SM (Figma 835:1406): 163px wide, centred under the field
             // with the pointer ("nob") aiming at it, 8px top and bottom, rows of
             // 12px regular text 34px tall. The shadow is a drop-shadow on the
