@@ -1,5 +1,6 @@
 import { jsx as _jsx } from "react/jsx-runtime";
 import { buttonLookClassName } from "./button.js";
+import { Tooltip } from "./tooltip.js";
 /** Figma's sizes: MD 48px, SM 40px, XSM 36px. The caller's icon is 24px at
  * MD, 20px at SM and 16px at XSM (Figma icon-size/md, sm, xsm). */
 const SIZE_CLASSES = {
@@ -12,8 +13,8 @@ const SIZE_CLASSES = {
  * holding one icon, in the Button colours (primary, secondary,
  * tertiary, destructive) with their hover, pressed, disabled and focus
  * states. `label` is required: it's the button's only name for screen
- * readers, and its tooltip.
+ * readers, and its tooltip (the NDS Tooltip, on hover and keyboard focus).
  */
-export function IconButton({ label, variant = "tertiary", size = "sm", className = "", children, ...props }) {
-    return (_jsx("button", { type: "button", "aria-label": label, title: label, ...props, className: `${buttonLookClassName(variant)} ${SIZE_CLASSES[size]} shrink-0 p-0 ${className}`.trim(), children: children }));
+export function IconButton({ label, variant = "tertiary", size = "sm", className = "", tooltipPlacement = "top", children, ...props }) {
+    return (_jsx(Tooltip, { label: label, placement: tooltipPlacement, children: _jsx("button", { type: "button", "aria-label": label, ...props, className: `${buttonLookClassName(variant)} ${SIZE_CLASSES[size]} shrink-0 p-0 ${className}`.trim(), children: children }) }));
 }

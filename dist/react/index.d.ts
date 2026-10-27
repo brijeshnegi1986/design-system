@@ -27,3 +27,4 @@ export { Switch } from "./switch.js";
 export { Tabs, type TabItem } from "./tabs.js";
 export { Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow } from "./table.js";
 export { ToastProvider, useToast } from "./toast-provider.js";
+export { Tooltip, type TooltipPlacement } from "./tooltip.js";
