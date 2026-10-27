@@ -16,5 +16,5 @@ const SIZE_CLASSES = {
  * readers, and its tooltip (the NDS Tooltip, on hover and keyboard focus).
  */
 export function IconButton({ label, variant = "tertiary", size = "sm", className = "", tooltipPlacement = "top", children, ...props }) {
-    return (_jsx(Tooltip, { label: label, placement: tooltipPlacement, children: _jsx("button", { type: "button", "aria-label": label, ...props, className: `${buttonLookClassName(variant, { solidDestructive: true })} ${SIZE_CLASSES[size]} shrink-0 p-0 ${className}`.trim(), children: children }) }));
+    return (_jsx(Tooltip, { label: label, placement: tooltipPlacement, children: _jsx("button", { type: "button", "aria-label": label, ...props, className: `${buttonLookClassName(variant)} ${SIZE_CLASSES[size]} shrink-0 p-0 ${className}`.trim(), children: children }) }));
 }

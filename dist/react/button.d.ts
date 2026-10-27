@@ -6,9 +6,7 @@ export type ButtonSize = "xsm" | "sm" | "md" | "lg";
 export declare function buttonClassName(variant?: ButtonVariant, size?: ButtonSize): string;
 /** A Button's look without its size: the shape, label, focus ring, colours
  * and disabled state (IconButton adds its own 40px square). */
-export declare function buttonLookClassName(variant?: ButtonVariant, { solidDestructive }?: {
-    solidDestructive?: boolean;
-}): string;
+export declare function buttonLookClassName(variant?: ButtonVariant): string;
 /**
  * Callers pairing a label with an icon put both as children: the 8px gap
  * spaces them (flexbox drops a literal space between "Label <span>icon").

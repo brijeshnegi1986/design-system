@@ -42,7 +42,7 @@ export function IconButton({
         type="button"
         aria-label={label}
         {...props}
-        className={`${buttonLookClassName(variant, { solidDestructive: true })} ${SIZE_CLASSES[size]} shrink-0 p-0 ${className}`.trim()}
+        className={`${buttonLookClassName(variant)} ${SIZE_CLASSES[size]} shrink-0 p-0 ${className}`.trim()}
       >
         {children}
       </button>

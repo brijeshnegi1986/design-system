@@ -26,8 +26,9 @@ describe("IconButton (audit M11)", () => {
   });
 
   it("takes the Button colours for its variant", () => {
+    // Outlined, like the Button's Destructive (Figma Icon Button, Variants=Destructive).
     expect(button(<IconButton label="Delete" variant="destructive"><span /></IconButton>).className).toContain(
-      "bg-(--color-action-destructive)",
+      "bg-(--color-action-destructive-subtle)",
     );
     expect(button(<IconButton label="Add" variant="primary"><span /></IconButton>).className).toContain(
       "bg-(--color-action-primary)",
