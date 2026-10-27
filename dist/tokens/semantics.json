@@ -45,6 +45,10 @@
               "alpha": 0.25,
               "hex": "#F8FAFC"
             }
+          },
+          "tip": {
+            "$type": "color",
+            "$value": "{cyan.950}"
           }
         },
         "content": {
@@ -139,6 +143,10 @@
             "$type": "color",
             "$value": "{slate.500}",
             "$description": "The edge of a text field, select, textarea or search field: 3:1 or better in both modes (WCAG 1.4.11)."
+          },
+          "tip": {
+            "$type": "color",
+            "$value": "{cyan.800}"
           }
         },
         "action": {
@@ -295,6 +303,10 @@
               "alpha": 0.25,
               "hex": "#F8FAFC"
             }
+          },
+          "tip": {
+            "$type": "color",
+            "$value": "{cyan.50}"
           }
         },
         "content": {
@@ -389,6 +401,10 @@
             "$type": "color",
             "$value": "{slate.500}",
             "$description": "The edge of a text field, select, textarea or search field: 3:1 or better in both modes (WCAG 1.4.11)."
+          },
+          "tip": {
+            "$type": "color",
+            "$value": "{cyan.200}"
           }
         },
         "action": {

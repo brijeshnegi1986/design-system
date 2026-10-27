@@ -10,7 +10,7 @@
             "WIDTH_HEIGHT"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--control-height-sm)"
+            "WEB": "var(--control-height-xsm)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:18d637e4f7659184b5afda36202634e52318f235/-1:-1",
