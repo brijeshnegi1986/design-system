@@ -30,4 +30,24 @@ describe("Badge (audit M8)", () => {
     expect(el.className).toContain("gap-1");
     expect(el.querySelector("[aria-hidden]")!.className).toContain("size-2");
   });
+
+  it("is regular weight, like the design", () => {
+    expect(badge(<Badge tone="success">Active</Badge>).className).toContain("font-normal");
+  });
+
+  it("draws Neutral on action/disabled with text that follows the mode, and a muted dot", () => {
+    const el = badge(<Badge tone="neutral" dot>Draft</Badge>);
+    expect(el.className).toContain("bg-(--color-action-disabled)");
+    expect(el.className).toContain("text-(--color-content-primary)");
+    expect(el.className).not.toContain("border");
+    expect(el.querySelector("[aria-hidden]")!.className).toContain("bg-(--color-content-muted)");
+  });
+
+  it("draws Highlighted in the brand's lime, 32px tall with an icon", () => {
+    const el = badge(<Badge tone="highlight" icon={<svg />}>Your calendar is ready</Badge>);
+    expect(el.className).toContain("bg-(--brand-color-accent-dark)");
+    expect(el.className).toContain("text-(--color-content-on-accent)");
+    expect(el.className).toContain("h-8");
+    expect(el.querySelector("svg")!.parentElement!.className).toContain("size-4");
+  });
 });
