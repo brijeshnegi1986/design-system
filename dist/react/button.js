@@ -33,6 +33,9 @@ const VARIANT_CLASSES = {
     destructive: "border border-(--color-border-error) bg-(--color-action-destructive-subtle) text-(--color-content-destructive) hover:bg-(--color-action-destructive-subtle-hover) active:bg-(--color-action-destructive-subtle-pressed)",
     danger: "text-(--color-status-error) hover:underline disabled:opacity-60",
 };
+/** The solid red Destructive, still the Icon Button's (Figma "Icon Button",
+ * Variants=Destructive) while the text Button's is outlined. */
+const SOLID_DESTRUCTIVE = "border border-(--color-border-error) bg-(--color-action-destructive) text-(--color-content-on-destructive) hover:bg-(--color-action-destructive-hover) active:bg-(--color-action-destructive-pressed)";
 /** The NDS disabled state, for the boxed variants; Plain has no fill to
  * grey out, so only its text goes to the disabled colour. */
 const BOXED_DISABLED = "disabled:border-(--color-border-disabled) disabled:bg-(--color-action-disabled) disabled:text-(--color-content-disabled)";
@@ -68,11 +71,11 @@ export function buttonClassName(variant = "primary", size = "md") {
 }
 /** A Button's look without its size: the shape, label, focus ring, colours
  * and disabled state (IconButton adds its own 40px square). */
-export function buttonLookClassName(variant = "primary") {
+export function buttonLookClassName(variant = "primary", { solidDestructive = false } = {}) {
     const boxed = variant === "danger"
         ? ""
         : `rounded-full transition-colors font-semibold tracking-[0.056px] text-(length:--type-font-size-body-small) leading-(--type-line-height-body-small) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-border-focus) ${variant === "plain" ? PLAIN_DISABLED : BOXED_DISABLED}`;
-    return `inline-flex items-center justify-center gap-2 disabled:cursor-not-allowed ${variant === "danger" ? "font-medium" : ""} ${boxed} ${VARIANT_CLASSES[variant]}`
+    return `inline-flex items-center justify-center gap-2 disabled:cursor-not-allowed ${variant === "danger" ? "font-medium" : ""} ${boxed} ${variant === "destructive" && solidDestructive ? SOLID_DESTRUCTIVE : VARIANT_CLASSES[variant]}`
         .replace(/\s+/g, " ")
         .trim();
 }
