@@ -75,6 +75,9 @@
   --color-action-destructive-hover: var(--red-800);
   --color-action-destructive-pressed: var(--red-900);
   --color-action-disabled: var(--neutral-200);
+  --color-action-destructive-subtle: var(--slate-50);
+  --color-action-destructive-subtle-hover: var(--red-50);
+  --color-action-destructive-subtle-pressed: var(--red-100);
   --color-status-success: var(--green-700); /** Status colour for icons, borders and short text. Meets 4.5:1 on background/default and on its status/*-subtle surface. */
   --color-status-warning: var(--amber-700); /** Status colour for icons, borders and short text. Meets 4.5:1 on background/default and on its status/*-subtle surface. */
   --color-status-error: var(--red-700); /** Status colour for icons, borders and short text. Meets 4.5:1 on background/default and on its status/*-subtle surface. */
@@ -85,6 +88,7 @@
   --color-status-info-subtle: var(--blue-100);
   --color-content-on-primary: var(--color-content-primary);
   --color-content-link: var(--brand-color-primary-strong); /** Link text and other orange text: 4.5:1 or better in both modes. */
+  --color-content-destructive: var(--color-status-error);
   --color-border-error: var(--color-status-error);
   --color-border-success: var(--color-status-success);
   --color-border-warning: var(--color-status-warning);
@@ -133,6 +137,9 @@
     --color-action-destructive-hover: var(--red-900);
     --color-action-destructive-pressed: var(--red-950);
     --color-action-disabled: var(--neutral-700);
+    --color-action-destructive-subtle: var(--neutral-800);
+    --color-action-destructive-subtle-hover: var(--red-950);
+    --color-action-destructive-subtle-pressed: var(--red-950);
     --color-status-success: var(--green-400); /** Status colour for icons, borders and short text. Meets 4.5:1 on background/default and on its status/*-subtle surface. */
     --color-status-warning: var(--amber-400); /** Status colour for icons, borders and short text. Meets 4.5:1 on background/default and on its status/*-subtle surface. */
     --color-status-error: var(--red-400); /** Status colour for icons, borders and short text. Meets 4.5:1 on background/default and on its status/*-subtle surface. */
@@ -143,6 +150,7 @@
     --color-status-info-subtle: var(--blue-950);
     --color-content-on-primary: var(--color-content-inverse);
     --color-content-link: var(--brand-color-primary-dark); /** Link text and other orange text: 4.5:1 or better in both modes. */
+    --color-content-destructive: var(--color-status-error);
     --color-border-error: var(--color-status-error);
     --color-border-success: var(--color-status-success);
     --color-border-warning: var(--color-status-warning);
@@ -191,6 +199,9 @@
   --color-action-destructive-hover: var(--red-900);
   --color-action-destructive-pressed: var(--red-950);
   --color-action-disabled: var(--neutral-700);
+  --color-action-destructive-subtle: var(--neutral-800);
+  --color-action-destructive-subtle-hover: var(--red-950);
+  --color-action-destructive-subtle-pressed: var(--red-950);
   --color-status-success: var(--green-400); /** Status colour for icons, borders and short text. Meets 4.5:1 on background/default and on its status/*-subtle surface. */
   --color-status-warning: var(--amber-400); /** Status colour for icons, borders and short text. Meets 4.5:1 on background/default and on its status/*-subtle surface. */
   --color-status-error: var(--red-400); /** Status colour for icons, borders and short text. Meets 4.5:1 on background/default and on its status/*-subtle surface. */
@@ -201,6 +212,7 @@
   --color-status-info-subtle: var(--blue-950);
   --color-content-on-primary: var(--color-content-inverse);
   --color-content-link: var(--brand-color-primary-dark); /** Link text and other orange text: 4.5:1 or better in both modes. */
+  --color-content-destructive: var(--color-status-error);
   --color-border-error: var(--color-status-error);
   --color-border-success: var(--color-status-success);
   --color-border-warning: var(--color-status-warning);

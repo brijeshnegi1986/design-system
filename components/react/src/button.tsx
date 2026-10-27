@@ -20,9 +20,13 @@ export type ButtonSize = "xsm" | "sm" | "md" | "lg";
  *   Cancel, Edit).
  * - plain: link-coloured text (content-link, 4.5:1), no fill or border.
  * - ghost: an orange outline on white.
- * - destructive: filled red, only for the confirm step of a destructive
- *   action; the trigger that opens that confirmation uses `danger`, a
- *   red text link (not in the design: an inline "Delete" link).
+ * - destructive: outlined red (Figma Variant=Destructive): the action's
+ *   resting fill, a red edge and red text, the fill tinting red on hover and
+ *   press. For anything that can't easily be undone (Delete, Reset,
+ *   Disconnect), both the button that opens the confirmation and the one
+ *   inside it. Add the trash icon only to Delete.
+ * - danger: a red text link. Kept for older callers; prefer destructive,
+ *   which is a proper target and matches the rest of the buttons.
  */
 const VARIANT_CLASSES: Record<ButtonVariant, string> = {
   primary:
@@ -36,7 +40,7 @@ const VARIANT_CLASSES: Record<ButtonVariant, string> = {
   ghost:
     "border border-(--color-border-primary) bg-(--color-surface-default) text-(--color-content-link) hover:bg-(--color-action-tertiary-hover) active:bg-(--color-action-tertiary-pressed)",
   destructive:
-    "border border-(--color-border-error) bg-(--color-action-destructive) text-(--color-content-on-destructive) hover:bg-(--color-action-destructive-hover) active:bg-(--color-action-destructive-pressed)",
+    "border border-(--color-border-error) bg-(--color-action-destructive-subtle) text-(--color-content-destructive) hover:bg-(--color-action-destructive-subtle-hover) active:bg-(--color-action-destructive-subtle-pressed)",
   danger: "text-(--color-status-error) hover:underline disabled:opacity-60",
 };
 
