@@ -47,6 +47,20 @@ describe("Button", () => {
     );
   });
 
+  it("draws Destructive outlined: a red edge and red text on the subtle fill, tinting red on hover and press", () => {
+    const classes = classesOf(<Button variant="destructive">Delete</Button>);
+    expect(classes).toEqual(
+      expect.arrayContaining([
+        "border-(--color-border-error)",
+        "bg-(--color-action-destructive-subtle)",
+        "text-(--color-content-destructive)",
+        "hover:bg-(--color-action-destructive-subtle-hover)",
+        "active:bg-(--color-action-destructive-subtle-pressed)",
+      ]),
+    );
+    expect(classes).not.toContain("bg-(--color-action-destructive)");
+  });
+
   it("shows the Loading state: a spinner, busy and disabled", () => {
     const html = renderToStaticMarkup(<Button loading>Saving...</Button>);
     expect(html).toContain('aria-busy="true"');

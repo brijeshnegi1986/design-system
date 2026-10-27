@@ -10,4 +10,13 @@ describe("Breadcrumbs (audit L10)", () => {
     expect(html).toContain("leading-(--type-line-height-caption)");
     expect(html).toContain('aria-current="page"');
   });
+
+  it("has a 14px size for a header bar, with the current page in medium weight", () => {
+    const html = renderToStaticMarkup(
+      <Breadcrumbs size="md" items={[{ label: "Settings", href: "/settings" }, { label: "Billing" }]} />,
+    );
+    expect(html).toContain("text-(length:--type-font-size-body-small)");
+    expect(html).toMatch(/font-medium[^>]*aria-current="page"[^>]*>Billing/);
+    expect(html).toContain("text-(--color-content-secondary)");
+  });
 });

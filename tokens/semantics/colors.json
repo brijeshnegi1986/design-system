@@ -44,6 +44,10 @@
             "alpha": 0.25,
             "hex": "#F8FAFC"
           }
+        },
+        "tip": {
+          "$type": "color",
+          "$value": "{cyan.950}"
         }
       },
       "content": {
@@ -91,6 +95,10 @@
           "$type": "color",
           "$value": "{brand.color.primary-dark}",
           "$description": "Link text and other orange text: 4.5:1 or better in both modes."
+        },
+        "destructive": {
+          "$type": "color",
+          "$value": "{color.status.error}"
         }
       },
       "border": {
@@ -138,6 +146,10 @@
           "$type": "color",
           "$value": "{slate.500}",
           "$description": "The edge of a text field, select, textarea or search field: 3:1 or better in both modes (WCAG 1.4.11)."
+        },
+        "tip": {
+          "$type": "color",
+          "$value": "{cyan.800}"
         }
       },
       "action": {
@@ -192,6 +204,18 @@
         "disabled": {
           "$type": "color",
           "$value": "{neutral.700}"
+        },
+        "destructive-subtle": {
+          "$type": "color",
+          "$value": "{neutral.800}"
+        },
+        "destructive-subtle-hover": {
+          "$type": "color",
+          "$value": "{red.950}"
+        },
+        "destructive-subtle-pressed": {
+          "$type": "color",
+          "$value": "{red.950}"
         }
       },
       "status": {
@@ -294,6 +318,10 @@
             "alpha": 0.25,
             "hex": "#F8FAFC"
           }
+        },
+        "tip": {
+          "$type": "color",
+          "$value": "{cyan.50}"
         }
       },
       "content": {
@@ -341,6 +369,10 @@
           "$type": "color",
           "$value": "{brand.color.primary-strong}",
           "$description": "Link text and other orange text: 4.5:1 or better in both modes."
+        },
+        "destructive": {
+          "$type": "color",
+          "$value": "{color.status.error}"
         }
       },
       "border": {
@@ -388,6 +420,10 @@
           "$type": "color",
           "$value": "{slate.500}",
           "$description": "The edge of a text field, select, textarea or search field: 3:1 or better in both modes (WCAG 1.4.11)."
+        },
+        "tip": {
+          "$type": "color",
+          "$value": "{cyan.200}"
         }
       },
       "action": {
@@ -442,6 +478,18 @@
         "disabled": {
           "$type": "color",
           "$value": "{neutral.200}"
+        },
+        "destructive-subtle": {
+          "$type": "color",
+          "$value": "{slate.50}"
+        },
+        "destructive-subtle-hover": {
+          "$type": "color",
+          "$value": "{red.50}"
+        },
+        "destructive-subtle-pressed": {
+          "$type": "color",
+          "$value": "{red.100}"
         }
       },
       "status": {

@@ -89,15 +89,21 @@ export function TextArea(props: React.ComponentProps<"textarea">) {
   return <textarea {...props} className={`${FIELD_CONTROL_CLASS} min-h-21.5 resize-y ${props.className ?? ""}`} />;
 }
 
-/** A pill that toggles (aria-pressed), or one option of a single-choice
- * group (role="radio" inside a radiogroup). */
 /** The NDS chip (Figma "Chip", 641:1505): a pill on action-secondary with a
  * border-subtle edge; hover action-secondary-hover; selected is
  * action-secondary-pressed with the orange tick before the label. SM 30px
  * (8px in, caption 12/16), MD 36px and LG 44px (12px in, 14/20); a
- * one-letter option is never narrower than it is tall. A toggle
- * (aria-pressed), or one option of a single-choice group (role="radio"
- * inside a radiogroup). */
+ * one-letter option is never narrower than it is tall. Those heights are
+ * minimums: a label too long for the row wraps and the chip grows taller
+ * (its corners stay the one-line pill's), never wider than its container, so
+ * it can't spill over the chips around it on a phone.
+ *
+ * Three kinds, by what tapping does:
+ * - toggle (`selected` given): switches an option on or off, aria-pressed,
+ *   with the tick when on (a filter, or picking several audiences);
+ * - single choice (`role="radio"` inside a radiogroup);
+ * - suggestion (no `selected`): a one-off action such as starting a post
+ *   from a topic. A plain button, with no on/off state to announce. */
 export function Chip({
   selected,
   onClick,
@@ -105,7 +111,8 @@ export function Chip({
   role,
   size = "md",
 }: {
-  selected: boolean;
+  /** Leave out for a suggestion chip, which is an action, not a toggle. */
+  selected?: boolean;
   onClick: () => void;
   children: ReactNode;
   role?: "radio";
@@ -113,16 +120,16 @@ export function Chip({
 }) {
   const sized =
     size === "sm"
-      ? "h-7.5 min-w-7.5 px-2 text-(length:--type-font-size-caption) leading-(--type-line-height-caption)"
-      : `${size === "lg" ? "h-11 min-w-11" : "h-9 min-w-9"} px-3 text-(length:--type-font-size-body-small) leading-(--type-line-height-body-small)`;
+      ? "min-h-7.5 min-w-7.5 rounded-[15px] px-2 py-1 text-(length:--type-font-size-caption) leading-(--type-line-height-caption)"
+      : `${size === "lg" ? "min-h-11 min-w-11 rounded-[22px] py-2.5" : "min-h-9 min-w-9 rounded-[18px] py-1.5"} px-3 text-(length:--type-font-size-body-small) leading-(--type-line-height-body-small)`;
   return (
     <button
       type="button"
       onClick={onClick}
       role={role}
-      aria-pressed={role ? undefined : selected}
-      aria-checked={role ? selected : undefined}
-      className={`inline-flex items-center justify-center gap-1 rounded-full border border-(--color-border-subtle) text-(--color-content-primary) transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-border-focus) ${sized} ${
+      aria-pressed={role || selected === undefined ? undefined : selected}
+      aria-checked={role ? Boolean(selected) : undefined}
+      className={`inline-flex max-w-full items-center justify-center gap-1 border border-(--color-border-subtle) text-left [overflow-wrap:anywhere] text-(--color-content-primary) transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-border-focus) ${sized} ${
         selected
           ? "bg-(--color-action-tertiary-pressed)"
           : "bg-(--color-action-tertiary) hover:bg-(--color-action-tertiary-hover)"
