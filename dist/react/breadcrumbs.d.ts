@@ -11,13 +11,17 @@ declare function PlainLink({ href, className, children }: {
     className?: string;
     children?: ReactNode;
 }): import("react").JSX.Element;
-/** NDS "Breadcrumbs" (Figma 140:719): a caption 12/16 trail, muted links,
- * the current page in the primary text colour, 16px chevrons 8px apart. */
-export declare function Breadcrumbs({ items, linkAs: LinkAs, }: {
+/** NDS "Breadcrumbs" (Figma 140:719): a trail of muted links, the current
+ * page in the primary text colour, 16px chevrons 8px apart.
+ * - sm: caption 12/16, for inside a page (the design's default).
+ * - md: body small 14/20, for a page header bar, where 12px reads as
+ *   lost; links in the secondary colour and the current page medium. */
+export declare function Breadcrumbs({ items, linkAs: LinkAs, size, }: {
     items: {
         label: string;
         href?: string;
     }[];
     linkAs?: LinkComponent;
+    size?: "sm" | "md";
 }): import("react").JSX.Element;
 export { PlainLink };
