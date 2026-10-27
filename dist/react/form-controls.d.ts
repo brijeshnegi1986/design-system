@@ -20,17 +20,24 @@ export declare function TextInput(props: React.InputHTMLAttributes<HTMLInputElem
  * on hover and as the focus ring, and the error and disabled states. */
 export declare const FIELD_CONTROL_CLASS = "w-full border border-(--color-border-input) bg-(--color-surface-default) px-3 text-base text-(--color-content-primary) placeholder:text-(--color-content-muted) rounded-md py-3 transition-colors hover:border-(--color-border-focus) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-border-focus) aria-[invalid=true]:border-(--color-border-error) disabled:border-(--color-border-disabled) disabled:bg-(--color-action-disabled) disabled:text-(--color-content-disabled)";
 export declare function TextArea(props: React.ComponentProps<"textarea">): import("react").JSX.Element;
-/** A pill that toggles (aria-pressed), or one option of a single-choice
- * group (role="radio" inside a radiogroup). */
 /** The NDS chip (Figma "Chip", 641:1505): a pill on action-secondary with a
  * border-subtle edge; hover action-secondary-hover; selected is
  * action-secondary-pressed with the orange tick before the label. SM 30px
  * (8px in, caption 12/16), MD 36px and LG 44px (12px in, 14/20); a
- * one-letter option is never narrower than it is tall. A toggle
- * (aria-pressed), or one option of a single-choice group (role="radio"
- * inside a radiogroup). */
+ * one-letter option is never narrower than it is tall. Those heights are
+ * minimums: a label too long for the row wraps and the chip grows taller
+ * (its corners stay the one-line pill's), never wider than its container, so
+ * it can't spill over the chips around it on a phone.
+ *
+ * Three kinds, by what tapping does:
+ * - toggle (`selected` given): switches an option on or off, aria-pressed,
+ *   with the tick when on (a filter, or picking several audiences);
+ * - single choice (`role="radio"` inside a radiogroup);
+ * - suggestion (no `selected`): a one-off action such as starting a post
+ *   from a topic. A plain button, with no on/off state to announce. */
 export declare function Chip({ selected, onClick, children, role, size, }: {
-    selected: boolean;
+    /** Leave out for a suggestion chip, which is an action, not a toggle. */
+    selected?: boolean;
     onClick: () => void;
     children: ReactNode;
     role?: "radio";
