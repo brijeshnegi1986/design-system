@@ -1,13 +1,13 @@
-# JeshApps Design System
+# NDS
 
-Shared design tokens for the projects in `~/JeshApps`.
+NDS is the shared design system for the projects in `~/JeshApps`: tokens plus the React components.
 
 Figma is where the design gets authored. This repository is the engineering source of truth: it holds normalised tokens imported from Figma and builds them into CSS and JSON that the other projects consume.
 
 ## Repository structure
 
 ```text
-design-system/
+NDS/
 ├── docs/
 │   └── figma-export/          Figma NDS variable exports (zips + extracted JSON)
 ├── scripts/
@@ -132,7 +132,7 @@ In CSS:
 To use a brand, import its bundle:
 
 ```css
-@import "@jeshapps/design-system/css/negiflow";
+@import "@jeshapps/nds/css/negiflow";
 ```
 
 `css/<name>` maps to `dist/css/<name>.css`, so `css/brands/negiflow` and `css/tokens` work too. The older `dist/css/negiflow.css` path still resolves.
@@ -200,9 +200,9 @@ In the project's Tailwind entry CSS:
 
 ```css
 @import "tailwindcss";
-@import "@jeshapps/design-system/css/base" layer(nds);   /* or a brand file */
-@import "@jeshapps/design-system/react/styles.css";       /* unlayered */
-@source "../../node_modules/@jeshapps/design-system/dist/react";
+@import "@jeshapps/nds/css/base" layer(nds);   /* or a brand file */
+@import "@jeshapps/nds/react/styles.css";       /* unlayered */
+@source "../../node_modules/@jeshapps/nds/dist/react";
 ```
 
 `styles.css` holds interim tokens Figma has but the token export doesn't carry yet (the input border, the near-black Secondary button, text on orange) and the native field rules (48px pill, focus ring, error and disabled states, select chevron). Remove an interim token once it ships in the token CSS.
@@ -210,7 +210,7 @@ In the project's Tailwind entry CSS:
 Then import from the package:
 
 ```tsx
-import { Alert, Badge, Button, Field, TextInput, ToastProvider } from "@jeshapps/design-system/react";
+import { Alert, Badge, Button, Field, TextInput, ToastProvider } from "@jeshapps/nds/react";
 ```
 
 Breadcrumbs and ToastProvider render plain `<a>` links; pass your router's link as `linkAs` (for Next.js, `linkAs={Link}`) so navigation stays client-side.
