@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 /**
  * A social post as it will look on its channel (Facebook, Instagram,
- * LinkedIn): who posts it with their avatar, when, the image on top with
+ * LinkedIn, Threads): who posts it with their avatar, when, the image on top with
  * the text under it, and the channel's reactions. The reactions are
  * decoration, hidden from screen readers.
  *

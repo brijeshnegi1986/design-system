@@ -17,10 +17,11 @@ function Glyph({ d }: { d: string }) {
 const HEART = "M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z";
 const BUBBLE = "M4 12a8 8 0 1 1 3.3 6.5L4 20l1.2-3.4A8 8 0 0 1 4 12z";
 const SEND = "M21 4 3 11l7 3 3 7 8-17zM10 14l11-10";
+const REPOST = "M7 7h10l-3-3M17 17H7l3 3M17 7v4M7 17v-4";
 
 /**
  * A social post as it will look on its channel (Facebook, Instagram,
- * LinkedIn): who posts it with their avatar, when, the image on top with
+ * LinkedIn, Threads): who posts it with their avatar, when, the image on top with
  * the text under it, and the channel's reactions. The reactions are
  * decoration, hidden from screen readers.
  *
@@ -51,6 +52,7 @@ export function PostPreview({
   children?: ReactNode;
 }) {
   const instagram = platform === "instagram";
+  const threads = platform === "threads";
   const picture = image ? (
     <img src={image} alt={imageAlt} className={`w-full bg-(--color-surface-raised) object-cover ${instagram ? "aspect-square" : "max-h-96"}`} />
   ) : imagePlaceholder ? (
@@ -97,6 +99,16 @@ export function PostPreview({
             <Glyph d={SEND} />
           </div>
           {body}
+        </>
+      ) : threads ? (
+        <>
+          {body}
+          <div data-reactions aria-hidden="true" className="flex items-center gap-4 px-4 text-(--color-content-primary)">
+            <Glyph d={HEART} />
+            <Glyph d={BUBBLE} />
+            <Glyph d={REPOST} />
+            <Glyph d={SEND} />
+          </div>
         </>
       ) : (
         <>
