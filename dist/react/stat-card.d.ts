@@ -9,6 +9,10 @@ import type { ReactNode } from "react";
  * up is bad news (say, failed posts). `meter` adds a bar under the value for
  * usage against a limit; it turns to the warning colour once the limit is
  * reached.
+ *
+ * It goes compact by itself when the card is narrow (under 15rem, say two to
+ * a row on a phone): 16px padding and a 24px value. The label and caption
+ * keep their sizes and wrap, so it reads the same, just smaller.
  */
 export declare function StatCard({ label, value, caption, trend, meter, icon, className, }: {
     label: ReactNode;

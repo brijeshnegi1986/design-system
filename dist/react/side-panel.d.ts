@@ -11,10 +11,24 @@ import type { ReactNode } from "react";
  * what it says: help is a TipPanel, a summary or navigation is a SidePanel.
  *
  * An <aside> named by `label`, or by a heading inside it via `labelledBy`.
+ *
+ * `collapse` lets people push it in and pull it out (a preview beside a
+ * form, a tray beside a calendar). It then shows its own header: `label` as
+ * the title and a 40px handle. Pushed in, it's a 48px strip with the handle
+ * and the name on wide screens (xl), and a one-line "Show …" bar below that.
+ * The page keeps the open/closed state (and may remember it).
  */
-export declare function SidePanel({ label, labelledBy, className, children, }: {
+export declare function SidePanel({ label, labelledBy, className, collapse, children, }: {
     label?: string;
     labelledBy?: string;
     className?: string;
+    collapse?: {
+        open: boolean;
+        onToggle: () => void;
+        /** Which edge it sits on: the handle points that way to push it in. */
+        side: "left" | "right";
+        /** The id of the content it hides, for aria-controls. */
+        controls?: string;
+    };
     children: ReactNode;
 }): import("react").JSX.Element;

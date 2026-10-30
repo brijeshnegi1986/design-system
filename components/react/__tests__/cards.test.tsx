@@ -23,6 +23,20 @@ describe("Card", () => {
 });
 
 describe("StatCard", () => {
+  it("goes compact by itself when the card is narrow (two to a row on a phone), keeping its text sizes", () => {
+    const card = el(<StatCard label="Channels connected" value="1 of 3" caption="Each connected account counts as one" />);
+    // The card is a size container; its content tightens below 15rem wide.
+    expect(card.className).toContain("@container");
+    const body = card.firstElementChild as HTMLElement;
+    expect(body.className).toContain("p-6");
+    expect(body.className).toContain("@max-[15rem]:p-4");
+    const value = card.querySelector('[data-part="value"]')!;
+    expect(value.className).toContain("@max-[15rem]:text-(length:--type-font-size-h3)");
+    // Label and caption keep their sizes (readability), and wrap rather than cut off.
+    expect(card.querySelector('[data-part="label"]')!.className).not.toContain("@max-");
+    expect(card.querySelector('[data-part="label"]')!.className).not.toContain("truncate");
+  });
+
   it("puts the label above a large tabular value, with the caption under it", () => {
     const card = el(<StatCard label="Posts published" value="1,248" caption="Last 30 days" />);
     expect(card.querySelector('[data-part="label"]')!.textContent).toBe("Posts published");
