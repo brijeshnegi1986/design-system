@@ -54,6 +54,8 @@ describe("SidePanel that can be pushed in and pulled out", () => {
     expect(button.getAttribute("aria-label")).toBe("Show Preview");
     expect(el.className).toContain("xl:w-12");
     expect(el.getAttribute("data-state")).toBe("collapsed");
+    // From xl a full-height strip at the window's edge, under the page header.
+    expect(el.className).toMatch(/xl:fixed\b.*xl:top-16\b.*xl:bottom-0\b/);
   });
 
   it("calls onToggle from the handle", async () => {
@@ -83,5 +85,99 @@ describe("SidePanel that can be pushed in and pulled out", () => {
     );
     expect(el.getAttribute("aria-labelledby")).toBe("tray-title");
     expect(el.querySelector("h2")!.id).toBe("tray-title");
+  });
+});
+
+describe("SidePanel pulled out: a proper side panel", () => {
+  type Rendered = { host: HTMLDivElement; unmount: () => void; rerender: (open: boolean) => void };
+  let toggled = 0;
+
+  function setWide(wide: boolean) {
+    window.matchMedia = ((query: string) => ({
+      matches: query.includes("max-width") ? !wide : wide,
+      media: query,
+      addEventListener() {},
+      removeEventListener() {},
+    })) as unknown as typeof window.matchMedia;
+  }
+
+  async function mount(open: boolean, side: "left" | "right" = "right"): Promise<Rendered> {
+    const { createRoot } = await import("react-dom/client");
+    const { act } = await import("react");
+    (globalThis as { IS_REACT_ACT_ENVIRONMENT?: boolean }).IS_REACT_ACT_ENVIRONMENT = true;
+    toggled = 0;
+    const host = document.createElement("div");
+    document.body.appendChild(host);
+    const root = createRoot(host);
+    const render = (o: boolean) =>
+      act(() => root.render(<SidePanel label="Your post" collapse={{ open: o, onToggle: () => toggled++, side }}>x</SidePanel>));
+    render(open);
+    return {
+      host,
+      rerender: render,
+      unmount: () => {
+        act(() => root.unmount());
+        host.remove();
+      },
+    };
+  }
+
+  it("from xl, runs from under the header to the bottom of the window, with its own scroll", () => {
+    const right = aside(<SidePanel label="Your post" collapse={{ open: true, onToggle: () => {}, side: "right" }}>x</SidePanel>);
+    expect(right.className).toMatch(/(^| )fixed\b/);
+    expect(right.className).toMatch(/xl:top-16\b/);
+    expect(right.className).toMatch(/xl:bottom-0\b/);
+    expect(right.className).toMatch(/xl:w-96\b/);
+    expect(right.className).toMatch(/\bright-0\b/);
+    expect(right.className).toContain("overflow-y-auto");
+    // It says where it docks, so the page can keep that room free.
+    expect(right.getAttribute("data-dock")).toBe("right");
+    expect(right.getAttribute("data-size")).toBe("md");
+    // On the left it docks against the app's sidebar.
+    const left = aside(<SidePanel label="Ready to post" collapse={{ open: true, onToggle: () => {}, side: "left" }}>x</SidePanel>);
+    expect(left.className).toContain("xl:left-[var(--app-sidebar-width,0px)]");
+  });
+
+  it("below xl, slides over the page with a scrim that closes it", async () => {
+    setWide(false);
+    const { act } = await import("react");
+    const r = await mount(true);
+    const scrim = r.host.querySelector<HTMLElement>("[data-side-panel-scrim]")!;
+    expect(scrim.className).toContain("xl:hidden");
+    act(() => scrim.click());
+    expect(toggled).toBe(1);
+    r.unmount();
+  });
+
+  it("below xl, Escape closes it; docked from xl, Escape leaves it", async () => {
+    const { act } = await import("react");
+    setWide(false);
+    let r = await mount(true);
+    act(() => { document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape" })); });
+    expect(toggled).toBe(1);
+    r.unmount();
+    setWide(true);
+    r = await mount(true);
+    act(() => { document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape" })); });
+    expect(toggled).toBe(0);
+    r.unmount();
+  });
+
+  it("below xl, opening moves focus into it, and closing brings it back to the handle", async () => {
+    setWide(false);
+    const r = await mount(false);
+    r.rerender(true);
+    expect(document.activeElement?.getAttribute("aria-label")).toBe("Hide Your post");
+    r.rerender(false);
+    expect(document.activeElement?.getAttribute("aria-label")).toBe("Show Your post");
+    r.unmount();
+  });
+
+  it("comes in a narrow size, 256px, for a tray beside a wide grid", () => {
+    const el = aside(<SidePanel label="Ready to post" collapse={{ open: true, onToggle: () => {}, side: "left", size: "sm" }}>x</SidePanel>);
+    expect(el.className).toMatch(/xl:w-64\b/);
+    expect(el.getAttribute("data-size")).toBe("sm");
+    const closed = aside(<SidePanel label="Ready to post" collapse={{ open: false, onToggle: () => {}, side: "left", size: "sm" }}>x</SidePanel>);
+    expect(closed.getAttribute("data-dock")).toBe("left");
   });
 });

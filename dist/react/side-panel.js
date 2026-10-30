@@ -1,9 +1,17 @@
 "use client";
-import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import { jsx as _jsx, jsxs as _jsxs, Fragment as _Fragment } from "react/jsx-runtime";
+import { useEffect, useRef } from "react";
 /** A chevron pointing the way the handle moves the panel. */
 function Chevron({ direction }) {
     return (_jsx("svg", { "aria-hidden": true, viewBox: "0 0 20 20", className: `size-5 ${direction === "left" ? "rotate-180" : ""}`, fill: "none", children: _jsx("path", { d: "M8 5l5 5-5 5", stroke: "currentColor", strokeWidth: "1.75", strokeLinecap: "round", strokeLinejoin: "round" }) }));
 }
+/** Below xl the pulled-out panel is a drawer over the page. */
+const DRAWER_QUERY = "(max-width: 1279px)";
+function isDrawer() {
+    return typeof window !== "undefined" && typeof window.matchMedia === "function" && window.matchMedia(DRAWER_QUERY).matches;
+}
+/** The pushed-in strip's window edge from xl (the left one docks against the sidebar). */
+const EDGE = { right: "xl:right-0", left: "xl:left-[var(--app-sidebar-width,0px)]" };
 const HANDLE = "flex size-10 shrink-0 items-center justify-center rounded-full text-(--color-content-secondary) transition-colors hover:bg-(--color-surface-default) hover:text-(--color-content-primary) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-border-focus)";
 /**
  * A summary or secondary navigation beside a page's main content (Figma
@@ -20,21 +28,60 @@ const HANDLE = "flex size-10 shrink-0 items-center justify-center rounded-full t
  *
  * `collapse` lets people push it in and pull it out (a preview beside a
  * form, a tray beside a calendar). It then shows its own header: `label` as
- * the title and a 40px handle. Pushed in, it's a 48px strip with the handle
- * and the name on wide screens (xl), and a one-line "Show …" bar below that.
- * The page keeps the open/closed state (and may remember it).
+ * the title and a 40px handle. The page keeps the open/closed state (and
+ * may remember it).
+ * - From xl it's a proper side panel: fixed to the window's edge from under
+ *   the 64px page header to the bottom, 384px wide (256px at size "sm")
+ *   with its own scroll, or a 48px strip pushed in. It marks itself with
+ *   data-dock and data-size so the page can keep that room free. On the
+ *   left it docks against the app's sidebar, whose width the app gives as
+ *   --app-sidebar-width.
+ * - Below xl, pulled out, it slides over the page as a drawer, full height,
+ *   over a scrim; the scrim or Escape pushes it back in. Pushed in, it's a
+ *   one-line "Show …" bar where the page puts it.
+ * Opening as a drawer moves focus to its handle; pushing it in brings focus
+ * back to the Show handle rather than losing it.
  */
 export function SidePanel({ label, labelledBy, className = "", collapse, children, }) {
+    const open = collapse?.open;
+    const onToggle = collapse?.onToggle;
+    const hideRef = useRef(null);
+    const showRef = useRef(null);
+    const wasOpen = useRef(open);
+    // Focus follows the panel: into the drawer when it opens, and back to the
+    // Show handle when it's pushed in (its Hide handle is gone with it).
+    useEffect(() => {
+        if (open === undefined || wasOpen.current === open)
+            return;
+        wasOpen.current = open;
+        if (open && isDrawer())
+            hideRef.current?.focus();
+        if (!open && (!document.activeElement || document.activeElement === document.body))
+            showRef.current?.focus();
+    }, [open]);
+    // Escape pushes the drawer back in; docked beside the page, it stays.
+    useEffect(() => {
+        if (!open || !onToggle)
+            return;
+        const onKey = (event) => {
+            if (event.key === "Escape" && isDrawer())
+                onToggle();
+        };
+        document.addEventListener("keydown", onKey);
+        return () => document.removeEventListener("keydown", onKey);
+    }, [open, onToggle]);
     if (!collapse) {
         return (_jsx("aside", { "aria-label": labelledBy ? undefined : label, "aria-labelledby": labelledBy, className: `flex flex-col gap-5 rounded-(--radius-lg) bg-(--color-surface-raised) p-6 ${className}`.trim(), children: children }));
     }
-    const { open, onToggle, side, controls } = collapse;
+    const { side, controls, size = "md" } = collapse;
+    // Where it docks and how wide, so the page can keep that room free.
+    const dock = { "data-dock": side, "data-size": size };
     const name = label ?? "";
     // Pushing in moves it toward its own edge; pulling out, away from it.
     const pushIn = side;
     const pullOut = side === "right" ? "left" : "right";
     if (!open) {
-        return (_jsxs("aside", { "aria-label": labelledBy ? undefined : label, "aria-labelledby": labelledBy, "data-state": "collapsed", className: `flex items-center gap-2 rounded-(--radius-lg) bg-(--color-surface-raised) p-1.5 xl:w-12 xl:flex-col xl:self-stretch xl:py-3 ${className}`.trim(), children: [_jsx("button", { type: "button", "aria-expanded": false, "aria-controls": controls, "aria-label": `Show ${name}`, title: `Show ${name}`, onClick: onToggle, className: HANDLE, children: _jsx(Chevron, { direction: pullOut }) }), _jsx("span", { "aria-hidden": true, className: "text-sm font-medium text-(--color-content-secondary) xl:[writing-mode:vertical-rl]", children: name })] }));
+        return (_jsxs("aside", { "aria-label": labelledBy ? undefined : label, "aria-labelledby": labelledBy, "data-state": "collapsed", ...dock, className: `flex items-center gap-2 rounded-(--radius-lg) bg-(--color-surface-raised) p-1.5 xl:fixed xl:top-16 xl:bottom-0 xl:z-10 xl:w-12 xl:flex-col xl:rounded-none xl:py-3 ${EDGE[side]} ${className}`.trim(), children: [_jsx("button", { ref: showRef, type: "button", "aria-expanded": false, "aria-controls": controls, "aria-label": `Show ${name}`, title: `Show ${name}`, onClick: onToggle, className: HANDLE, children: _jsx(Chevron, { direction: pullOut }) }), _jsx("span", { "aria-hidden": true, className: "text-sm font-medium text-(--color-content-secondary) xl:[writing-mode:vertical-rl]", children: name })] }));
     }
-    return (_jsxs("aside", { "aria-label": labelledBy ? undefined : label, "aria-labelledby": labelledBy, "data-state": "expanded", className: `flex flex-col gap-5 rounded-(--radius-lg) bg-(--color-surface-raised) p-6 ${className}`.trim(), children: [_jsxs("div", { className: "-my-2 flex items-center justify-between gap-2", children: [_jsx("h2", { id: labelledBy, className: "text-base font-semibold text-(--color-content-primary)", children: name }), _jsx("button", { type: "button", "aria-expanded": true, "aria-controls": controls, "aria-label": `Hide ${name}`, title: `Hide ${name}`, onClick: onToggle, className: `${HANDLE} -mr-2`, children: _jsx(Chevron, { direction: pushIn }) })] }), _jsx("div", { id: controls, className: "flex flex-col gap-5", children: children })] }));
+    return (_jsxs(_Fragment, { children: [_jsx("div", { "data-side-panel-scrim": true, "aria-hidden": true, onClick: onToggle, className: "fixed inset-0 z-40 bg-(--color-overlay-scrim) xl:hidden" }), _jsxs("aside", { "aria-label": labelledBy ? undefined : label, "aria-labelledby": labelledBy, "data-state": "expanded", ...dock, className: `fixed inset-y-0 z-50 flex w-[min(24rem,calc(100vw-2rem))] ${size === "sm" ? "xl:w-64" : "xl:w-96"} flex-col gap-5 overflow-y-auto bg-(--color-surface-raised) p-6 shadow-[0_var(--elevation-lg)_24px_rgb(0_0_0/0.16)] xl:top-16 xl:bottom-0 xl:z-10 xl:shadow-none ${side === "right" ? "right-0" : "left-0 xl:left-[var(--app-sidebar-width,0px)]"} ${className}`.trim(), children: [_jsxs("div", { className: "-my-2 flex items-center justify-between gap-2", children: [_jsx("h2", { id: labelledBy, className: "text-base font-semibold text-(--color-content-primary)", children: name }), _jsx("button", { ref: hideRef, type: "button", "aria-expanded": true, "aria-controls": controls, "aria-label": `Hide ${name}`, title: `Hide ${name}`, onClick: onToggle, className: `${HANDLE} -mr-2`, children: _jsx(Chevron, { direction: pushIn }) })] }), _jsx("div", { id: controls, className: "flex flex-col gap-5", children: children })] })] }));
 }

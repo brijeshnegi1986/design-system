@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { type ReactNode } from "react";
 /**
  * A summary or secondary navigation beside a page's main content (Figma
  * "Side panel", page 35): a profile's steps and who it writes as, the free
@@ -14,9 +14,19 @@ import type { ReactNode } from "react";
  *
  * `collapse` lets people push it in and pull it out (a preview beside a
  * form, a tray beside a calendar). It then shows its own header: `label` as
- * the title and a 40px handle. Pushed in, it's a 48px strip with the handle
- * and the name on wide screens (xl), and a one-line "Show …" bar below that.
- * The page keeps the open/closed state (and may remember it).
+ * the title and a 40px handle. The page keeps the open/closed state (and
+ * may remember it).
+ * - From xl it's a proper side panel: fixed to the window's edge from under
+ *   the 64px page header to the bottom, 384px wide (256px at size "sm")
+ *   with its own scroll, or a 48px strip pushed in. It marks itself with
+ *   data-dock and data-size so the page can keep that room free. On the
+ *   left it docks against the app's sidebar, whose width the app gives as
+ *   --app-sidebar-width.
+ * - Below xl, pulled out, it slides over the page as a drawer, full height,
+ *   over a scrim; the scrim or Escape pushes it back in. Pushed in, it's a
+ *   one-line "Show …" bar where the page puts it.
+ * Opening as a drawer moves focus to its handle; pushing it in brings focus
+ * back to the Show handle rather than losing it.
  */
 export declare function SidePanel({ label, labelledBy, className, collapse, children, }: {
     label?: string;
@@ -29,6 +39,9 @@ export declare function SidePanel({ label, labelledBy, className, collapse, chil
         side: "left" | "right";
         /** The id of the content it hides, for aria-controls. */
         controls?: string;
+        /** Its width pulled out from xl: md 384px (default), sm 256px for a
+         * tray beside a wide grid. */
+        size?: "sm" | "md";
     };
     children: ReactNode;
 }): import("react").JSX.Element;
