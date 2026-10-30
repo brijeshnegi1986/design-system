@@ -12,6 +12,10 @@ import { CARD_BASE_CLASS } from "./card.js";
  * up is bad news (say, failed posts). `meter` adds a bar under the value for
  * usage against a limit; it turns to the warning colour once the limit is
  * reached.
+ *
+ * It goes compact by itself when the card is narrow (under 15rem, say two to
+ * a row on a phone): 16px padding and a 24px value. The label and caption
+ * keep their sizes and wrap, so it reads the same, just smaller.
  */
 export function StatCard({
   label,
@@ -34,7 +38,8 @@ export function StatCard({
 }) {
   const positive = trend ? (trend.good ?? trend.direction === "up") : false;
   return (
-    <div className={`${CARD_BASE_CLASS} flex min-w-0 flex-col gap-2 p-6 ${className}`.trim()}>
+    <div className={`${CARD_BASE_CLASS} @container min-w-0 ${className}`.trim()}>
+      <div className="flex flex-col gap-2 p-6 @max-[15rem]:gap-1.5 @max-[15rem]:p-4">
       <div className="flex items-center gap-2">
         <p data-part="label" className="min-w-0 flex-1 text-(length:--type-font-size-body-small) leading-(--type-line-height-body-small) font-medium text-(--color-content-secondary)">
           {label}
@@ -45,7 +50,7 @@ export function StatCard({
           </span>
         )}
       </div>
-      <p data-part="value" className="text-(length:--type-font-size-h2) leading-(--type-line-height-h2) font-semibold text-(--color-content-primary) tabular-nums">
+      <p data-part="value" className="text-(length:--type-font-size-h2) leading-(--type-line-height-h2) font-semibold text-(--color-content-primary) tabular-nums @max-[15rem]:text-(length:--type-font-size-h3) @max-[15rem]:leading-(--type-line-height-h3)">
         {value}
       </p>
       {meter && meter.max > 0 && (
@@ -79,6 +84,7 @@ export function StatCard({
           )}
         </div>
       )}
+      </div>
     </div>
   );
 }
