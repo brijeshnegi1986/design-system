@@ -1,6 +1,6 @@
 /*
- * @jeshapps/design-system/react/styles.css - what the React components need
- * besides the token CSS (@jeshapps/design-system/css/base or a brand file).
+ * @jeshapps/nds/react/styles.css - what the React components need
+ * besides the token CSS (@jeshapps/nds/css/base or a brand file).
  * Import it once, unlayered, after the tokens.
  *
  * Native fields: every single-line <input> and <select> becomes the NDS

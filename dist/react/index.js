@@ -1,5 +1,5 @@
 /**
- * @jeshapps/design-system/react - the NDS components for React web apps.
+ * @jeshapps/nds/react - the NDS components for React web apps.
  * Styling is Tailwind v4 utility classes on the NDS CSS variables: import the
  * token CSS and ./styles.css, and add the package to Tailwind's sources
  * (see README "Using the React components").

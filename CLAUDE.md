@@ -1,8 +1,8 @@
-# JeshApps Design System
+# NDS
 
 ## Purpose
 
-This repository is the shared design system for projects inside `~/JeshApps`.
+This repository is NDS, the shared design system for projects inside `~/JeshApps`.
 
 It is the single source of truth for:
 
