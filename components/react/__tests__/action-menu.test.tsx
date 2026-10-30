@@ -1,0 +1,82 @@
+/** ActionMenu: a row's "⋯" menu of actions. */
+import { afterEach, describe, expect, it } from "vitest";
+import { act } from "react";
+import { createRoot, type Root } from "react-dom/client";
+import { ActionMenu } from "../src/index.js";
+
+(globalThis as { IS_REACT_ACT_ENVIRONMENT?: boolean }).IS_REACT_ACT_ENVIRONMENT = true;
+
+let host: HTMLDivElement;
+let root: Root;
+afterEach(() => {
+  act(() => root.unmount());
+  host.remove();
+});
+
+function mount(calls: string[], disabled = false) {
+  host = document.createElement("div");
+  document.body.appendChild(host);
+  root = createRoot(host);
+  act(() =>
+    root.render(
+      <ActionMenu
+        label="Actions for Growth"
+        items={[
+          { label: "Edit", onSelect: () => calls.push("edit") },
+          { label: "Archive", onSelect: () => calls.push("archive"), disabled, tone: "danger" },
+        ]}
+      />,
+    ),
+  );
+  return host.querySelector<HTMLButtonElement>("button[aria-haspopup='menu']")!;
+}
+
+describe("ActionMenu", () => {
+  it("is a named ⋯ button that opens a menu of actions", () => {
+    const button = mount([]);
+    expect(button.getAttribute("aria-label")).toBe("Actions for Growth");
+    expect(button.getAttribute("aria-expanded")).toBe("false");
+    expect(host.querySelector("[role='menu']")).toBeNull();
+    act(() => button.click());
+    expect(button.getAttribute("aria-expanded")).toBe("true");
+    const items = [...host.querySelectorAll("[role='menuitem']")].map((i) => i.textContent);
+    expect(items).toEqual(["Edit", "Archive"]);
+    expect(document.activeElement?.textContent).toBe("Edit");
+  });
+
+  it("runs an action and closes, giving focus back to the button", () => {
+    const calls: string[] = [];
+    const button = mount(calls);
+    act(() => button.click());
+    act(() => host.querySelector<HTMLButtonElement>("[role='menuitem']")!.click());
+    expect(calls).toEqual(["edit"]);
+    expect(host.querySelector("[role='menu']")).toBeNull();
+    expect(document.activeElement).toBe(button);
+  });
+
+  it("moves with the arrow keys and closes on Escape", () => {
+    const button = mount([]);
+    act(() => button.click());
+    const menu = host.querySelector("[role='menu']")!;
+    act(() => { menu.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowDown", bubbles: true })); });
+    expect(document.activeElement?.textContent).toBe("Archive");
+    act(() => { menu.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true })); });
+    expect(host.querySelector("[role='menu']")).toBeNull();
+    expect(document.activeElement).toBe(button);
+  });
+
+  it("can't run a disabled action", () => {
+    const calls: string[] = [];
+    const button = mount(calls, true);
+    act(() => button.click());
+    const archive = [...host.querySelectorAll<HTMLButtonElement>("[role='menuitem']")][1];
+    expect(archive.disabled).toBe(true);
+  });
+
+  it("closes when you click elsewhere", () => {
+    const button = mount([]);
+    act(() => button.click());
+    act(() => { document.body.dispatchEvent(new MouseEvent("mousedown", { bubbles: true })); });
+    expect(host.querySelector("[role='menu']")).toBeNull();
+  });
+});

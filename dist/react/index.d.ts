@@ -4,6 +4,7 @@
  * token CSS and ./styles.css, and add the package to Tailwind's sources
  * (see README "Using the React components").
  */
+export { ActionMenu, type ActionMenuItem } from "./action-menu.js";
 export { Alert, type AlertTone } from "./alert.js";
 export { Banner, type BannerVariant } from "./banner.js";
 export { Badge, type BadgeTone } from "./badge.js";
