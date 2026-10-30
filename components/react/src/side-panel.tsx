@@ -105,7 +105,7 @@ export function SidePanel({
       className={`flex flex-col gap-5 rounded-(--radius-lg) bg-(--color-surface-raised) p-6 ${className}`.trim()}
     >
       <div className="-my-2 flex items-center justify-between gap-2">
-        <h2 className="text-base font-semibold text-(--color-content-primary)">{name}</h2>
+        <h2 id={labelledBy} className="text-base font-semibold text-(--color-content-primary)">{name}</h2>
         <button
           type="button"
           aria-expanded

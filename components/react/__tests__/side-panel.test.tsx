@@ -76,4 +76,12 @@ describe("SidePanel that can be pushed in and pulled out", () => {
     expect(el.querySelector("button")).toBeNull();
     expect(el.hasAttribute("data-state")).toBe(false);
   });
+
+  it("names itself by its own header when labelledBy is given", () => {
+    const el = aside(
+      <SidePanel label="Ready to post" labelledBy="tray-title" collapse={{ open: true, onToggle: () => {}, side: "left" }}>x</SidePanel>,
+    );
+    expect(el.getAttribute("aria-labelledby")).toBe("tray-title");
+    expect(el.querySelector("h2")!.id).toBe("tray-title");
+  });
 });
