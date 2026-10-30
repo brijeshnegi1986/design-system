@@ -1,6 +1,6 @@
 "use client";
 
-import type { ReactNode } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 
 /** A chevron pointing the way the handle moves the panel. */
 function Chevron({ direction }: { direction: "left" | "right" }) {
@@ -10,6 +10,15 @@ function Chevron({ direction }: { direction: "left" | "right" }) {
     </svg>
   );
 }
+
+/** Below xl the pulled-out panel is a drawer over the page. */
+const DRAWER_QUERY = "(max-width: 1279px)";
+function isDrawer(): boolean {
+  return typeof window !== "undefined" && typeof window.matchMedia === "function" && window.matchMedia(DRAWER_QUERY).matches;
+}
+
+/** The pushed-in strip's window edge from xl (the left one docks against the sidebar). */
+const EDGE = { right: "xl:right-0", left: "xl:left-[var(--app-sidebar-width,0px)]" } as const;
 
 const HANDLE =
   "flex size-10 shrink-0 items-center justify-center rounded-full text-(--color-content-secondary) transition-colors hover:bg-(--color-surface-default) hover:text-(--color-content-primary) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-border-focus)";
@@ -29,9 +38,19 @@ const HANDLE =
  *
  * `collapse` lets people push it in and pull it out (a preview beside a
  * form, a tray beside a calendar). It then shows its own header: `label` as
- * the title and a 40px handle. Pushed in, it's a 48px strip with the handle
- * and the name on wide screens (xl), and a one-line "Show …" bar below that.
- * The page keeps the open/closed state (and may remember it).
+ * the title and a 40px handle. The page keeps the open/closed state (and
+ * may remember it).
+ * - From xl it's a proper side panel: fixed to the window's edge from under
+ *   the 64px page header to the bottom, 384px wide (256px at size "sm")
+ *   with its own scroll, or a 48px strip pushed in. It marks itself with
+ *   data-dock and data-size so the page can keep that room free. On the
+ *   left it docks against the app's sidebar, whose width the app gives as
+ *   --app-sidebar-width.
+ * - Below xl, pulled out, it slides over the page as a drawer, full height,
+ *   over a scrim; the scrim or Escape pushes it back in. Pushed in, it's a
+ *   one-line "Show …" bar where the page puts it.
+ * Opening as a drawer moves focus to its handle; pushing it in brings focus
+ * back to the Show handle rather than losing it.
  */
 export function SidePanel({
   label,
@@ -50,9 +69,37 @@ export function SidePanel({
     side: "left" | "right";
     /** The id of the content it hides, for aria-controls. */
     controls?: string;
+    /** Its width pulled out from xl: md 384px (default), sm 256px for a
+     * tray beside a wide grid. */
+    size?: "sm" | "md";
   };
   children: ReactNode;
 }) {
+  const open = collapse?.open;
+  const onToggle = collapse?.onToggle;
+  const hideRef = useRef<HTMLButtonElement>(null);
+  const showRef = useRef<HTMLButtonElement>(null);
+  const wasOpen = useRef(open);
+
+  // Focus follows the panel: into the drawer when it opens, and back to the
+  // Show handle when it's pushed in (its Hide handle is gone with it).
+  useEffect(() => {
+    if (open === undefined || wasOpen.current === open) return;
+    wasOpen.current = open;
+    if (open && isDrawer()) hideRef.current?.focus();
+    if (!open && (!document.activeElement || document.activeElement === document.body)) showRef.current?.focus();
+  }, [open]);
+
+  // Escape pushes the drawer back in; docked beside the page, it stays.
+  useEffect(() => {
+    if (!open || !onToggle) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape" && isDrawer()) onToggle();
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [open, onToggle]);
+
   if (!collapse) {
     return (
       <aside
@@ -65,7 +112,9 @@ export function SidePanel({
     );
   }
 
-  const { open, onToggle, side, controls } = collapse;
+  const { side, controls, size = "md" } = collapse;
+  // Where it docks and how wide, so the page can keep that room free.
+  const dock = { "data-dock": side, "data-size": size };
   const name = label ?? "";
   // Pushing in moves it toward its own edge; pulling out, away from it.
   const pushIn = side;
@@ -77,9 +126,11 @@ export function SidePanel({
         aria-label={labelledBy ? undefined : label}
         aria-labelledby={labelledBy}
         data-state="collapsed"
-        className={`flex items-center gap-2 rounded-(--radius-lg) bg-(--color-surface-raised) p-1.5 xl:w-12 xl:flex-col xl:self-stretch xl:py-3 ${className}`.trim()}
+        {...dock}
+        className={`flex items-center gap-2 rounded-(--radius-lg) bg-(--color-surface-raised) p-1.5 xl:fixed xl:top-16 xl:bottom-0 xl:z-10 xl:w-12 xl:flex-col xl:rounded-none xl:py-3 ${EDGE[side]} ${className}`.trim()}
       >
         <button
+          ref={showRef}
           type="button"
           aria-expanded={false}
           aria-controls={controls}
@@ -98,15 +149,24 @@ export function SidePanel({
   }
 
   return (
+    <>
+    <div
+      data-side-panel-scrim
+      aria-hidden
+      onClick={onToggle}
+      className="fixed inset-0 z-40 bg-(--color-overlay-scrim) xl:hidden"
+    />
     <aside
       aria-label={labelledBy ? undefined : label}
       aria-labelledby={labelledBy}
       data-state="expanded"
-      className={`flex flex-col gap-5 rounded-(--radius-lg) bg-(--color-surface-raised) p-6 ${className}`.trim()}
+      {...dock}
+      className={`fixed inset-y-0 z-50 flex w-[min(24rem,calc(100vw-2rem))] ${size === "sm" ? "xl:w-64" : "xl:w-96"} flex-col gap-5 overflow-y-auto bg-(--color-surface-raised) p-6 shadow-[0_var(--elevation-lg)_24px_rgb(0_0_0/0.16)] xl:top-16 xl:bottom-0 xl:z-10 xl:shadow-none ${side === "right" ? "right-0" : "left-0 xl:left-[var(--app-sidebar-width,0px)]"} ${className}`.trim()}
     >
       <div className="-my-2 flex items-center justify-between gap-2">
         <h2 id={labelledBy} className="text-base font-semibold text-(--color-content-primary)">{name}</h2>
         <button
+          ref={hideRef}
           type="button"
           aria-expanded
           aria-controls={controls}
@@ -122,5 +182,6 @@ export function SidePanel({
         {children}
       </div>
     </aside>
+    </>
   );
 }
