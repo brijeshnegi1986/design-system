@@ -36,6 +36,17 @@ describe("PostPreview", () => {
     expect(order("facebook")).toBe("image first");
     expect(order("linkedin")).toBe("image first");
     expect(order("instagram")).toBe("image first");
+    expect(order("threads")).toBe("image first");
+  });
+
+  it("shows Threads' icons under the text: like, reply, repost and share, as decoration", () => {
+    const el = dom(<PostPreview platform="threads" name="negiflow"><p data-body>Fresh rye is back.</p></PostPreview>);
+    const bar = el.querySelector("[data-reactions]")!;
+    expect(bar.getAttribute("aria-hidden")).toBe("true");
+    expect(bar.querySelectorAll("svg")).toHaveLength(4);
+    // Icons only, no Facebook-style words.
+    expect(bar.textContent).toBe("");
+    expect(el.querySelector("[data-body]")!.compareDocumentPosition(bar) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
   });
 
   it("shows the channel's reactions as decoration, hidden from screen readers", () => {
