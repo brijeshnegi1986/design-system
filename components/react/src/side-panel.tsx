@@ -56,12 +56,17 @@ export function SidePanel({
   label,
   labelledBy,
   className = "",
+  dock,
   collapse,
   children,
 }: {
   label?: string;
   labelledBy?: string;
   className?: string;
+  /** Docked full height at this window edge from xl, always out (a page's
+   * own controls, which shouldn't be pushed away); in the page's flow below
+   * xl. The page keeps its room free, as for a collapsible one. */
+  dock?: "left" | "right";
   collapse?: {
     open: boolean;
     onToggle: () => void;
@@ -101,11 +106,15 @@ export function SidePanel({
   }, [open, onToggle]);
 
   if (!collapse) {
+    const docked = dock
+      ? `overflow-y-auto xl:fixed xl:top-16 xl:bottom-0 xl:z-10 xl:w-96 xl:rounded-none ${EDGE[dock]}`
+      : "";
     return (
       <aside
         aria-label={labelledBy ? undefined : label}
         aria-labelledby={labelledBy}
-        className={`flex flex-col gap-5 rounded-(--radius-lg) bg-(--color-surface-raised) p-6 ${className}`.trim()}
+        {...(dock ? { "data-dock": dock, "data-size": "md", "data-state": "expanded" } : {})}
+        className={`flex flex-col gap-5 rounded-(--radius-lg) bg-(--color-surface-raised) p-6 ${docked} ${className}`.replace(/\s+/g, " ").trim()}
       >
         {children}
       </aside>
@@ -114,7 +123,7 @@ export function SidePanel({
 
   const { side, controls, size = "md" } = collapse;
   // Where it docks and how wide, so the page can keep that room free.
-  const dock = { "data-dock": side, "data-size": size };
+  const dockAttrs = { "data-dock": side, "data-size": size };
   const name = label ?? "";
   // Pushing in moves it toward its own edge; pulling out, away from it.
   const pushIn = side;
@@ -126,7 +135,7 @@ export function SidePanel({
         aria-label={labelledBy ? undefined : label}
         aria-labelledby={labelledBy}
         data-state="collapsed"
-        {...dock}
+        {...dockAttrs}
         className={`flex items-center gap-2 rounded-(--radius-lg) bg-(--color-surface-raised) p-1.5 xl:fixed xl:top-16 xl:bottom-0 xl:z-10 xl:w-12 xl:flex-col xl:rounded-none xl:py-3 ${EDGE[side]} ${className}`.trim()}
       >
         <button
@@ -160,7 +169,7 @@ export function SidePanel({
       aria-label={labelledBy ? undefined : label}
       aria-labelledby={labelledBy}
       data-state="expanded"
-      {...dock}
+      {...dockAttrs}
       className={`fixed inset-y-0 z-50 flex w-[min(24rem,calc(100vw-2rem))] ${size === "sm" ? "xl:w-64" : "xl:w-96"} flex-col gap-5 overflow-y-auto bg-(--color-surface-raised) p-6 shadow-[0_var(--elevation-lg)_24px_rgb(0_0_0/0.16)] xl:top-16 xl:bottom-0 xl:z-10 xl:shadow-none ${side === "right" ? "right-0" : "left-0 xl:left-[var(--app-sidebar-width,0px)]"} ${className}`.trim()}
     >
       <div className="-my-2 flex items-center justify-between gap-2">

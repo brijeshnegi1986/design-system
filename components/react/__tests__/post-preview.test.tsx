@@ -1,0 +1,70 @@
+/** PostPreview: a social post as it will look on its channel. */
+import { describe, expect, it } from "vitest";
+import { renderToStaticMarkup } from "react-dom/server";
+import { PostPreview, SidePanel } from "../src/index.js";
+
+const dom = (node: React.ReactElement) =>
+  new DOMParser().parseFromString(renderToStaticMarkup(node), "text/html").body.firstElementChild as HTMLElement;
+
+describe("PostPreview", () => {
+  it("shows who posts it, when, the text and the image, like the channel does", () => {
+    const el = dom(
+      <PostPreview platform="facebook" name="NegiFlow" meta="Just now · Facebook" image="https://cdn.example/p.jpg" imageAlt="Fresh rye">
+        <p>Fresh rye is back.</p>
+      </PostPreview>,
+    );
+    expect(el.getAttribute("data-platform")).toBe("facebook");
+    expect(el.textContent).toContain("NegiFlow");
+    expect(el.textContent).toContain("Just now · Facebook");
+    expect(el.textContent).toContain("Fresh rye is back.");
+    expect(el.querySelector("img")!.getAttribute("alt")).toBe("Fresh rye");
+    // The avatar is the name's first letter without a picture.
+    expect(el.querySelector("[data-avatar]")!.textContent).toBe("N");
+  });
+
+  it("puts the image on top and the text under it, on every channel", () => {
+    const order = (platform: string) => {
+      const el = dom(
+        <PostPreview platform={platform} name="NegiFlow" image="https://cdn.example/p.jpg">
+          <p data-body>Text</p>
+        </PostPreview>,
+      );
+      const body = el.querySelector("[data-body]")!;
+      const img = el.querySelector("img")!;
+      return body.compareDocumentPosition(img) & Node.DOCUMENT_POSITION_FOLLOWING ? "text first" : "image first";
+    };
+    expect(order("facebook")).toBe("image first");
+    expect(order("linkedin")).toBe("image first");
+    expect(order("instagram")).toBe("image first");
+  });
+
+  it("shows the channel's reactions as decoration, hidden from screen readers", () => {
+    const el = dom(<PostPreview platform="linkedin" name="NegiFlow"><p>x</p></PostPreview>);
+    const bar = el.querySelector("[data-reactions]")!;
+    expect(bar.getAttribute("aria-hidden")).toBe("true");
+    expect(bar.textContent).toContain("Repost");
+  });
+
+  it("shows a placeholder where Instagram's image goes until there is one", () => {
+    const el = dom(
+      <PostPreview platform="instagram" name="negiflow" imagePlaceholder="Add an image to post on Instagram">
+        <p>x</p>
+      </PostPreview>,
+    );
+    expect(el.querySelector("img")).toBeNull();
+    expect(el.textContent).toContain("Add an image to post on Instagram");
+  });
+});
+
+describe("SidePanel docked without collapse", () => {
+  it("is always out, docked full height from xl, and says where it docks", () => {
+    const el = dom(<SidePanel label="Review and publish" dock="right">x</SidePanel>);
+    expect(el.tagName).toBe("ASIDE");
+    expect(el.getAttribute("data-dock")).toBe("right");
+    expect(el.getAttribute("data-state")).toBe("expanded");
+    expect(el.className).toMatch(/xl:fixed\b.*xl:top-16\b.*xl:bottom-0\b/);
+    expect(el.className).toContain("xl:right-0");
+    expect(el.className).toContain("overflow-y-auto");
+    expect(el.querySelector("button")).toBeNull();
+  });
+});
