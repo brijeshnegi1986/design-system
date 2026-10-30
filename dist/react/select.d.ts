@@ -1,7 +1,12 @@
+import type { ReactNode } from "react";
 export type SelectOption = {
     value: string;
     label: string;
     disabled?: boolean;
+    /** A 20px icon before the label, in the menu and on the button (a view menu). */
+    icon?: ReactNode;
+    /** A line above this option, to start a group (say, List after the time views). */
+    separatorBefore?: boolean;
 };
 /**
  * The NDS dropdown (Figma "Dropdown Example", node 820:453, and its

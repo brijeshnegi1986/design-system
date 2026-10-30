@@ -179,3 +179,45 @@ describe("Select: inline", () => {
     expect(container.querySelector("[data-dropdown-nob]")).toBeNull();
   });
 });
+
+describe("Select with icons and a separator (a view menu)", () => {
+  const VIEWS: SelectOption[] = [
+    { value: "day", label: "Day", icon: <svg data-icon="day" /> },
+    { value: "week", label: "Week", icon: <svg data-icon="week" /> },
+    { value: "list", label: "List", icon: <svg data-icon="list" />, separatorBefore: true },
+  ];
+
+  function renderViews(initial = "week") {
+    container = document.createElement("div");
+    document.body.appendChild(container);
+    root = createRoot(container);
+    function Views() {
+      const [value, setValue] = useState(initial);
+      return <Select size="sm" aria-label="View" value={value} onChange={(v) => { onChange(v); setValue(v); }} options={VIEWS} />;
+    }
+    act(() => root.render(<Views />));
+  }
+
+  it("shows the chosen option's icon with its name on the button", () => {
+    renderViews();
+    expect(trigger().querySelector('[data-icon="week"]')).not.toBeNull();
+    expect(trigger().textContent).toContain("Week");
+  });
+
+  it("puts each option's icon beside its name, and a line above the one after the separator", () => {
+    renderViews();
+    act(() => trigger().click());
+    expect(options().map((o) => o.textContent?.trim())).toEqual(["Day", "Week", "List"]);
+    expect(options()[0].querySelector('[data-icon="day"]')!.closest("[aria-hidden]")).not.toBeNull();
+    expect(options()[2].getAttribute("data-separator")).toBe("true");
+    expect(options()[1].hasAttribute("data-separator")).toBe(false);
+  });
+
+  it("still moves through every option with the arrow keys, across the separator", () => {
+    renderViews("week");
+    key("ArrowDown");
+    key("ArrowDown");
+    key("Enter");
+    expect(onChange).toHaveBeenLastCalledWith("list");
+  });
+});

@@ -1,9 +1,18 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { KeyboardEvent, useEffect, useId, useRef, useState } from "react";
 import { iconMask, type IconName } from "./icons.js";
 
-export type SelectOption = { value: string; label: string; disabled?: boolean };
+export type SelectOption = {
+  value: string;
+  label: string;
+  disabled?: boolean;
+  /** A 20px icon before the label, in the menu and on the button (a view menu). */
+  icon?: ReactNode;
+  /** A line above this option, to start a group (say, List after the time views). */
+  separatorBefore?: boolean;
+};
 
 /** The NDS icon files, drawn as masks so they take the current text colour. */
 function Icon({ file, className }: { file: IconName; className: string }) {
@@ -199,6 +208,7 @@ export function Select({
         role="option"
         aria-selected={isSelected}
         aria-disabled={option.disabled || undefined}
+        data-separator={option.separatorBefore || undefined}
         // Mouse down, not click, so the button keeps focus.
         onMouseDown={(event) => event.preventDefault()}
         onClick={() => choose(index)}
@@ -208,6 +218,8 @@ export function Select({
           setActive(index);
         }}
         className={`flex items-center justify-between border-b border-(--color-border-subtle) font-normal last:border-b-0 ${
+          option.separatorBefore ? "mt-1.5 border-t-2 border-t-(--color-border-strong) pt-1.5" : ""
+        } ${
           small ? "h-[34px] gap-2 px-3 py-1 text-xs" : "gap-3 p-3 text-sm"
         } ${
           option.disabled
@@ -217,6 +229,11 @@ export function Select({
               }`
         }`}
       >
+        {option.icon && (
+          <span aria-hidden className="flex size-5 shrink-0 items-center justify-center text-(--color-content-secondary)">
+            {option.icon}
+          </span>
+        )}
         <span className="min-w-0 flex-1">{option.label}</span>
         {isSelected && <Icon file="check" className={`text-(--color-content-link) ${small ? "size-4" : "size-5"}`} />}
       </li>
@@ -243,6 +260,11 @@ export function Select({
         onKeyDown={onKeyDown}
         className={`flex w-full items-center rounded-full border text-left transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-border-focus) disabled:cursor-not-allowed disabled:border-(--color-border-disabled) disabled:bg-(--color-action-disabled) disabled:text-(--color-content-disabled) ${field} ${background} ${border}`}
       >
+        {selected?.icon && (
+          <span aria-hidden className="flex size-5 shrink-0 items-center justify-center text-(--color-content-secondary)">
+            {selected.icon}
+          </span>
+        )}
         <span className={`min-w-0 flex-1 truncate ${selected ? "text-(--color-content-primary)" : "text-(--color-content-muted)"}`}>
           {prefix && <span data-part="prefix" className="text-(--color-content-secondary)">{prefix}: </span>}
           {selected ? selected.label : placeholder}
