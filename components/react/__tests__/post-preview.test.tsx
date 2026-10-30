@@ -37,6 +37,7 @@ describe("PostPreview", () => {
     expect(order("linkedin")).toBe("image first");
     expect(order("instagram")).toBe("image first");
     expect(order("threads")).toBe("image first");
+    expect(order("pinterest")).toBe("image first");
   });
 
   it("shows Threads' icons under the text: like, reply, repost and share, as decoration", () => {
@@ -54,6 +55,19 @@ describe("PostPreview", () => {
     const bar = el.querySelector("[data-reactions]")!;
     expect(bar.getAttribute("aria-hidden")).toBe("true");
     expect(bar.textContent).toContain("Repost");
+  });
+
+  it("shows a Pin: a tall image, the Pin's title in bold, the text, and no reactions bar", () => {
+    const el = dom(
+      <PostPreview platform="pinterest" name="harbourlane" title="Keep a starter alive" image="https://cdn.example/p.jpg">
+        <p data-body>Feed it daily.</p>
+      </PostPreview>,
+    );
+    expect(el.querySelector("img")!.className).toContain("aspect-[2/3]");
+    const title = el.querySelector("[data-title]")!;
+    expect(title.textContent).toBe("Keep a starter alive");
+    expect(title.compareDocumentPosition(el.querySelector("[data-body]")!) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(el.querySelector("[data-reactions]")).toBeNull();
   });
 
   it("shows a placeholder where Instagram's image goes until there is one", () => {

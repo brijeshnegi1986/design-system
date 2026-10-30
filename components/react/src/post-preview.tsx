@@ -21,13 +21,14 @@ const REPOST = "M7 7h10l-3-3M17 17H7l3 3M17 7v4M7 17v-4";
 
 /**
  * A social post as it will look on its channel (Facebook, Instagram,
- * LinkedIn, Threads): who posts it with their avatar, when, the image on top with
+ * LinkedIn, Threads, Pinterest): who posts it with their avatar, when, the image on top with
  * the text under it, and the channel's reactions. The reactions are
  * decoration, hidden from screen readers.
  *
  * `children` is the post's text, or an editor for it. Without `avatar` the
  * avatar is the name's first letter. `imagePlaceholder` fills the image's
- * place until there is one (Instagram needs one).
+ * place until there is one (Instagram and Pinterest need one). A Pin
+ * shows its `title` in bold under a tall 2:3 image, and has no reactions bar.
  */
 export function PostPreview({
   platform,
@@ -37,6 +38,7 @@ export function PostPreview({
   image,
   imageAlt = "",
   imagePlaceholder,
+  title,
   className = "",
   children,
 }: {
@@ -48,17 +50,21 @@ export function PostPreview({
   image?: string | null;
   imageAlt?: string;
   imagePlaceholder?: ReactNode;
+  /** A Pin's title, shown above the text (Pinterest only). */
+  title?: ReactNode;
   className?: string;
   children?: ReactNode;
 }) {
   const instagram = platform === "instagram";
   const threads = platform === "threads";
+  const pinterest = platform === "pinterest";
+  const shape = instagram ? "aspect-square" : pinterest ? "aspect-[2/3]" : null;
   const picture = image ? (
-    <img src={image} alt={imageAlt} className={`w-full bg-(--color-surface-raised) object-cover ${instagram ? "aspect-square" : "max-h-96"}`} />
+    <img src={image} alt={imageAlt} className={`w-full bg-(--color-surface-raised) object-cover ${shape ?? "max-h-96"}`} />
   ) : imagePlaceholder ? (
     <div
       className={`flex items-center justify-center bg-(--color-surface-raised) p-6 text-center text-sm text-(--color-content-secondary) ${
-        instagram ? "aspect-square" : "min-h-28"
+        shape ?? "min-h-28"
       }`}
     >
       {imagePlaceholder}
@@ -98,6 +104,15 @@ export function PostPreview({
             <Glyph d={BUBBLE} />
             <Glyph d={SEND} />
           </div>
+          {body}
+        </>
+      ) : pinterest ? (
+        <>
+          {title && (
+            <div data-title className="px-4 text-base font-semibold text-(--color-content-primary)">
+              {title}
+            </div>
+          )}
           {body}
         </>
       ) : threads ? (
