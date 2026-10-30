@@ -15,6 +15,11 @@ select {
   height: 48px;
 }
 
+/* TextInput size="sm": 40px, for dense tools (admin tables and toolbars). */
+input[data-size="sm"]:not([type="checkbox"]):not([type="radio"]):not([type="file"]):not([type="hidden"]) {
+  height: 40px;
+}
+
 input:not([type="checkbox"]):not([type="radio"]):not([type="file"]):not([type="hidden"]):not([type="range"]):not([data-shape]),
 select {
   border-radius: 9999px;

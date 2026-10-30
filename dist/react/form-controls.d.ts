@@ -13,7 +13,13 @@ export declare function Field({ label, required, hint, error, counter, children,
         invalid: boolean;
     }) => ReactNode;
 }): import("react").JSX.Element;
-export declare function TextInput(props: React.InputHTMLAttributes<HTMLInputElement>): import("react").JSX.Element;
+/** A text field: 48px, or 40px at `size="sm"` for dense tools (admin
+ * tables, toolbars). `size` here is the NDS size, not HTML's character width.
+ * The 40px comes from styles.css (data-size="sm"): its native-field rule is
+ * unlayered, so a height utility alone can't win. */
+export declare function TextInput({ size, ...props }: Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> & {
+    size?: "md" | "sm";
+}): import("react").JSX.Element;
 /** The NDS field look for a raw input, textarea or select that can't use
  * TextInput/TextArea: white fill, the input border, 16px text, an 8px corner
  * (single-line inputs and selects become pills in globals.css), border-focus

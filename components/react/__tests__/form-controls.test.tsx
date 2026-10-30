@@ -53,3 +53,18 @@ describe("Field (audit H7)", () => {
     expect(container.querySelector("label")!.textContent).toContain("(required)");
   });
 });
+
+describe("TextInput sizes", () => {
+  it("is 48px by default and 40px at size sm, for dense tools like admin", async () => {
+    const { renderToStaticMarkup } = await import("react-dom/server");
+    const html = (node: React.ReactElement) =>
+      new DOMParser().parseFromString(renderToStaticMarkup(node), "text/html").querySelector("input")!;
+    expect(html(<TextInput aria-label="Name" />).className).toMatch(/\bh-12\b/);
+    const small = html(<TextInput aria-label="Name" size="sm" />);
+    expect(small.className).toMatch(/\bh-10\b/);
+    expect(small.className).not.toMatch(/\bh-12\b/);
+    // Not the HTML size attribute; styles.css sizes it by data-size.
+    expect(small.hasAttribute("size")).toBe(false);
+    expect(small.getAttribute("data-size")).toBe("sm");
+  });
+});

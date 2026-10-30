@@ -75,8 +75,21 @@ export function Field({
 const CONTROL_BASE =
   "w-full border border-(--color-border-input) bg-(--color-surface-default) px-3 text-base text-(--color-content-primary) placeholder:text-(--color-content-muted)";
 
-export function TextInput(props: React.InputHTMLAttributes<HTMLInputElement>) {
-  return <input {...props} className={`${CONTROL_BASE} h-12 ${props.className ?? ""}`} />;
+/** A text field: 48px, or 40px at `size="sm"` for dense tools (admin
+ * tables, toolbars). `size` here is the NDS size, not HTML's character width.
+ * The 40px comes from styles.css (data-size="sm"): its native-field rule is
+ * unlayered, so a height utility alone can't win. */
+export function TextInput({
+  size = "md",
+  ...props
+}: Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> & { size?: "md" | "sm" }) {
+  return (
+    <input
+      {...props}
+      data-size={size === "sm" ? "sm" : undefined}
+      className={`${CONTROL_BASE} ${size === "sm" ? "h-10" : "h-12"} ${props.className ?? ""}`}
+    />
+  );
 }
 
 /** The NDS field look for a raw input, textarea or select that can't use
