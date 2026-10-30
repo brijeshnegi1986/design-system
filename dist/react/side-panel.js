@@ -42,7 +42,7 @@ const HANDLE = "flex size-10 shrink-0 items-center justify-center rounded-full t
  * Opening as a drawer moves focus to its handle; pushing it in brings focus
  * back to the Show handle rather than losing it.
  */
-export function SidePanel({ label, labelledBy, className = "", collapse, children, }) {
+export function SidePanel({ label, labelledBy, className = "", dock, collapse, children, }) {
     const open = collapse?.open;
     const onToggle = collapse?.onToggle;
     const hideRef = useRef(null);
@@ -71,17 +71,20 @@ export function SidePanel({ label, labelledBy, className = "", collapse, childre
         return () => document.removeEventListener("keydown", onKey);
     }, [open, onToggle]);
     if (!collapse) {
-        return (_jsx("aside", { "aria-label": labelledBy ? undefined : label, "aria-labelledby": labelledBy, className: `flex flex-col gap-5 rounded-(--radius-lg) bg-(--color-surface-raised) p-6 ${className}`.trim(), children: children }));
+        const docked = dock
+            ? `overflow-y-auto xl:fixed xl:top-16 xl:bottom-0 xl:z-10 xl:w-96 xl:rounded-none ${EDGE[dock]}`
+            : "";
+        return (_jsx("aside", { "aria-label": labelledBy ? undefined : label, "aria-labelledby": labelledBy, ...(dock ? { "data-dock": dock, "data-size": "md", "data-state": "expanded" } : {}), className: `flex flex-col gap-5 rounded-(--radius-lg) bg-(--color-surface-raised) p-6 ${docked} ${className}`.replace(/\s+/g, " ").trim(), children: children }));
     }
     const { side, controls, size = "md" } = collapse;
     // Where it docks and how wide, so the page can keep that room free.
-    const dock = { "data-dock": side, "data-size": size };
+    const dockAttrs = { "data-dock": side, "data-size": size };
     const name = label ?? "";
     // Pushing in moves it toward its own edge; pulling out, away from it.
     const pushIn = side;
     const pullOut = side === "right" ? "left" : "right";
     if (!open) {
-        return (_jsxs("aside", { "aria-label": labelledBy ? undefined : label, "aria-labelledby": labelledBy, "data-state": "collapsed", ...dock, className: `flex items-center gap-2 rounded-(--radius-lg) bg-(--color-surface-raised) p-1.5 xl:fixed xl:top-16 xl:bottom-0 xl:z-10 xl:w-12 xl:flex-col xl:rounded-none xl:py-3 ${EDGE[side]} ${className}`.trim(), children: [_jsx("button", { ref: showRef, type: "button", "aria-expanded": false, "aria-controls": controls, "aria-label": `Show ${name}`, title: `Show ${name}`, onClick: onToggle, className: HANDLE, children: _jsx(Chevron, { direction: pullOut }) }), _jsx("span", { "aria-hidden": true, className: "text-sm font-medium text-(--color-content-secondary) xl:[writing-mode:vertical-rl]", children: name })] }));
+        return (_jsxs("aside", { "aria-label": labelledBy ? undefined : label, "aria-labelledby": labelledBy, "data-state": "collapsed", ...dockAttrs, className: `flex items-center gap-2 rounded-(--radius-lg) bg-(--color-surface-raised) p-1.5 xl:fixed xl:top-16 xl:bottom-0 xl:z-10 xl:w-12 xl:flex-col xl:rounded-none xl:py-3 ${EDGE[side]} ${className}`.trim(), children: [_jsx("button", { ref: showRef, type: "button", "aria-expanded": false, "aria-controls": controls, "aria-label": `Show ${name}`, title: `Show ${name}`, onClick: onToggle, className: HANDLE, children: _jsx(Chevron, { direction: pullOut }) }), _jsx("span", { "aria-hidden": true, className: "text-sm font-medium text-(--color-content-secondary) xl:[writing-mode:vertical-rl]", children: name })] }));
     }
-    return (_jsxs(_Fragment, { children: [_jsx("div", { "data-side-panel-scrim": true, "aria-hidden": true, onClick: onToggle, className: "fixed inset-0 z-40 bg-(--color-overlay-scrim) xl:hidden" }), _jsxs("aside", { "aria-label": labelledBy ? undefined : label, "aria-labelledby": labelledBy, "data-state": "expanded", ...dock, className: `fixed inset-y-0 z-50 flex w-[min(24rem,calc(100vw-2rem))] ${size === "sm" ? "xl:w-64" : "xl:w-96"} flex-col gap-5 overflow-y-auto bg-(--color-surface-raised) p-6 shadow-[0_var(--elevation-lg)_24px_rgb(0_0_0/0.16)] xl:top-16 xl:bottom-0 xl:z-10 xl:shadow-none ${side === "right" ? "right-0" : "left-0 xl:left-[var(--app-sidebar-width,0px)]"} ${className}`.trim(), children: [_jsxs("div", { className: "-my-2 flex items-center justify-between gap-2", children: [_jsx("h2", { id: labelledBy, className: "text-base font-semibold text-(--color-content-primary)", children: name }), _jsx("button", { ref: hideRef, type: "button", "aria-expanded": true, "aria-controls": controls, "aria-label": `Hide ${name}`, title: `Hide ${name}`, onClick: onToggle, className: `${HANDLE} -mr-2`, children: _jsx(Chevron, { direction: pushIn }) })] }), _jsx("div", { id: controls, className: "flex flex-col gap-5", children: children })] })] }));
+    return (_jsxs(_Fragment, { children: [_jsx("div", { "data-side-panel-scrim": true, "aria-hidden": true, onClick: onToggle, className: "fixed inset-0 z-40 bg-(--color-overlay-scrim) xl:hidden" }), _jsxs("aside", { "aria-label": labelledBy ? undefined : label, "aria-labelledby": labelledBy, "data-state": "expanded", ...dockAttrs, className: `fixed inset-y-0 z-50 flex w-[min(24rem,calc(100vw-2rem))] ${size === "sm" ? "xl:w-64" : "xl:w-96"} flex-col gap-5 overflow-y-auto bg-(--color-surface-raised) p-6 shadow-[0_var(--elevation-lg)_24px_rgb(0_0_0/0.16)] xl:top-16 xl:bottom-0 xl:z-10 xl:shadow-none ${side === "right" ? "right-0" : "left-0 xl:left-[var(--app-sidebar-width,0px)]"} ${className}`.trim(), children: [_jsxs("div", { className: "-my-2 flex items-center justify-between gap-2", children: [_jsx("h2", { id: labelledBy, className: "text-base font-semibold text-(--color-content-primary)", children: name }), _jsx("button", { ref: hideRef, type: "button", "aria-expanded": true, "aria-controls": controls, "aria-label": `Hide ${name}`, title: `Hide ${name}`, onClick: onToggle, className: `${HANDLE} -mr-2`, children: _jsx(Chevron, { direction: pushIn }) })] }), _jsx("div", { id: controls, className: "flex flex-col gap-5", children: children })] })] }));
 }

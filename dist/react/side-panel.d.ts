@@ -28,10 +28,14 @@ import { type ReactNode } from "react";
  * Opening as a drawer moves focus to its handle; pushing it in brings focus
  * back to the Show handle rather than losing it.
  */
-export declare function SidePanel({ label, labelledBy, className, collapse, children, }: {
+export declare function SidePanel({ label, labelledBy, className, dock, collapse, children, }: {
     label?: string;
     labelledBy?: string;
     className?: string;
+    /** Docked full height at this window edge from xl, always out (a page's
+     * own controls, which shouldn't be pushed away); in the page's flow below
+     * xl. The page keeps its room free, as for a collapsible one. */
+    dock?: "left" | "right";
     collapse?: {
         open: boolean;
         onToggle: () => void;

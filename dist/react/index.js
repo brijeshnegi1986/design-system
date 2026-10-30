@@ -27,6 +27,7 @@ export { Switch } from "./switch.js";
 export { Tabs } from "./tabs.js";
 export { Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow } from "./table.js";
 export { ToastProvider, useToast } from "./toast-provider.js";
+export { PostPreview } from "./post-preview.js";
 export { SidePanel } from "./side-panel.js";
 export { Tag } from "./tag.js";
 export { TipPanel } from "./tip-panel.js";
