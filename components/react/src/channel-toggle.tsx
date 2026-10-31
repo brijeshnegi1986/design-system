@@ -18,6 +18,7 @@ import { Tooltip } from "./tooltip.js";
  *
  * `label` is the button's accessible name ("Facebook, Negiflow (Page)"); the
  * tooltip is hidden from screen readers, so the name carries the account.
+ * `size="sm"` is 36px, for toolbars beside compact menus (a calendar filter).
  */
 export function ChannelToggle({
   icon,
@@ -28,6 +29,7 @@ export function ChannelToggle({
   count = 1,
   flag,
   disabled = false,
+  size = "md",
 }: {
   /** The channel's logo, about 22px. */
   icon: ReactNode;
@@ -39,6 +41,7 @@ export function ChannelToggle({
   count?: number;
   flag?: string;
   disabled?: boolean;
+  size?: "md" | "sm";
 }) {
   return (
     <Tooltip label={detail}>
@@ -48,7 +51,7 @@ export function ChannelToggle({
         aria-pressed={selected}
         disabled={disabled}
         onClick={() => onChange(!selected)}
-        className={`relative flex size-11 shrink-0 items-center justify-center rounded-full bg-(--color-surface-default) transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-border-focus) disabled:cursor-not-allowed disabled:opacity-50 ${
+        className={`relative flex ${size === "sm" ? "size-9" : "size-11"} shrink-0 items-center justify-center rounded-full bg-(--color-surface-default) transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-border-focus) disabled:cursor-not-allowed disabled:opacity-50 ${
           selected
             ? "border-[1.5px] border-(--color-status-success)"
             : "border border-(--color-border-subtle) hover:bg-(--color-action-tertiary-hover)"
