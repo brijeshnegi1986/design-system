@@ -13,8 +13,9 @@ import type { ReactNode } from "react";
  *
  * `label` is the button's accessible name ("Facebook, Negiflow (Page)"); the
  * tooltip is hidden from screen readers, so the name carries the account.
+ * `size="sm"` is 36px, for toolbars beside compact menus (a calendar filter).
  */
-export declare function ChannelToggle({ icon, label, detail, selected, onChange, count, flag, disabled, }: {
+export declare function ChannelToggle({ icon, label, detail, selected, onChange, count, flag, disabled, size, }: {
     /** The channel's logo, about 22px. */
     icon: ReactNode;
     label: string;
@@ -25,6 +26,7 @@ export declare function ChannelToggle({ icon, label, detail, selected, onChange,
     count?: number;
     flag?: string;
     disabled?: boolean;
+    size?: "md" | "sm";
 }): import("react").JSX.Element;
 /**
  * A channel not connected yet, beside the ChannelToggles: the same 44px round

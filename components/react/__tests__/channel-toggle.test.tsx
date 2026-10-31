@@ -80,6 +80,12 @@ describe("ChannelToggle", () => {
     expect(host.querySelector('[role="tooltip"]')!.textContent).toBe("Facebook · Negiflow (Page)");
   });
 
+  it("comes in a 36px size for toolbars, next to compact menus", () => {
+    const button = mount({ size: "sm" });
+    expect(button.className.split(" ")).toContain("size-9");
+    expect(button.className.split(" ")).not.toContain("size-11");
+  });
+
   it("can't be switched while disabled", () => {
     onChange.mockReset();
     const button = mount({ disabled: true });
