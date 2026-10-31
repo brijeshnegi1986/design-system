@@ -79,4 +79,32 @@ describe("ActionMenu", () => {
     act(() => { document.body.dispatchEvent(new MouseEvent("mousedown", { bubbles: true })); });
     expect(host.querySelector("[role='menu']")).toBeNull();
   });
+
+  it("can be an Add button: a 44px + that opens its menu to the right, items with icons", () => {
+    host = document.createElement("div");
+    document.body.appendChild(host);
+    root = createRoot(host);
+    const calls: string[] = [];
+    act(() =>
+      root.render(
+        <ActionMenu
+          kind="add"
+          label="Add a channel"
+          items={[{ label: "Connect Threads", icon: <span data-icon-threads />, onSelect: () => calls.push("threads") }]}
+        />,
+      ),
+    );
+    const button = host.querySelector<HTMLButtonElement>("button[aria-haspopup='menu']")!;
+    expect(button.getAttribute("aria-label")).toBe("Add a channel");
+    expect(button.className.split(" ")).toContain("size-11");
+    expect(button.querySelector("[data-part='plus']")).not.toBeNull();
+    act(() => button.click());
+    const menu = host.querySelector<HTMLElement>("[role='menu']")!;
+    expect(menu.className.split(" ")).toContain("left-0");
+    const item = menu.querySelector<HTMLButtonElement>("[role='menuitem']")!;
+    expect(item.querySelector("[data-icon-threads]")).not.toBeNull();
+    act(() => item.click());
+    expect(calls).toEqual(["threads"]);
+  });
 });
+
