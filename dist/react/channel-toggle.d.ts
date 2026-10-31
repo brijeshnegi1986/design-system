@@ -30,8 +30,8 @@ export declare function ChannelToggle({ icon, label, detail, selected, onChange,
 }): import("react").JSX.Element;
 /**
  * A channel not connected yet, beside the ChannelToggles: the same 44px round
- * logo, faded (greyed, a dashed edge) with a small "+", so the row shows every
- * channel. It looks off but isn't disabled: choosing it starts connecting.
+ * logo in its own brand colours, just faded (half opacity, a dashed edge) with
+ * a small "+", so the row shows every channel. It looks off but isn't disabled: choosing it starts connecting.
  * `label` names what it does ("Connect Threads") and is also its tooltip.
  */
 export declare function ChannelConnect({ icon, label, onClick, }: {

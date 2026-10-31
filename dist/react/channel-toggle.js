@@ -25,10 +25,10 @@ export function ChannelToggle({ icon, label, detail, selected, onChange, count =
 }
 /**
  * A channel not connected yet, beside the ChannelToggles: the same 44px round
- * logo, faded (greyed, a dashed edge) with a small "+", so the row shows every
- * channel. It looks off but isn't disabled: choosing it starts connecting.
+ * logo in its own brand colours, just faded (half opacity, a dashed edge) with
+ * a small "+", so the row shows every channel. It looks off but isn't disabled: choosing it starts connecting.
  * `label` names what it does ("Connect Threads") and is also its tooltip.
  */
 export function ChannelConnect({ icon, label, onClick, }) {
-    return (_jsx(Tooltip, { label: label, children: _jsxs("button", { type: "button", "aria-label": label, onClick: onClick, className: "relative flex size-11 shrink-0 items-center justify-center rounded-full border border-dashed border-(--color-border-subtle) bg-(--color-surface-default) transition-colors hover:bg-(--color-action-tertiary-hover) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-border-focus)", children: [_jsx("span", { "data-part": "logo", "aria-hidden": true, className: "inline-flex opacity-60 grayscale", children: icon }), _jsx("span", { "data-part": "plus", "aria-hidden": true, className: "absolute -right-1 -bottom-1 flex size-4.5 items-center justify-center rounded-full bg-(--color-surface-default) text-(--color-content-secondary) ring-1 ring-(--color-border-subtle)", children: _jsx("svg", { viewBox: "0 0 20 20", className: "size-3", fill: "none", stroke: "currentColor", strokeWidth: "2.2", strokeLinecap: "round", children: _jsx("path", { d: "M10 4v12M4 10h12" }) }) })] }) }));
+    return (_jsx(Tooltip, { label: label, children: _jsxs("button", { type: "button", "aria-label": label, onClick: onClick, className: "relative flex size-11 shrink-0 items-center justify-center rounded-full border border-dashed border-(--color-border-subtle) bg-(--color-surface-default) transition-colors hover:bg-(--color-action-tertiary-hover) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-border-focus)", children: [_jsx("span", { "data-part": "logo", "aria-hidden": true, className: "inline-flex opacity-50", children: icon }), _jsx("span", { "data-part": "plus", "aria-hidden": true, className: "absolute -right-1 -bottom-1 flex size-4.5 items-center justify-center rounded-full bg-(--color-surface-default) text-(--color-content-secondary) ring-1 ring-(--color-border-subtle)", children: _jsx("svg", { viewBox: "0 0 20 20", className: "size-3", fill: "none", stroke: "currentColor", strokeWidth: "2.2", strokeLinecap: "round", children: _jsx("path", { d: "M10 4v12M4 10h12" }) }) })] }) }));
 }

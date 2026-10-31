@@ -92,8 +92,8 @@ export function ChannelToggle({
 
 /**
  * A channel not connected yet, beside the ChannelToggles: the same 44px round
- * logo, faded (greyed, a dashed edge) with a small "+", so the row shows every
- * channel. It looks off but isn't disabled: choosing it starts connecting.
+ * logo in its own brand colours, just faded (half opacity, a dashed edge) with
+ * a small "+", so the row shows every channel. It looks off but isn't disabled: choosing it starts connecting.
  * `label` names what it does ("Connect Threads") and is also its tooltip.
  */
 export function ChannelConnect({
@@ -114,7 +114,7 @@ export function ChannelConnect({
         onClick={onClick}
         className="relative flex size-11 shrink-0 items-center justify-center rounded-full border border-dashed border-(--color-border-subtle) bg-(--color-surface-default) transition-colors hover:bg-(--color-action-tertiary-hover) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-border-focus)"
       >
-        <span data-part="logo" aria-hidden className="inline-flex opacity-60 grayscale">
+        <span data-part="logo" aria-hidden className="inline-flex opacity-50">
           {icon}
         </span>
         <span

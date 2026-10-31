@@ -107,7 +107,10 @@ describe("ChannelConnect", () => {
     expect(button.disabled).toBe(false);
     expect(button.hasAttribute("aria-pressed")).toBe(false);
     expect(button.className.split(" ")).toEqual(expect.arrayContaining(["size-11", "border-dashed"]));
-    expect(button.querySelector("[data-part='logo']")!.className).toContain("grayscale");
+    // The brand's own colours, just faded: never greyed out (2026-10-31).
+    const logo = button.querySelector("[data-part='logo']")!.className.split(" ");
+    expect(logo).not.toContain("grayscale");
+    expect(logo).toContain("opacity-50");
     expect(button.querySelector("[data-part='plus']")).not.toBeNull();
     act(() => button.click());
     expect(onClick).toHaveBeenCalled();
