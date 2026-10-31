@@ -10,7 +10,7 @@ export { Banner, type BannerVariant } from "./banner.js";
 export { Badge, type BadgeTone } from "./badge.js";
 export { Breadcrumbs, PlainLink, type LinkComponent } from "./breadcrumbs.js";
 export { Button, buttonClassName, buttonLookClassName, type ButtonSize, type ButtonVariant } from "./button.js";
-export { ChannelToggle } from "./channel-toggle.js";
+export { ChannelConnect, ChannelToggle } from "./channel-toggle.js";
 export { Card, CARD_BASE_CLASS, CARD_INTERACTIVE_CLASS, CARD_SELECTED_CLASS } from "./card.js";
 export { Checkbox, Radio, RadioTiles, type RadioTileOption } from "./choice.js";
 export { Dialog } from "./dialog.js";

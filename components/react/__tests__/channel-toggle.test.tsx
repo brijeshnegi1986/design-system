@@ -3,7 +3,7 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { act } from "react";
 import { createRoot, type Root } from "react-dom/client";
-import { ChannelToggle } from "../src/index.js";
+import { ChannelConnect, ChannelToggle } from "../src/index.js";
 
 (globalThis as { IS_REACT_ACT_ENVIRONMENT?: boolean }).IS_REACT_ACT_ENVIRONMENT = true;
 
@@ -51,6 +51,9 @@ describe("ChannelToggle", () => {
     const button = mount({ selected: true });
     expect(button.getAttribute("aria-pressed")).toBe("true");
     expect(button.querySelector("[data-part='tick']")).not.toBeNull();
+    // A thin edge, not a thick ring (2026-10-31).
+    expect(button.className).not.toContain("ring-2");
+    expect(button.className.split(" ")).toContain("border-[1.5px]");
     act(() => button.click());
     expect(onChange).toHaveBeenLastCalledWith(false);
   });
@@ -84,3 +87,24 @@ describe("ChannelToggle", () => {
     expect(onChange).not.toHaveBeenCalled();
   });
 });
+
+describe("ChannelConnect", () => {
+  it("is a channel not connected yet: a faded 44px logo with a +, named for what it does", () => {
+    const onClick = vi.fn();
+    host = document.createElement("div");
+    document.body.appendChild(host);
+    root = createRoot(host);
+    act(() => root.render(<ChannelConnect icon={<span data-logo />} label="Connect Threads" onClick={onClick} />));
+    const button = host.querySelector<HTMLButtonElement>("button")!;
+    expect(button.getAttribute("aria-label")).toBe("Connect Threads");
+    // It looks off, but it isn't disabled: it starts connecting.
+    expect(button.disabled).toBe(false);
+    expect(button.hasAttribute("aria-pressed")).toBe(false);
+    expect(button.className.split(" ")).toEqual(expect.arrayContaining(["size-11", "border-dashed"]));
+    expect(button.querySelector("[data-part='logo']")!.className).toContain("grayscale");
+    expect(button.querySelector("[data-part='plus']")).not.toBeNull();
+    act(() => button.click());
+    expect(onClick).toHaveBeenCalled();
+  });
+});
+
