@@ -103,6 +103,8 @@ describe("ActionMenu", () => {
     expect(menu.className.split(" ")).toContain("left-0");
     const item = menu.querySelector<HTMLButtonElement>("[role='menuitem']")!;
     expect(item.querySelector("[data-icon-threads]")).not.toBeNull();
+    // One line each: a small trigger mustn't squeeze the menu so names wrap.
+    expect(item.className.split(" ")).toContain("whitespace-nowrap");
     act(() => item.click());
     expect(calls).toEqual(["threads"]);
   });

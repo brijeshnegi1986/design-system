@@ -115,7 +115,7 @@ export function ActionMenu({
                 close(true);
                 item.onSelect();
               }}
-              className={`flex items-center gap-2 rounded-md px-3 py-2 text-left text-sm transition-colors hover:bg-(--color-action-tertiary-hover) focus-visible:bg-(--color-action-tertiary-hover) focus-visible:outline-none disabled:cursor-not-allowed disabled:text-(--color-content-disabled) disabled:hover:bg-transparent ${
+              className={`flex items-center gap-2 rounded-md px-3 py-2 text-left text-sm whitespace-nowrap transition-colors hover:bg-(--color-action-tertiary-hover) focus-visible:bg-(--color-action-tertiary-hover) focus-visible:outline-none disabled:cursor-not-allowed disabled:text-(--color-content-disabled) disabled:hover:bg-transparent ${
                 item.tone === "danger" ? "text-(--color-status-error)" : "text-(--color-content-primary)"
               }`}
             >
