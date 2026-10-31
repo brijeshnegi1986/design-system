@@ -10,6 +10,7 @@ export { Banner } from "./banner.js";
 export { Badge } from "./badge.js";
 export { Breadcrumbs, PlainLink } from "./breadcrumbs.js";
 export { Button, buttonClassName, buttonLookClassName } from "./button.js";
+export { ChannelToggle } from "./channel-toggle.js";
 export { Card, CARD_BASE_CLASS, CARD_INTERACTIVE_CLASS, CARD_SELECTED_CLASS } from "./card.js";
 export { Checkbox, Radio, RadioTiles } from "./choice.js";
 export { Dialog } from "./dialog.js";
