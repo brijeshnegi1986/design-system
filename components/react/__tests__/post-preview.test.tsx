@@ -70,6 +70,18 @@ describe("PostPreview", () => {
     expect(el.querySelector("[data-reactions]")).toBeNull();
   });
 
+  it("shows a Google Business Profile update: the photo, then the text, with no reactions bar", () => {
+    const el = dom(
+      <PostPreview platform="google_business" name="Harbour Lane Bakery" image="https://cdn.example/p.jpg">
+        <p data-body>Winter menu from Monday.</p>
+      </PostPreview>,
+    );
+    expect(el.getAttribute("data-platform")).toBe("google_business");
+    expect(el.querySelector("img")!.compareDocumentPosition(el.querySelector("[data-body]")!) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    // Google's updates have no likes or comments.
+    expect(el.querySelector("[data-reactions]")).toBeNull();
+  });
+
   it("shows a placeholder where Instagram's image goes until there is one", () => {
     const el = dom(
       <PostPreview platform="instagram" name="negiflow" imagePlaceholder="Add an image to post on Instagram">
