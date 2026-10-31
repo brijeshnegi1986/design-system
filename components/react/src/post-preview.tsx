@@ -58,6 +58,8 @@ export function PostPreview({
   const instagram = platform === "instagram";
   const threads = platform === "threads";
   const pinterest = platform === "pinterest";
+  // A Google Business Profile update: the photo, then the text; no likes or comments.
+  const google = platform === "google_business";
   const shape = instagram ? "aspect-square" : pinterest ? "aspect-[2/3]" : null;
   const picture = image ? (
     <img src={image} alt={imageAlt} className={`w-full bg-(--color-surface-raised) object-cover ${shape ?? "max-h-96"}`} />
@@ -115,6 +117,8 @@ export function PostPreview({
           )}
           {body}
         </>
+      ) : google ? (
+        body
       ) : threads ? (
         <>
           {body}
