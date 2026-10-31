@@ -59,6 +59,35 @@ const key = (k: string) =>
   act(() => trigger().dispatchEvent(new KeyboardEvent("keydown", { key: k, bubbles: true, cancelable: true })));
 
 describe("Select", () => {
+  it("pins its menu to the screen under the field, so a dialog's scrolling box can't clip it", () => {
+    render();
+    vi.spyOn(trigger(), "getBoundingClientRect").mockReturnValue({
+      top: 100, bottom: 140, left: 20, right: 220, width: 200, height: 40, x: 20, y: 100, toJSON() {},
+    } as DOMRect);
+    act(() => trigger().click());
+    const list = container.querySelector<HTMLElement>('[role="listbox"]')!;
+    expect(list.className.split(" ")).toContain("fixed");
+    expect(list.style.top).toBe("140px");
+    expect(list.style.left).toBe("20px");
+    expect(list.style.minWidth).toBe("200px");
+  });
+
+  it("closes when the page scrolls, rather than drifting away from its field", () => {
+    render();
+    act(() => trigger().click());
+    expect(container.querySelector('[role="listbox"]')).not.toBeNull();
+    act(() => { window.dispatchEvent(new Event("scroll")); });
+    expect(container.querySelector('[role="listbox"]')).toBeNull();
+  });
+
+  it("stays open while its own long list scrolls", () => {
+    render();
+    act(() => trigger().click());
+    const list = container.querySelector<HTMLElement>('[role="listbox"]')!;
+    act(() => { list.dispatchEvent(new Event("scroll")); });
+    expect(container.querySelector('[role="listbox"]')).not.toBeNull();
+  });
+
   it("draws its edge in the input border token (audit C2)", () => {
     render();
     expect(trigger().className).toContain("border-(--color-border-input)");
