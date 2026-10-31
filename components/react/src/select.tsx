@@ -88,6 +88,10 @@ export function Select({
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(-1);
   const [above, setAbove] = useState(false);
+  // Where the menu sits on screen. It's pinned there (position: fixed), not
+  // placed inside the field's box, so a dialog or panel that scrolls its
+  // content can't clip it.
+  const [place, setPlace] = useState<{ left: number; width: number; top?: number; bottom?: number } | null>(null);
   // The menu opens on the chosen item, which stays white with its tick (the
   // design's Selected state); the grey hover appears once someone moves.
   const [moved, setMoved] = useState(false);
@@ -108,6 +112,22 @@ export function Select({
     return () => document.removeEventListener("pointerdown", onPointerDown);
   }, [open]);
 
+  // Pinned to the screen, it would drift from its field if the page or a
+  // dialog scrolled, so a scroll anywhere but the list itself closes it.
+  useEffect(() => {
+    if (!open) return;
+    function onScroll(event: Event) {
+      if (event.target instanceof Node && listRef.current?.contains(event.target)) return;
+      setOpen(false);
+    }
+    window.addEventListener("scroll", onScroll, true);
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll, true);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [open]);
+
   // Keep the highlighted item in view in a long list.
   useEffect(() => {
     if (!open || active < 0) return;
@@ -124,7 +144,15 @@ export function Select({
   function openMenu(highlight: number = selectedIndex >= 0 ? selectedIndex : enabledFrom(0, 1)) {
     if (disabled) return;
     const rect = buttonRef.current?.getBoundingClientRect();
-    if (rect) setAbove(window.innerHeight - rect.bottom < 280 && rect.top > window.innerHeight - rect.bottom);
+    if (rect) {
+      const up = window.innerHeight - rect.bottom < 280 && rect.top > window.innerHeight - rect.bottom;
+      setAbove(up);
+      setPlace(
+        up
+          ? { left: rect.left, width: rect.width, bottom: window.innerHeight - rect.top }
+          : { left: rect.left, width: rect.width, top: rect.bottom },
+      );
+    }
     setMoved(false);
     setActive(highlight);
     setOpen(true);
@@ -282,9 +310,8 @@ export function Select({
         // 12px regular text 34px tall. The shadow is a drop-shadow on the
         // wrapper so it follows the pointer too.
         <div
-          className={`absolute left-1/2 z-50 -translate-x-1/2 drop-shadow-[0_var(--elevation-sm)_1px_rgb(0_0_0/0.1)] ${
-            above ? "bottom-full mb-3" : "top-full mt-3"
-          }`}
+          className={`fixed z-50 -translate-x-1/2 drop-shadow-[0_var(--elevation-sm)_1px_rgb(0_0_0/0.1)] ${above ? "mb-3" : "mt-3"}`}
+          style={place ? { left: place.left + place.width / 2, top: place.top, bottom: place.bottom } : undefined}
         >
           <span
             aria-hidden
@@ -310,9 +337,10 @@ export function Select({
           id={listId}
           role="listbox"
           aria-labelledby={ariaLabelledBy ?? buttonId}
-          className={`absolute left-0 z-50 flex max-h-72 min-w-full flex-col overflow-y-auto rounded-md bg-(--color-surface-default) p-3 shadow-[0_var(--elevation-sm)_1px_rgb(0_0_0/0.1),0_4px_16px_rgb(0_0_0/0.08)] ${
-            above ? "bottom-full mb-1" : "top-full mt-1"
-          } w-full`}
+          className={`fixed z-50 flex max-h-72 flex-col overflow-y-auto rounded-md bg-(--color-surface-default) p-3 shadow-[0_var(--elevation-sm)_1px_rgb(0_0_0/0.1),0_4px_16px_rgb(0_0_0/0.08)] ${
+            above ? "mb-1" : "mt-1"
+          }`}
+          style={place ? { left: place.left, minWidth: place.width, top: place.top, bottom: place.bottom } : undefined}
         >
           {optionItems}
         </ul>
